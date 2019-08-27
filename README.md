@@ -38,7 +38,6 @@ workbooks, you should:
   documentation (`build-xxxx.md`) in the [Bitcoin Core repository docs
   directory](https://github.com/bitcoin/bitcoin/tree/master/doc) for additional
   documentation on building bitcoind.
-- Verify that the test workbook passes FIXME: add link to test workbook.
 
 #### Python Dependencies
 
@@ -69,3 +68,5 @@ deactivate
 ```
 $ jupyter-notebook
 ```
+
+- Verify that "0.1-test-notebook.ipynb" passes all checks.
