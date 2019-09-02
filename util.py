@@ -1,18 +1,21 @@
-# Enter your source directory between the quotes here
-SOURCE_DIRECTORY = ''
+import argparse
+import configparser
+import os
+import sys
+
+# Read configuration from config.ini
+config = configparser.ConfigParser()
+configfile = os.path.abspath(os.path.dirname(__file__)) + "/config.ini"
+config.read_file(open(configfile, encoding="utf8"))
+
+SOURCE_DIRECTORY = config["path"]["SOURCE_DIRECTORY"]
 
 assert not SOURCE_DIRECTORY == '', 'SOURCE_DIRECTORY not configured'
 
 print("Source directory configured as {}".format(SOURCE_DIRECTORY))
 
-import sys
+# Import TestFramework
 sys.path.insert(0, SOURCE_DIRECTORY + '/test/functional')
-
-#############################################################################
-
-import argparse
-import os
-
 from test_framework.test_framework import BitcoinTestFramework
 
 # TestWrapper utility class.
