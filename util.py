@@ -10,7 +10,7 @@ config.read_file(open(configfile, encoding="utf8"))
 
 SOURCE_DIRECTORY = config["path"]["SOURCE_DIRECTORY"]
 
-assert not SOURCE_DIRECTORY == '', 'SOURCE_DIRECTORY not configured'
+assert not SOURCE_DIRECTORY == '', 'SOURCE_DIRECTORY not configured! Edit config.ini to configure SOURCE_DIRECTORY.'
 
 print("Source directory configured as {}".format(SOURCE_DIRECTORY))
 
