@@ -60,6 +60,10 @@ class TestWrapper:
             perf = False,
             randomseed = None):
 
+            if self.running:
+                print("TestWrapper is already running!")
+                return
+
             self.setup_clean_chain = setup_clean_chain
             self.num_nodes = num_nodes
             self.network_thread = network_thread
@@ -86,12 +90,21 @@ class TestWrapper:
             self.options.bitcoincli = bitcoincli
 
             super().setup()
+            self.running = True
+
+        def shutdown(self):
+            if not self.running:
+                print("TestWrapper is not running!")
+            else:
+                super().shutdown()
+                self.running = False
 
     instance = None
 
     def __new__(cls):
         if not TestWrapper.instance:
             TestWrapper.instance = TestWrapper.__TestWrapper()
+            TestWrapper.instance.running = False
         return TestWrapper.instance
 
     def __getattr__(self, name):
