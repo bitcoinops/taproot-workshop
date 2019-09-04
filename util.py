@@ -2,6 +2,7 @@ import argparse
 import configparser
 from io import BytesIO
 import os
+import psutil
 
 from test_framework.messages import (
     COutPoint,
@@ -67,6 +68,12 @@ class TestWrapper:
             if self.running:
                 print("TestWrapper is already running!")
                 return
+
+            # Check whether there are any bitcoind processes running on the system
+            for p in [proc for proc in psutil.process_iter() if 'bitcoin' in proc.name()]:
+                if p.exe().split('/')[-1] == 'bitcoind':
+                    print("bitcoind processes are already running on this system. Please shutdown all bitcoind processes!")
+                    return
 
             self.setup_clean_chain = setup_clean_chain
             self.num_nodes = num_nodes
