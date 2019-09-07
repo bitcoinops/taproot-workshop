@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 xml:space="preserve">
+<g>
+	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		L590.28,0z"/>
+</g>
+<g>
+	<rect x="32.422" y="25.333" fill="none" width="416.578" height="35.333"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="13">Scalar and Point Operations over Elliptic Curves</tspan><tspan x="0" y="15.6" font-family="'RobotoMono-Light'" font-size="13">Overview</tspan></text>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M223.551,101.086c0,1.371-1.122,2.492-2.492,2.492H116.492c-1.371,0-2.492-1.122-2.492-2.492V78.405
+		c0-1.371,1.122-2.492,2.492-2.492h104.566c1.371,0,2.492,1.122,2.492,2.492V101.086z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M339.148,101.086c0,1.371-1.121,2.492-2.492,2.492H232.09c-1.371,0-2.492-1.122-2.492-2.492V78.405
+		c0-1.371,1.122-2.492,2.492-2.492h104.566c1.371,0,2.492,1.122,2.492,2.492V101.086z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M454.076,101.086c0,1.371-1.121,2.492-2.492,2.492H347.018c-1.371,0-2.492-1.122-2.492-2.492V78.405
+		c0-1.371,1.121-2.492,2.492-2.492h104.566c1.371,0,2.492,1.122,2.492,2.492V101.086z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M569.674,101.086c0,1.371-1.121,2.492-2.492,2.492H462.616c-1.371,0-2.492-1.122-2.492-2.492V78.405
+		c0-1.371,1.121-2.492,2.492-2.492h104.565c1.371,0,2.492,1.122,2.492,2.492V101.086z"/>
+</g>
+<g>
+	<rect x="123.775" y="83.053" fill="none" width="90" height="19.525"/>
+	<text transform="matrix(0.9799 0 0 1 156.4268 93.5532)" font-family="'RobotoMono-Bold'" font-size="14">add</text>
+</g>
+<g>
+	<rect x="32.422" y="137.053" fill="none" width="58" height="19.525"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 147.5532)" font-family="'RobotoMono-Bold'" font-size="14">scalar</text>
+</g>
+<g>
+	<rect x="108.775" y="140.316" fill="none" width="120.525" height="13"/>
+	<text transform="matrix(0.9799 0 0 1 149.9268 150.0659)" font-family="'RobotoMono-Bold'" font-size="13">a + b</text>
+</g>
+<g>
+	<rect x="339.038" y="140.316" fill="none" width="120.525" height="13"/>
+	<text transform="matrix(0.9799 0 0 1 380.1895 150.0659)" font-family="'RobotoMono-Bold'" font-size="13">a * b</text>
+</g>
+<g>
+	<rect x="335.938" y="269.525" fill="none" width="126.725" height="24.684"/>
+	<text transform="matrix(0.9799 0 0 1 380.1895 279.2749)" font-family="'RobotoMono-Bold'" font-size="13">A * b</text>
+</g>
+<g>
+	<rect x="451.102" y="269.525" fill="none" width="126.725" height="24.684"/>
+	<text transform="matrix(0.9799 0 0 1 495.3525 279.2749)" font-family="'RobotoMono-Bold'" font-size="13">A / b</text>
+</g>
+<g>
+	<rect x="105.676" y="203.483" fill="none" width="126.725" height="24.684"/>
+	<text transform="matrix(0.9799 0 0 1 149.9268 213.2329)" font-family="'RobotoMono-Bold'" font-size="13">A + B</text>
+</g>
+<g>
+	<rect x="221.011" y="203.483" fill="none" width="126.725" height="24.684"/>
+	<text transform="matrix(0.9799 0 0 1 265.2617 213.2329)" font-family="'RobotoMono-Bold'" font-size="13">A - B</text>
+</g>
+<g>
+	<rect x="344.473" y="204.483" fill="none" width="110.014" height="24.684"/>
+	<text transform="matrix(0.9799 0 0 1 395.6572 214.2329)" font-family="'RobotoMono-Bold'" font-size="13">-</text>
+</g>
+<g>
+	<rect x="460.66" y="204.483" fill="none" width="107.607" height="24.684"/>
+	<text transform="matrix(0.9799 0 0 1 510.6416 214.2329)" font-family="'RobotoMono-Bold'" font-size="13">-</text>
+</g>
+<g>
+	<rect x="454.895" y="140.316" fill="none" width="120.525" height="13"/>
+	<text transform="matrix(0.9799 0 0 1 496.0459 150.0659)" font-family="'RobotoMono-Bold'" font-size="13">a / b</text>
+</g>
+<g>
+	<rect x="224.11" y="140.316" fill="none" width="120.525" height="13"/>
+	<text transform="matrix(0.9799 0 0 1 265.2617 150.0659)" font-family="'RobotoMono-Bold'" font-size="13">a - b</text>
+</g>
+<g>
+	<rect x="139.775" y="268.013" fill="none" width="58" height="19.525"/>
+	<text transform="matrix(0.9799 0 0 1 164.9531 277.7627)" font-family="'RobotoMono-Bold'" font-size="13">-</text>
+</g>
+<g>
+	<rect x="255.373" y="268.013" fill="none" width="58" height="19.525"/>
+	<text transform="matrix(0.9799 0 0 1 280.5508 277.7627)" font-family="'RobotoMono-Bold'" font-size="13">-</text>
+</g>
+<g>
+	<rect x="32.422" y="202.686" fill="none" width="58" height="19.525"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 213.1855)" font-family="'RobotoMono-Bold'" font-size="14">point</text>
+</g>
+<g>
+	<rect x="32.422" y="266.317" fill="none" width="58" height="49.683"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 276.8174)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="14">scalar/</tspan><tspan x="0" y="16.8" font-family="'RobotoMono-Bold'" font-size="14">point</tspan></text>
+</g>
+<g>
+	<rect x="239.373" y="83.053" fill="none" width="90" height="19.525"/>
+	<text transform="matrix(0.9799 0 0 1 272.0244 93.5532)" font-family="'RobotoMono-Bold'" font-size="14">sub</text>
+</g>
+<g>
+	<rect x="354.301" y="83.053" fill="none" width="90" height="23.525"/>
+	<text transform="matrix(0.9799 0 0 1 382.8359 93.5532)" font-family="'RobotoMono-Bold'" font-size="14">mult</text>
+</g>
+<g>
+	<rect x="469.898" y="83.053" fill="none" width="90" height="23.525"/>
+	<text transform="matrix(0.9799 0 0 1 502.5498 93.5532)" font-family="'RobotoMono-Bold'" font-size="14">div</text>
+</g>
+</svg>
