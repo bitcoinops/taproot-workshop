@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 xml:space="preserve">
+<g>
+	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		L590.28,0z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M209,94.666c0,1.65-1.35,3-3,3H97c-1.65,0-3-1.35-3-3V73c0-1.65,1.35-3,3-3h109c1.65,0,3,1.35,3,3V94.666z"
+		/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M573.999,94.666c0,1.65-1.35,3-3,3H220.667c-1.65,0-3-1.35-3-3V73c0-1.65,1.35-3,3-3h350.333
+		c1.65,0,3,1.35,3,3V94.666z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M174.717,308.244c0,1.1-0.9,2-2,2h-41.589c-1.1,0-2-0.9-2-2v-9c0-1.1,0.9-2,2-2h41.589c1.1,0,2,0.9,2,2
+		V308.244z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M538.106,299.802c0,1.1-0.899,2-2,2h-41.589c-1.101,0-2-0.9-2-2v-9c0-1.1,0.899-2,2-2h41.589
+		c1.101,0,2,0.9,2,2V299.802z"/>
+</g>
+<g>
+	<rect x="32.422" y="25.333" fill="none" width="416.578" height="50.667"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="13">MuSig Overview</tspan><tspan x="0" y="15.6" font-family="'RobotoMono-Light'" font-size="13">Interactive Key Generation &amp; Signing</tspan></text>
+</g>
+<g>
+	<rect x="96.944" y="73.875" fill="none" width="111.155" height="23.832"/>
+	<text transform="matrix(0.9799 0 0 1 133.999 81.7505)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="10.5">Pubkey</tspan><tspan x="-12.602" y="12.6" font-family="'RobotoMono-Bold'" font-size="10.5">Generation</tspan></text>
+</g>
+<g>
+	<rect x="11.995" y="153.834" fill="none" width="87.577" height="31.667"/>
+	<text transform="matrix(0.9799 0 0 1 31.1484 161.688)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
+</g>
+<g>
+	<rect x="11.995" y="277.468" fill="none" width="87.577" height="31.667"/>
+	<text transform="matrix(0.9799 0 0 1 31.1484 285.3218)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
+</g>
+<g>
+	<rect x="222.721" y="129.137" fill="none" width="105.579" height="53.884"/>
+	<text transform="matrix(0.9799 0 0 1 241.0503 135.5625)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Generate Nonces</tspan><tspan x="5.462" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">k0, k1, ...</tspan><tspan x="-5.917" y="32.4" font-family="'HelveticaNeue'" font-size="9">Derive Nonce Points</tspan><tspan x="5.462" y="43.2" font-family="'RobotoMono-Bold'" font-size="9">R0, R1, ...</tspan></text>
+</g>
+<g>
+	<rect x="99.134" y="147.834" fill="none" width="105.578" height="20.833"/>
+	<text transform="matrix(0.9799 0 0 1 133.7954 154.2603)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Generate</tspan><tspan x="-11.206" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">P0, P1, ...</tspan></text>
+</g>
+<g>
+	<rect x="99.134" y="215.552" fill="none" width="105.578" height="20.833"/>
+	<text transform="matrix(0.9799 0 0 1 122.8149 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">P0, P1, ...</text>
+</g>
+<g>
+	<rect x="99.134" y="256.229" fill="none" width="105.578" height="58.875"/>
+	<text transform="matrix(0.9799 0 0 1 103.2422 262.6548)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Compute key challenges</tspan><tspan x="19.974" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">c0, c1, ...</tspan><tspan x="1.242" y="32.4" font-family="'HelveticaNeue'" font-size="9">Compute musig Pubkey</tspan><tspan x="36.177" y="43.2" font-family="'RobotoMono-Bold'" font-size="9">P_agg</tspan></text>
+</g>
+<g>
+	<rect x="222.721" y="215.552" fill="none" width="105.579" height="41.667"/>
+	<text transform="matrix(0.9799 0 0 1 230.5254 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">H(R0), H(R1), ...</text>
+</g>
+<g>
+	<rect x="340.043" y="215.552" fill="none" width="105.579" height="41.667"/>
+	<text transform="matrix(0.9799 0 0 1 363.7246 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">R0, R1, ...</text>
+</g>
+<g>
+	<rect x="340.043" y="270.968" fill="none" width="105.579" height="25.334"/>
+	<text transform="matrix(0.9799 0 0 1 354.0469 277.3936)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Aggregate Nonce R</tspan><tspan x="-6.326" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">R_agg, is_negated</tspan></text>
+</g>
+<g>
+	<rect x="456" y="147.834" fill="none" width="116" height="25.334"/>
+	<text transform="matrix(0.9799 0 0 1 473.5781 154.2603)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Generate Signatures</tspan><tspan x="0.744" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">sig0, sig1, ...</tspan></text>
+</g>
+<g>
+	<rect x="456" y="215.552" fill="none" width="116" height="25.334"/>
+	<text transform="matrix(0.9799 0 0 1 474.3076 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">sig0, sig1, ...</text>
+</g>
+<g>
+	<rect x="456.312" y="269.366" fill="none" width="116" height="45.81"/>
+	<text transform="matrix(0.9799 0 0 1 490.7959 275.792)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Coordinator </tspan><tspan x="-21.834" y="10.8" font-family="'HelveticaNeue'" font-size="9">Aggregates Signatures</tspan><tspan x="5.096" y="21.6" font-family="'RobotoMono-Bold'" font-size="9">sig_agg</tspan></text>
+</g>
+<g>
+	<rect x="15.278" y="214.219" fill="none" width="81.011" height="36.333"/>
+	<text transform="matrix(0.9799 0 0 1 30.2378 222.0728)" font-family="'HelveticaNeue-Bold'" font-size="11">Roundtrip</text>
+</g>
+<g>
+	<rect x="336.545" y="79.126" fill="none" width="118.577" height="15.332"/>
+	<text transform="matrix(0.9799 0 0 1 355.7002 87.001)" font-family="'RobotoMono-Bold'" font-size="10.5">MuSig Signing</text>
+</g>
+<line fill="none" stroke="#C4C4C3" stroke-width="1.2" stroke-miterlimit="10" x1="217.667" y1="251.514" x2="573.999" y2="251.514"/>
+<line stroke="#C4C4C3" stroke-miterlimit="10" x1="217.667" y1="187.923" x2="573.999" y2="187.923"/>
+<line stroke="#C4C4C3" stroke-miterlimit="10" x1="94" y1="251.514" x2="209" y2="251.514"/>
+<line stroke="#C4C4C3" stroke-miterlimit="10" x1="94" y1="187.923" x2="209" y2="187.923"/>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="198.282" x2="55.783" y2="171.059"/>
+		<g>
+			<polygon points="55.783,203.224 58.629,196.26 55.783,197.912 52.938,196.26 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="262.654" x2="55.783" y2="235.432"/>
+		<g>
+			<polygon points="55.783,267.597 58.629,260.632 55.783,262.285 52.938,260.632 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<rect x="108.733" y="109.186" fill="none" width="87.578" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 126.2705 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">1st Round</text>
+</g>
+<g>
+	<rect x="231.722" y="109.186" fill="none" width="87.579" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 267.7231 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">1st</text>
+</g>
+<g>
+	<rect x="352.044" y="109.186" fill="none" width="87.578" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 386.25 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">2nd</text>
+</g>
+<g>
+	<rect x="469.522" y="109.186" fill="none" width="87.578" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 504.9258 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">3rd</text>
+</g>
+<g>
+	<path fill="none" stroke="#787878" stroke-miterlimit="10" d="M209,313.104c0,1.1-0.9,2-2,2H96c-1.1,0-2-0.9-2-2V126.333
+		c0-1.1,0.9-2,2-2h111c1.1,0,2,0.9,2,2V313.104z"/>
+</g>
+<g>
+	<path fill="none" stroke="#787878" stroke-miterlimit="10" d="M573.999,313.104c0,1.1-0.9,2-2,2H219.667c-1.1,0-2-0.9-2-2V126.333
+		c0-1.1,0.9-2,2-2h352.333c1.1,0,2,0.9,2,2V313.104z"/>
+</g>
+<line stroke="#C4C4C3" stroke-miterlimit="10" x1="334" y1="125.019" x2="334" y2="315.104"/>
+<line stroke="#C4C4C3" stroke-miterlimit="10" x1="453.999" y1="124.333" x2="453.999" y2="315.135"/>
+</svg>
