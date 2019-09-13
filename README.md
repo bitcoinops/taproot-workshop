@@ -23,6 +23,33 @@ Do not run test instances of bitcoind on the same machine that you store your
 Bitcoin private keys. These notebooks shouldn't interfere with your
 standard bitcoin data directory directory, but why risk it?
 
+## Background
+
+It will be useful to have some background on schnorr and taproot before running
+through the exercises in this repository.
+
+### Schnorr
+
+- **[bip-schnorr](https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki)**:
+  This technical document proposes a standard for 64-byte Schnorr signatures
+  over the elliptic curve secp256k1.
+- **[Taproot, and Schnorr, and SIGHASH_NOINPUT, oh
+  my!](https://www.youtube.com/watch?v=YSUVRj8iznU)**: video
+  about Taproot, Schnorr, and SIGHASH_NOINPUT by Pieter Wuille, author of the
+  Schnorr/Taproot proposal. (Note: since the video SIGHASH_NOINPUT is no longer
+  grouped with the taproot/schnorr soft fork proposal) 
+- **[Optech Executive Briefing The Next
+  Softfork](https://www.youtube.com/watch?v=fDJRy6K_3yo)**: Optech's video
+  presentation of the next proposed soft fork.
+
+### Taproot
+
+- **[bip-taproot](https://github.com/sipa/bips/blob/bip-schnorr/bip-taproot.mediawiki)**:
+  This technical document proposes a new SegWit version 1 output type, with spending rules based on Taproot, Schnorr signatures, and Merkle branches.
+- **[bip-tapscript](https://github.com/sipa/bips/blob/bip-schnorr/bip-tapscript.mediawiki)**: This technical document specifies the semantics of the initial scripting system under bip-taproot.
+- **[Bitcoin Optech’s Overview of the Taproot & Tapscript proposed BIPs](https://bitcoinops.org/en/newsletters/2019/05/14/#overview-of-the-taproot--tapscript-proposed-bips)**: Summary of bip-taproot and bip-tapscript.
+
+
 ## Requirements
 
 #### Build a taproot-supporting bitcoind
