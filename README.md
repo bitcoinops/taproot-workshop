@@ -13,7 +13,7 @@ various schnorr signature schemes for preliminary evaluation.
 
 Our Taproot/Schnorr library is an extension of the Bitcoin python test
 framework, located in the dedicated [Optech Bitcoin Taproot
-Branch](https://github.com/bitcoinops/bitcoin/releases/tag/v0.1).
+Branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1).
 
 *Note: This Library is intended for demonstrative and educational purposes only.*
 
@@ -54,8 +54,8 @@ through the exercises in this repository.
 
 #### Build a taproot-supporting bitcoind
 
-These workbooks require a `bitcoind` built from the [Optech taproot
-branch, v0.1](https://github.com/bitcoinops/bitcoin/releases/tag/v0.1) which
+These workbooks require a `bitcoind` built from the [Optech Taproot
+V0.1 branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1) which
 supports schnorr and taproot. 
 
 ![workshop_repositories](files/0-repositories-diagram.jpg)
@@ -69,10 +69,10 @@ $ git clone https://github.com/bitcoinops/bitcoin
 
 Note the path where you cloned the bitcoinops/bitcoin repository.
 
-Checkout the Optech taproot branch, which is tagged as `v0.1`:
+Checkout the Optech taproot branch, which is tagged as `Taproot_V0.1`:
 
 ```
-$ git checkout v0.1
+$ git checkout Taproot_V0.1
 ```
 
 Build the Optech Taproot branch of bitcoind locally. See the build documentation
