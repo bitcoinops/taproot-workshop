@@ -17,14 +17,6 @@
 	<path fill="#A1DADE" d="M573.999,94.666c0,1.65-1.35,3-3,3H220.667c-1.65,0-3-1.35-3-3V73c0-1.65,1.35-3,3-3h350.333
 		c1.65,0,3,1.35,3,3V94.666z"/>
 </g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M174.717,308.244c0,1.1-0.9,2-2,2h-41.589c-1.1,0-2-0.9-2-2v-9c0-1.1,0.9-2,2-2h41.589c1.1,0,2,0.9,2,2
-		V308.244z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M538.106,299.802c0,1.1-0.899,2-2,2h-41.589c-1.101,0-2-0.9-2-2v-9c0-1.1,0.899-2,2-2h41.589
-		c1.101,0,2,0.9,2,2V299.802z"/>
-</g>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="50.667"/>
 	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="13">MuSig Overview</tspan><tspan x="0" y="15.6" font-family="'RobotoMono-Light'" font-size="13">Interactive Key Generation &amp; Signing</tspan></text>
@@ -34,56 +26,129 @@
 	<text transform="matrix(0.9799 0 0 1 133.999 81.7505)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="10.5">Pubkey</tspan><tspan x="-12.602" y="12.6" font-family="'RobotoMono-Bold'" font-size="10.5">Generation</tspan></text>
 </g>
 <g>
-	<rect x="11.995" y="153.834" fill="none" width="87.577" height="31.667"/>
-	<text transform="matrix(0.9799 0 0 1 31.1484 161.688)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
+	<rect x="98.134" y="140.834" fill="none" width="105.578" height="40.089"/>
+	<text transform="matrix(0.9799 0 0 1 132.7954 147.2603)" font-family="'HelveticaNeue'" font-size="9">Generate</text>
+	<text transform="matrix(0.9799 0 0 1 121.4258 164.0605)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 127.6001 168.7222)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 132.3994 164.0605)" font-family="'RobotoMono-Bold'" font-size="9">, </text>
+	<text transform="matrix(0.9799 0 0 1 142.9844 164.0605)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 149.1587 168.7222)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 153.958 164.0605)" font-family="'RobotoMono-Bold'" font-size="9">, ...</text>
 </g>
 <g>
-	<rect x="11.995" y="277.468" fill="none" width="87.577" height="31.667"/>
-	<text transform="matrix(0.9799 0 0 1 31.1484 285.3218)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
+	<rect x="98.134" y="212.341" fill="none" width="105.578" height="40.089"/>
+	<text transform="matrix(0.9799 0 0 1 121.4258 222.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 127.6001 227.5034)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 132.3994 222.8413)" font-family="'RobotoMono-Bold'" font-size="9">, </text>
+	<text transform="matrix(0.9799 0 0 1 142.9844 222.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 149.1587 227.5034)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 153.958 222.8413)" font-family="'RobotoMono-Bold'" font-size="9">, ...</text>
 </g>
 <g>
-	<rect x="222.721" y="129.137" fill="none" width="105.579" height="53.884"/>
-	<text transform="matrix(0.9799 0 0 1 241.0503 135.5625)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Generate Nonces</tspan><tspan x="5.462" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">k0, k1, ...</tspan><tspan x="-5.917" y="32.4" font-family="'HelveticaNeue'" font-size="9">Derive Nonce Points</tspan><tspan x="5.462" y="43.2" font-family="'RobotoMono-Bold'" font-size="9">R0, R1, ...</tspan></text>
+	<rect x="98.679" y="263.864" fill="none" width="105.578" height="17.771"/>
+	<text transform="matrix(0.9799 0 0 1 121.9717 274.3643)" font-family="'RobotoMono-Bold'" font-size="10.5">c</text>
+	<text transform="matrix(0.5713 0 0 0.583 128.146 279.0264)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 132.9453 274.3643)" font-family="'RobotoMono-Bold'" font-size="9">, </text>
+	<text transform="matrix(0.9799 0 0 1 143.5303 274.3643)" font-family="'RobotoMono-Bold'" font-size="10.5">c</text>
+	<text transform="matrix(0.5713 0 0 0.583 149.7046 279.0264)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 154.5039 274.3643)" font-family="'RobotoMono-Bold'" font-size="9">, ...</text>
 </g>
 <g>
-	<rect x="99.134" y="147.834" fill="none" width="105.578" height="20.833"/>
-	<text transform="matrix(0.9799 0 0 1 133.7954 154.2603)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Generate</tspan><tspan x="-11.206" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">P0, P1, ...</tspan></text>
+	<rect x="98.679" y="256.229" fill="none" width="105.578" height="7.437"/>
+	<text transform="matrix(0.9799 0 0 1 102.7881 262.6548)" font-family="'HelveticaNeue'" font-size="9">Compute key challenges</text>
 </g>
 <g>
-	<rect x="99.134" y="215.552" fill="none" width="105.578" height="20.833"/>
-	<text transform="matrix(0.9799 0 0 1 122.8149 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">P0, P1, ...</text>
+	<rect x="98.679" y="285.583" transform="matrix(1 -0.0016 0.0016 1 -0.4654 0.2441)" fill="none" width="105.578" height="7.437"/>
+	<text transform="matrix(0.9799 0 0 1 104.2471 291.9238)" font-family="'HelveticaNeue'" font-size="9">Compute musig pubkey</text>
 </g>
 <g>
-	<rect x="99.134" y="256.229" fill="none" width="105.578" height="58.875"/>
-	<text transform="matrix(0.9799 0 0 1 103.2422 262.6548)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Compute key challenges</tspan><tspan x="19.974" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">c0, c1, ...</tspan><tspan x="1.242" y="32.4" font-family="'HelveticaNeue'" font-size="9">Compute musig Pubkey</tspan><tspan x="36.177" y="43.2" font-family="'RobotoMono-Bold'" font-size="9">P_agg</tspan></text>
+	<rect x="138.68" y="294.306" transform="matrix(1 -0.0016 0.0016 1 -0.499 0.2462)" fill="none" width="25.578" height="26.667"/>
+	<text transform="matrix(0.9799 0 0 1 141.1694 304.7852)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 147.3438 309.4473)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
 </g>
 <g>
-	<rect x="222.721" y="215.552" fill="none" width="105.579" height="41.667"/>
-	<text transform="matrix(0.9799 0 0 1 230.5254 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">H(R0), H(R1), ...</text>
+	<rect x="222.722" y="135.586" fill="none" width="105.579" height="17.771"/>
+	<text transform="matrix(0.9799 0 0 1 246.0146 146.0864)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 252.189 150.7485)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 256.9883 146.0864)" font-family="'RobotoMono-Bold'" font-size="9">, </text>
+	<text transform="matrix(0.9799 0 0 1 267.5732 146.0864)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 273.7476 150.7485)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 278.5469 146.0864)" font-family="'RobotoMono-Bold'" font-size="9">, ...</text>
 </g>
 <g>
-	<rect x="340.043" y="215.552" fill="none" width="105.579" height="41.667"/>
-	<text transform="matrix(0.9799 0 0 1 363.7246 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">R0, R1, ...</text>
+	<rect x="222.722" y="127.951" fill="none" width="105.579" height="7.437"/>
+	<text transform="matrix(0.9799 0 0 1 241.0508 134.377)" font-family="'HelveticaNeue'" font-size="9">Generate Nonces</text>
 </g>
 <g>
-	<rect x="340.043" y="270.968" fill="none" width="105.579" height="25.334"/>
-	<text transform="matrix(0.9799 0 0 1 354.0469 277.3936)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Aggregate Nonce R</tspan><tspan x="-6.326" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">R_agg, is_negated</tspan></text>
+	<rect x="222.722" y="158.305" fill="none" width="105.579" height="7.437"/>
+	<text transform="matrix(0.9799 0 0 1 235.2524 164.731)" font-family="'HelveticaNeue'" font-size="9">Derive Nonce Points</text>
+</g>
+<g>
+	<rect x="214.556" y="168.024" fill="none" width="121.911" height="26.667"/>
+	<text transform="matrix(0.9799 0 0 1 247.7393 178.5239)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 253.9136 183.186)" font-family="'RobotoMono-Bold'" font-size="14">0, </text>
+	<text transform="matrix(0.9799 0 0 1 268.3115 178.5239)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 274.4858 183.186)" font-family="'RobotoMono-Bold'" font-size="14">1, ...</text>
+</g>
+<g>
+	<rect x="333" y="211.341" fill="none" width="121.91" height="26.667"/>
+	<text transform="matrix(0.9799 0 0 1 366.1836 221.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 372.3574 226.5034)" font-family="'RobotoMono-Bold'" font-size="14">0, </text>
+	<text transform="matrix(0.9799 0 0 1 386.7559 221.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 392.9297 226.5034)" font-family="'RobotoMono-Bold'" font-size="14">1, ...</text>
+</g>
+<g>
+	<rect x="222.721" y="211.341" fill="none" width="105.579" height="41.667"/>
+	<text transform="matrix(0.9799 0 0 1 230.1362 221.8413)" font-family="'RobotoMono-Bold'" font-size="9">H(</text>
+	<text transform="matrix(0.9799 0 0 1 240.7212 221.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 246.8955 226.5034)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 251.6948 221.8413)" font-family="'RobotoMono-Bold'" font-size="9">), H(</text>
+	<text transform="matrix(0.9799 0 0 1 278.1572 221.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 284.3315 226.5034)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 289.1309 221.8413)" font-family="'RobotoMono-Bold'" font-size="9">), ...</text>
+</g>
+<g>
+	<rect x="340.043" y="270.968" fill="none" width="105.579" height="44.137"/>
+	<text transform="matrix(0.9799 0 0 1 354.126 277.3936)" font-family="'HelveticaNeue'" font-size="9">Agg</text>
+	<text transform="matrix(0.9799 0 0 1 369.9648 277.3936)" font-family="'HelveticaNeue'" font-size="9">r</text>
+	<text transform="matrix(0.9799 0 0 1 372.7422 277.3936)" font-family="'HelveticaNeue'" font-size="9">egate Nonce R</text>
+	<text transform="matrix(0.9799 0 0 1 350.792 294.1938)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 356.9668 298.8555)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 371.3643 294.1938)" font-family="'RobotoMono-Bold'" font-size="9">, is_negated</text>
 </g>
 <g>
 	<rect x="456" y="147.834" fill="none" width="116" height="25.334"/>
-	<text transform="matrix(0.9799 0 0 1 473.5781 154.2603)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Generate Signatures</tspan><tspan x="0.744" y="10.8" font-family="'RobotoMono-Bold'" font-size="9">sig0, sig1, ...</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 473.6582 154.2603)" font-family="'HelveticaNeue'" font-size="9">Generate Signatu</text>
+	<text transform="matrix(0.9799 0 0 1 542.418 154.2603)" font-family="'HelveticaNeue'" font-size="9">r</text>
+	<text transform="matrix(0.9799 0 0 1 545.1963 154.2603)" font-family="'HelveticaNeue'" font-size="9">es</text>
+	<text transform="matrix(0.9799 0 0 1 472.1543 171.0605)" font-family="'RobotoMono-Bold'" font-size="10.5">sig</text>
+	<text transform="matrix(0.5713 0 0 0.583 490.6777 175.7222)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 495.4766 171.0605)" font-family="'RobotoMono-Bold'" font-size="9">, </text>
+	<text transform="matrix(0.9799 0 0 1 506.0615 171.0605)" font-family="'RobotoMono-Bold'" font-size="10.5">sig</text>
+	<text transform="matrix(0.5713 0 0 0.583 524.584 175.7222)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 529.3838 171.0605)" font-family="'RobotoMono-Bold'" font-size="9">, ...</text>
 </g>
 <g>
-	<rect x="456" y="215.552" fill="none" width="116" height="25.334"/>
-	<text transform="matrix(0.9799 0 0 1 474.3076 222.3022)" font-family="'RobotoMono-Bold'" font-size="9">sig0, sig1, ...</text>
+	<rect x="456" y="211.341" fill="none" width="116" height="25.334"/>
+	<text transform="matrix(0.9799 0 0 1 472.1543 221.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">sig</text>
+	<text transform="matrix(0.5713 0 0 0.583 490.6777 226.5034)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 495.4766 221.8413)" font-family="'RobotoMono-Bold'" font-size="9">, </text>
+	<text transform="matrix(0.9799 0 0 1 506.0615 221.8413)" font-family="'RobotoMono-Bold'" font-size="10.5">sig</text>
+	<text transform="matrix(0.5713 0 0 0.583 524.584 226.5034)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 529.3838 221.8413)" font-family="'RobotoMono-Bold'" font-size="9">, ...</text>
 </g>
 <g>
-	<rect x="456.312" y="269.366" fill="none" width="116" height="45.81"/>
-	<text transform="matrix(0.9799 0 0 1 490.7959 275.792)"><tspan x="0" y="0" font-family="'HelveticaNeue'" font-size="9">Coordinator </tspan><tspan x="-21.834" y="10.8" font-family="'HelveticaNeue'" font-size="9">Aggregates Signatures</tspan><tspan x="5.096" y="21.6" font-family="'RobotoMono-Bold'" font-size="9">sig_agg</tspan></text>
-</g>
-<g>
-	<rect x="15.278" y="214.219" fill="none" width="81.011" height="36.333"/>
-	<text transform="matrix(0.9799 0 0 1 30.2378 222.0728)" font-family="'HelveticaNeue-Bold'" font-size="11">Roundtrip</text>
+	<rect x="456.312" y="262.366" fill="none" width="116" height="45.81"/>
+	<text transform="matrix(0.9799 0 0 1 490.875 268.792)" font-family="'HelveticaNeue'" font-size="9">Coo</text>
+	<text transform="matrix(0.9799 0 0 1 507.3662 268.792)" font-family="'HelveticaNeue'" font-size="9">r</text>
+	<text transform="matrix(0.9799 0 0 1 510.1445 268.792)" font-family="'HelveticaNeue'" font-size="9">dinator </text>
+	<text transform="matrix(0.9799 0 0 1 469.5596 279.5923)" font-family="'HelveticaNeue'" font-size="9">Agg</text>
+	<text transform="matrix(0.9799 0 0 1 485.3984 279.5923)" font-family="'HelveticaNeue'" font-size="9">r</text>
+	<text transform="matrix(0.9799 0 0 1 488.1758 279.5923)" font-family="'HelveticaNeue'" font-size="9">egates Signatu</text>
+	<text transform="matrix(0.9799 0 0 1 547.1396 279.5923)" font-family="'HelveticaNeue'" font-size="9">r</text>
+	<text transform="matrix(0.9799 0 0 1 549.918 279.5923)" font-family="'HelveticaNeue'" font-size="9">es</text>
+	<text transform="matrix(0.9799 0 0 1 497.8506 296.3921)" font-family="'RobotoMono-Bold'" font-size="10.5">sig</text>
+	<text transform="matrix(0.5713 0 0 0.583 516.373 301.0542)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
 </g>
 <g>
 	<rect x="336.545" y="79.126" fill="none" width="118.577" height="15.332"/>
@@ -94,36 +159,16 @@
 <line stroke="#C4C4C3" stroke-miterlimit="10" x1="94" y1="251.514" x2="209" y2="251.514"/>
 <line stroke="#C4C4C3" stroke-miterlimit="10" x1="94" y1="187.923" x2="209" y2="187.923"/>
 <g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="198.282" x2="55.783" y2="171.059"/>
-		<g>
-			<polygon points="55.783,203.224 58.629,196.26 55.783,197.912 52.938,196.26 			"/>
-		</g>
-	</g>
-</g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="262.654" x2="55.783" y2="235.432"/>
-		<g>
-			<polygon points="55.783,267.597 58.629,260.632 55.783,262.285 52.938,260.632 			"/>
-		</g>
-	</g>
-</g>
-<g>
-	<rect x="108.733" y="109.186" fill="none" width="87.578" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 126.2705 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">1st Round</text>
-</g>
-<g>
 	<rect x="231.722" y="109.186" fill="none" width="87.579" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 267.7231 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">1st</text>
+	<text transform="matrix(0.9799 0 0 1 271.0161 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">1.</text>
 </g>
 <g>
 	<rect x="352.044" y="109.186" fill="none" width="87.578" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 386.25 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">2nd</text>
+	<text transform="matrix(0.9799 0 0 1 391.3379 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">2.</text>
 </g>
 <g>
 	<rect x="469.522" y="109.186" fill="none" width="87.578" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 504.9258 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">3rd</text>
+	<text transform="matrix(0.9799 0 0 1 508.8164 117.0396)" font-family="'HelveticaNeue-BoldItalic'" font-size="11">3.</text>
 </g>
 <g>
 	<path fill="none" stroke="#787878" stroke-miterlimit="10" d="M209,313.104c0,1.1-0.9,2-2,2H96c-1.1,0-2-0.9-2-2V126.333
@@ -135,4 +180,32 @@
 </g>
 <line stroke="#C4C4C3" stroke-miterlimit="10" x1="334" y1="125.019" x2="334" y2="315.104"/>
 <line stroke="#C4C4C3" stroke-miterlimit="10" x1="453.999" y1="124.333" x2="453.999" y2="315.135"/>
+<g>
+	<rect x="9.995" y="153.834" fill="none" width="87.577" height="31.667"/>
+	<text transform="matrix(0.9799 0 0 1 33.6274 160.2598)"><tspan x="0" y="0" font-family="'HelveticaNeue-Bold'" font-size="9">Individual</tspan><tspan x="-7.339" y="10.8" font-family="'HelveticaNeue-Bold'" font-size="9">Computation</tspan></text>
+</g>
+<g>
+	<rect x="9.995" y="275.468" fill="none" width="87.577" height="31.667"/>
+	<text transform="matrix(0.9799 0 0 1 33.6274 281.8936)"><tspan x="0" y="0" font-family="'HelveticaNeue-Bold'" font-size="9">Individual</tspan><tspan x="-7.339" y="10.8" font-family="'HelveticaNeue-Bold'" font-size="9">Computation</tspan></text>
+</g>
+<g>
+	<rect x="13.278" y="214.219" fill="none" width="81.011" height="36.333"/>
+	<text transform="matrix(0.9799 0 0 1 30.3467 220.6445)"><tspan x="0" y="0" font-family="'HelveticaNeue-Bold'" font-size="9">Exchanged</tspan><tspan x="13.833" y="10.8" font-family="'HelveticaNeue-Bold'" font-size="9">Data</tspan></text>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="53.783" y1="196.282" x2="53.783" y2="181.021"/>
+		<g>
+			<polygon points="53.783,201.224 56.629,194.26 53.783,195.912 50.938,194.26 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="53.783" y1="257.813" x2="53.783" y2="242.552"/>
+		<g>
+			<polygon points="53.783,262.755 56.629,255.791 53.783,257.443 50.938,255.791 			"/>
+		</g>
+	</g>
+</g>
 </svg>

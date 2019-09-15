@@ -10,28 +10,32 @@
 		L590.28,0z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M552.5,276.177c0,1.65-1.35,3-3,3H306.75c-1.65,0-3-1.35-3-3v-12.349c0-1.65,1.35-3,3-3H549.5
-		c1.65,0,3,1.35,3,3V276.177z"/>
+	<path fill="#A1DADE" d="M523,289.36c0,1.549-1.268,2.816-2.816,2.816H306.566c-1.549,0-2.816-1.268-2.816-2.816v-12.716
+		c0-1.549,1.268-2.816,2.816-2.816h213.617c1.549,0,2.816,1.268,2.816,2.816V289.36z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#CFCECE" d="M329.667,142.174c0,1.65-1.35,3-3,3H306.75c-1.65,0-3-1.35-3-3v-12.349c0-1.65,1.35-3,3-3h19.917
-		c1.65,0,3,1.35,3,3V142.174z"/>
+	<path fill="#CFCECE" d="M329.667,145.174c0,1.65-1.35,3-3,3H306.75c-1.65,0-3-1.35-3-3v-12.349c0-1.65,1.35-3,3-3h19.917
+		c1.65,0,3,1.35,3,3V145.174z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#CFCECE" d="M361,87.842c0,1.65-1.35,3-3,3h-51.25c-1.65,0-3-1.35-3-3V75.493c0-1.65,1.35-3,3-3H358c1.65,0,3,1.35,3,3
-		V87.842z"/>
+	<path fill="#CFCECE" d="M352,91.088c0,1.515-1.239,2.754-2.754,2.754h-42.742c-1.515,0-2.754-1.239-2.754-2.754V78.247
+		c0-1.515,1.239-2.754,2.754-2.754h42.742c1.515,0,2.754,1.239,2.754,2.754V91.088z"/>
 </g>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="18.667"/>
 	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Pubkey Generation</text>
 </g>
 <g>
-	<rect x="306.64" y="77.042" fill="none" width="116.444" height="19.582"/>
-	<text transform="matrix(0.9799 0 0 1 306.6396 84.917)" font-family="'RobotoMono-Bold'" font-size="10.5">x_i, P_i</text>
+	<rect x="306.64" y="76.042" fill="none" width="116.444" height="19.582"/>
+	<text transform="matrix(0.9799 0 0 1 306.6396 86.542)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 312.8145 91.2041)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 317.6133 86.542)" font-family="'RobotoMono-Bold'" font-size="10.5">, P</text>
+	<text transform="matrix(0.5713 0 0 0.583 336.1367 91.2041)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
 </g>
 <g>
-	<rect x="306.64" y="132.137" fill="none" width="116.444" height="19.582"/>
-	<text transform="matrix(0.9799 0 0 1 306.6396 140.0117)" font-family="'RobotoMono-Bold'" font-size="10.5">P_i</text>
+	<rect x="306.64" y="130.137" fill="none" width="25.735" height="22.197"/>
+	<text transform="matrix(0.9799 0 0 1 306.6396 140.6367)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 312.8145 145.2988)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
 </g>
 <g>
 	<rect x="11.995" y="79.167" fill="none" width="87.577" height="31.667"/>
@@ -54,20 +58,58 @@
 	<text transform="matrix(0.9799 0 0 1 135.1338 142.1372)" font-family="'RobotoMono-Bold'" font-size="10.5">Public Key Exchange</text>
 </g>
 <g>
-	<rect x="306.64" y="190.053" fill="none" width="279.111" height="103.614"/>
-	<text transform="matrix(0.9799 0 0 1 306.6396 197.9277)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="10.5">C_all = H(P_0, P_1, P_2, ..., P_n)</tspan><tspan x="0" y="25.2" font-family="'RobotoMono-Bold'" font-size="10.5">C_i =   H(C_all | P_i)</tspan><tspan x="0" y="50.4" font-family="'RobotoMono-Bold'" font-size="10.5">P_i’ = C_i * P_i, x_i’ = C_i * x_n</tspan><tspan x="0" y="75.6" font-family="'RobotoMono-Bold'" font-size="10.5">P_agg = P_0’ + P_1’ + P_2’ + ... + P_n’ </tspan></text>
+	<rect x="307.64" y="187.053" fill="none" width="279.111" height="103.614"/>
+	<text transform="matrix(0.9799 0 0 1 307.6396 197.5527)" font-family="'RobotoMono-Bold'" font-size="10.5">c</text>
+	<text transform="matrix(0.5713 0 0 0.583 313.8145 202.2148)" font-family="'RobotoMono-Bold'" font-size="14">all</text>
+	<text transform="matrix(0.9799 0 0 1 328.2119 197.5527)" font-family="'RobotoMono-Bold'" font-size="10.5"> = H(P</text>
+	<text transform="matrix(0.5713 0 0 0.583 365.2578 202.2148)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 370.0566 197.5527)" font-family="'RobotoMono-Bold'" font-size="10.5">, P</text>
+	<text transform="matrix(0.5713 0 0 0.583 388.5801 202.2148)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 393.3789 197.5527)" font-family="'RobotoMono-Bold'" font-size="10.5">, P</text>
+	<text transform="matrix(0.5713 0 0 0.583 411.9023 202.2148)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 416.7031 197.5527)" font-family="'RobotoMono-Bold'" font-size="10.5">, ... , P</text>
+	<text transform="matrix(0.5713 0 0 0.583 472.2754 202.2148)" font-family="'RobotoMono-Bold'" font-size="14">n</text>
+	<text transform="matrix(0.9799 0 0 1 477.0762 197.5527)" font-family="'RobotoMono-Bold'" font-size="10.5">)</text>
+	<text transform="matrix(0.9799 0 0 1 307.6396 226.9526)" font-family="'RobotoMono-Bold'" font-size="10.5">c</text>
+	<text transform="matrix(0.5713 0 0 0.583 313.8145 231.6147)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 318.6133 226.9526)" font-family="'RobotoMono-Bold'" font-size="10.5"> =   H(c</text>
+	<text transform="matrix(0.5713 0 0 0.583 368.0078 231.6147)" font-family="'RobotoMono-Bold'" font-size="14">all</text>
+	<text transform="matrix(0.9799 0 0 1 382.4062 226.9526)" font-family="'RobotoMono-Bold'" font-size="10.5"> | P</text>
+	<text transform="matrix(0.5713 0 0 0.583 407.1035 231.6147)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 411.9023 226.9526)" font-family="'RobotoMono-Bold'" font-size="10.5">)</text>
+	<text transform="matrix(0.9799 0 0 1 307.6396 256.3525)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 313.8145 261.0146)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 318.6133 256.3525)" font-family="'RobotoMono-Bold'" font-size="10.5">’ = c</text>
+	<text transform="matrix(0.5713 0 0 0.583 349.4844 261.0146)" font-family="'RobotoMono-Bold'" font-size="14">i </text>
+	<text transform="matrix(0.9799 0 0 1 359.084 256.3525)" font-family="'RobotoMono-Bold'" font-size="10.5">* P</text>
+	<text transform="matrix(0.5713 0 0 0.583 377.6064 261.0146)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 382.4062 256.3525)" font-family="'RobotoMono-Bold'" font-size="10.5">,   x</text>
+	<text transform="matrix(0.5713 0 0 0.583 413.2773 261.0146)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 418.0781 256.3525)" font-family="'RobotoMono-Bold'" font-size="10.5">’ = c</text>
+	<text transform="matrix(0.5713 0 0 0.583 448.9512 261.0146)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 453.752 256.3525)" font-family="'RobotoMono-Bold'" font-size="10.5"> * x</text>
+	<text transform="matrix(0.5713 0 0 0.583 478.4512 261.0146)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 307.6396 285.7529)" font-family="'RobotoMono-Bold'" font-size="10.5">P_agg = P</text>
+	<text transform="matrix(0.5713 0 0 0.583 363.209 290.4146)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 368.0078 285.7529)" font-family="'RobotoMono-Bold'" font-size="10.5">’ + P</text>
+	<text transform="matrix(0.5713 0 0 0.583 398.8789 290.4146)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 403.6787 285.7529)" font-family="'RobotoMono-Bold'" font-size="10.5">’ + P</text>
+	<text transform="matrix(0.5713 0 0 0.583 434.5527 290.4146)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 439.3516 285.7529)" font-family="'RobotoMono-Bold'" font-size="10.5">’ + ... + P</text>
+	<text transform="matrix(0.5713 0 0 0.583 507.2754 290.4146)" font-family="'RobotoMono-Bold'" font-size="14">n</text>
+	<text transform="matrix(0.9799 0 0 1 512.0742 285.7529)" font-family="'RobotoMono-Bold'" font-size="10.5">’ </text>
 </g>
 <g>
 	<rect x="135.134" y="190.053" fill="none" width="118.577" height="15.332"/>
 	<text transform="matrix(0.9799 0 0 1 135.1338 197.9277)" font-family="'RobotoMono-Bold'" font-size="10.5">Challenge Factor</text>
 </g>
 <g>
-	<rect x="135.134" y="240.845" fill="none" width="118.577" height="15.332"/>
-	<text transform="matrix(0.9799 0 0 1 135.1338 248.7202)" font-family="'RobotoMono-Bold'" font-size="10.5">Tweaked Keys</text>
+	<rect x="135.134" y="248.511" fill="none" width="118.577" height="15.332"/>
+	<text transform="matrix(0.9799 0 0 1 135.1338 256.3862)" font-family="'RobotoMono-Bold'" font-size="10.5">Tweaked Keys</text>
 </g>
 <g>
-	<rect x="135.134" y="265.845" fill="none" width="118.577" height="15.332"/>
-	<text transform="matrix(0.9799 0 0 1 135.1338 273.7202)" font-family="'RobotoMono-Bold'" font-size="10.5">Musig Public Key</text>
+	<rect x="135.134" y="276.845" fill="none" width="118.577" height="15.332"/>
+	<text transform="matrix(0.9799 0 0 1 135.1338 284.7202)" font-family="'RobotoMono-Bold'" font-size="10.5">Musig Public Key</text>
 </g>
 <g>
 	<g>
@@ -90,13 +132,13 @@
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="193.333" x2="130.333" y2="193.333"/>
 <polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="130.333,245.333 
 	112.5,245.333 112.5,193.333 "/>
-<polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="296.333,220.468 
-	278.5,220.468 278.5,193.333 "/>
-<polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="130.333,270.333 
-	112.5,270.333 112.5,245.333 "/>
+<polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="300.334,225.468 
+	278.5,225.468 278.5,193.333 "/>
+<polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="130.333,282.002 
+	112.5,282.002 112.5,245.333 "/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="244.667" y1="193.333" x2="300.334" y2="193.333"/>
-<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="220.667" y1="245.333" x2="300.334" y2="245.333"/>
-<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="244.667" y1="271.002" x2="300.334" y2="271.002"/>
+<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="220.667" y1="253" x2="300.334" y2="253"/>
+<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="244.667" y1="282.002" x2="300.334" y2="282.002"/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="264.667" y1="138" x2="300.334" y2="138"/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="256.667" y1="83.667" x2="300.334" y2="83.667"/>
 </svg>
