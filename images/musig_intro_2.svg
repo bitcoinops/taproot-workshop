@@ -10,52 +10,60 @@
 		L590.28,0z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M441.666,293.851c0,1.65-1.35,3-3,3h-133c-1.65,0-3-1.35-3-3v-21.666c0-1.65,1.35-3,3-3h133
-		c1.65,0,3,1.35,3,3V293.851z"/>
+	<path fill="#A1DADE" d="M489.666,307.333c0,1.65-1.35,3-3,3h-181c-1.65,0-3-1.35-3-3v-43.149c0-1.65,1.35-3,3-3h181
+		c1.65,0,3,1.35,3,3V307.333z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M489.666,238.023c0,1.65-1.35,3-3,3h-181c-1.65,0-3-1.35-3-3v-7.833c0-1.65,1.35-3,3-3h181
-		c1.65,0,3,1.35,3,3V238.023z"/>
+	<path fill="#A1DADE" d="M489.666,235.333c0,1.65-1.35,3-3,3h-181c-1.65,0-3-1.35-3-3V220.19c0-1.65,1.35-3,3-3h181
+		c1.65,0,3,1.35,3,3V235.333z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#CFCECE" d="M188.655,164.729c0,1.65-1.35,3-3,3h-37.789c-1.65,0-3-1.35-3-3V152.38c0-1.65,1.35-3,3-3h37.789
-		c1.65,0,3,1.35,3,3V164.729z"/>
+	<path fill="#CFCECE" d="M188.655,156.729c0,1.65-1.35,3-3,3h-37.789c-1.65,0-3-1.35-3-3V144.38c0-1.65,1.35-3,3-3h37.789
+		c1.65,0,3,1.35,3,3V156.729z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#CFCECE" d="M202.117,109.396c0,1.65-1.35,3-3,3h-51.25c-1.65,0-3-1.35-3-3V97.047c0-1.65,1.35-3,3-3h51.25
-		c1.65,0,3,1.35,3,3V109.396z"/>
+	<path fill="#CFCECE" d="M195.606,102.396c0,1.65-1.35,3-3,3h-44.739c-1.65,0-3-1.35-3-3V90.047c0-1.65,1.35-3,3-3h44.739
+		c1.65,0,3,1.35,3,3V102.396z"/>
 </g>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="18.667"/>
 	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Nonce Generation</text>
 </g>
 <g>
-	<rect x="147.756" y="98.597" fill="none" width="116.444" height="19.582"/>
-	<text transform="matrix(0.9799 0 0 1 147.7563 106.4717)" font-family="'RobotoMono-Bold'" font-size="10.5">k_i, R_i</text>
+	<rect x="151.873" y="87.597" fill="none" width="57.194" height="19.582"/>
+	<text transform="matrix(0.9799 0 0 1 151.873 98.0967)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 158.0474 102.7588)" font-family="'RobotoMono-Bold'" font-size="14">n</text>
+	<text transform="matrix(0.9799 0 0 1 162.8467 98.0967)" font-family="'RobotoMono-Bold'" font-size="10.5">, R</text>
+	<text transform="matrix(0.5713 0 0 0.583 181.3696 102.7588)" font-family="'RobotoMono-Bold'" font-size="14">n</text>
 </g>
 <g>
-	<rect x="147.756" y="154.691" fill="none" width="116.444" height="19.582"/>
-	<text transform="matrix(0.9799 0 0 1 147.7563 162.5664)" font-family="'RobotoMono-Bold'" font-size="10.5">H(R_i)</text>
+	<rect x="151.873" y="143.691" fill="none" width="43.733" height="19.582"/>
+	<text transform="matrix(0.9799 0 0 1 151.873 154.1914)" font-family="'RobotoMono-Bold'" font-size="10.5">H(R</text>
+	<text transform="matrix(0.5713 0 0 0.583 170.396 158.8535)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 175.1953 154.1914)" font-family="'RobotoMono-Bold'" font-size="10.5">)</text>
 </g>
 <g opacity="0.65">
-	<path fill="#CFCECE" d="M188.655,241.539c0,1.65-1.35,3-3,3h-37.789c-1.65,0-3-1.35-3-3v-12.349c0-1.65,1.35-3,3-3h37.789
-		c1.65,0,3,1.35,3,3V241.539z"/>
+	<path fill="#CFCECE" d="M188.655,233.539c0,1.65-1.35,3-3,3h-37.789c-1.65,0-3-1.35-3-3v-12.349c0-1.65,1.35-3,3-3h37.789
+		c1.65,0,3,1.35,3,3V233.539z"/>
 </g>
 <g>
-	<rect x="147.756" y="231.501" fill="none" width="116.444" height="19.582"/>
-	<text transform="matrix(0.9799 0 0 1 147.7563 239.376)" font-family="'RobotoMono-Bold'" font-size="10.5">H(R_i)</text>
+	<rect x="144.956" y="219.501" fill="none" width="44.233" height="19.582"/>
+	<text transform="matrix(0.9799 0 0 1 152.3242 230.001)" font-family="'RobotoMono-Bold'" font-size="10.5">H(R</text>
+	<text transform="matrix(0.5713 0 0 0.583 170.8472 234.6631)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 175.6465 230.001)" font-family="'RobotoMono-Bold'" font-size="10.5">)</text>
 </g>
 <g opacity="0.65">
-	<path fill="#CFCECE" d="M336,164.729c0,1.65-1.35,3-3,3h-23.578c-1.649,0-3-1.35-3-3V152.38c0-1.65,1.351-3,3-3H333
-		c1.65,0,3,1.35,3,3V164.729z"/>
+	<path fill="#CFCECE" d="M336,156.729c0,1.65-1.35,3-3,3h-23.578c-1.649,0-3-1.35-3-3V144.38c0-1.65,1.351-3,3-3H333
+		c1.65,0,3,1.35,3,3V156.729z"/>
 </g>
 <g>
-	<rect x="309.312" y="154.691" fill="none" width="116.443" height="19.582"/>
-	<text transform="matrix(0.9799 0 0 1 309.3125 162.5664)" font-family="'RobotoMono-Bold'" font-size="10.5">R_i</text>
+	<rect x="308.312" y="141.691" fill="none" width="25.443" height="19.582"/>
+	<text transform="matrix(0.9799 0 0 1 315.5469 152.1914)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 321.7217 156.8535)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
 </g>
 <g>
-	<rect x="11.995" y="100.722" fill="none" width="87.577" height="31.667"/>
-	<text transform="matrix(0.9799 0 0 1 31.1484 108.5762)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
+	<rect x="11.995" y="92.722" fill="none" width="87.577" height="31.667"/>
+	<text transform="matrix(0.9799 0 0 1 31.1484 100.5762)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
 </g>
 <g>
 	<rect x="144.867" y="59.38" fill="none" width="87.577" height="15.833"/>
@@ -66,81 +74,101 @@
 	<text transform="matrix(0.9799 0 0 1 306.4219 67.2344)" font-family="'HelveticaNeue-Bold'" font-size="11">2nd Round</text>
 </g>
 <g>
-	<rect x="11.995" y="210.356" fill="none" width="87.577" height="31.667"/>
-	<text transform="matrix(0.9799 0 0 1 31.1484 218.21)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
+	<rect x="11.995" y="202.356" fill="none" width="87.577" height="31.667"/>
+	<text transform="matrix(0.9799 0 0 1 31.1484 210.21)" font-family="'HelveticaNeue-Bold'" font-size="11">Individual</text>
 </g>
 <g>
-	<rect x="15.278" y="155.107" fill="none" width="81.011" height="36.333"/>
-	<text transform="matrix(0.9799 0 0 1 30.2378 162.9609)" font-family="'HelveticaNeue-Bold'" font-size="11">Roundtrip</text>
+	<rect x="15.278" y="141.107" fill="none" width="81.011" height="36.333"/>
+	<text transform="matrix(0.9799 0 0 1 43.7056 148.9609)"><tspan x="0" y="0" font-family="'HelveticaNeue-Bold'" font-size="11">Data </tspan><tspan x="-13.546" y="13.2" font-family="'HelveticaNeue-Bold'" font-size="11">Exchange</tspan></text>
 </g>
 <g>
-	<rect x="306.423" y="211.607" fill="none" width="279.11" height="103.614"/>
-	<text transform="matrix(0.9799 0 0 1 306.4229 219.4824)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="10.5">If Nonce points hash correctly:</tspan><tspan x="0" y="17.4" font-family="'RobotoMono-Bold'" font-size="10.5">R_agg = R_0 + R_1 + ... + R_n</tspan><tspan x="0" y="42.6" font-family="'RobotoMono-Regular'" font-size="10.5">If jacobi_symbol(R_agg) != 1</tspan><tspan x="0" y="60" font-family="'RobotoMono-Bold'" font-size="10.5">R_agg = Negate(R_agg)</tspan><tspan x="0" y="72.6" font-family="'RobotoMono-Bold'" font-size="10.5">k_i = Negate(k_i)</tspan></text>
+	<rect x="306.423" y="200.607" fill="none" width="279.11" height="147.059"/>
+	<text transform="matrix(0.9799 0 0 1 306.4229 208.4824)" font-family="'RobotoMono-Regular'" font-size="10.5">If Nonce points hash correctly:</text>
+	<text transform="matrix(0.9799 0 0 1 306.4229 230.0825)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 312.5977 234.7446)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 326.9951 230.0825)" font-family="'RobotoMono-Bold'" font-size="10.5"> = R</text>
+	<text transform="matrix(0.5713 0 0 0.583 351.6924 234.7446)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 356.4922 230.0825)" font-family="'RobotoMono-Bold'" font-size="10.5"> + R</text>
+	<text transform="matrix(0.5713 0 0 0.583 381.1895 234.7446)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 385.9883 230.0825)" font-family="'RobotoMono-Bold'" font-size="10.5"> + ... + R</text>
+	<text transform="matrix(0.5713 0 0 0.583 447.7344 234.7446)" font-family="'RobotoMono-Bold'" font-size="14">n</text>
+	<text transform="matrix(0.9799 0 0 1 306.4229 255.2822)" font-family="'RobotoMono-Regular'" font-size="10.5">If jacobi_symbol(R_agg) != 1</text>
+	<text transform="matrix(0.9799 0 0 1 306.4229 276.8823)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 312.5977 281.5444)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 326.9951 276.8823)" font-family="'RobotoMono-Bold'" font-size="10.5"> = Negate(R</text>
+	<text transform="matrix(0.5713 0 0 0.583 394.9121 281.5444)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 409.3105 276.8823)" font-family="'RobotoMono-Bold'" font-size="10.5">)</text>
+	<text transform="matrix(0.9799 0 0 1 306.4229 298.4824)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 312.5977 303.1445)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 317.3965 298.4824)" font-family="'RobotoMono-Bold'" font-size="10.5"> = Negate(k</text>
+	<text transform="matrix(0.5713 0 0 0.583 385.3145 303.1445)" font-family="'RobotoMono-Bold'" font-size="14">i</text>
+	<text transform="matrix(0.9799 0 0 1 390.1133 298.4824)" font-family="'RobotoMono-Bold'" font-size="10.5">) </text>
+	<text transform="matrix(0.9799 0 0 1 402.4619 298.4824)" font-family="'RobotoMono-Regular'" font-size="10.5">for all i</text>
 </g>
 <g>
-	<rect x="147.756" y="211.607" fill="none" width="279.111" height="103.614"/>
-	<text transform="matrix(0.9799 0 0 1 147.7563 219.4824)" font-family="'RobotoMono-Regular'" font-size="10.5">Store:</text>
+	<rect x="147.756" y="203.607" fill="none" width="279.111" height="103.614"/>
+	<text transform="matrix(0.9799 0 0 1 147.7563 211.4824)" font-family="'RobotoMono-Regular'" font-size="10.5">Store:</text>
 </g>
 <g>
 	<g>
-		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="143.17" x2="55.783" y2="115.947"/>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="189.542" x2="55.783" y2="169.667"/>
 		<g>
-			<polygon points="55.783,148.112 58.629,141.148 55.783,142.8 52.938,141.148 			"/>
+			<polygon points="55.783,194.485 58.629,187.521 55.783,189.173 52.938,187.521 			"/>
 		</g>
 	</g>
 </g>
 <g>
 	<g>
-		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="197.542" x2="55.783" y2="170.32"/>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="55.783" y1="128.774" x2="55.783" y2="108.898"/>
 		<g>
-			<polygon points="55.783,202.485 58.629,195.521 55.783,197.173 52.938,195.521 			"/>
+			<polygon points="55.783,133.716 58.629,126.752 55.783,128.404 52.938,126.752 			"/>
 		</g>
 	</g>
 </g>
 <g>
 	<g>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="196.333" y1="235.364" x2="198.333" y2="235.364"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="196.333" y1="227.364" x2="198.333" y2="227.364"/>
 		<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="3.9804,3.9804" d="
-			M202.313,235.364h53.02c1.65,0,3-1.35,3-3V106.222c0-1.65,1.35-3,3-3h56.877c1.65,0,3,1.35,3,3v34.455"/>
+			M202.313,227.364h53.02c1.65,0,3-1.35,3-3V98.222c0-1.65,1.35-3,3-3h56.877c1.65,0,3,1.35,3,3v34.455"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="321.211" y1="142.667" x2="321.211" y2="144.667"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="321.211" y1="134.667" x2="321.211" y2="136.667"/>
 	</g>
 </g>
 <g>
 	<g>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="174.273" x2="166.761" y2="176.273"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="166.273" x2="166.761" y2="168.273"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="3.8529,3.8529" x1="166.761" y1="180.126" x2="166.761" y2="201.317"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="3.8529,3.8529" x1="166.761" y1="172.126" x2="166.761" y2="193.317"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="203.244" x2="166.761" y2="205.244"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="195.244" x2="166.761" y2="197.244"/>
 	</g>
 </g>
 <g>
 	<g>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="321.211" y1="172.32" x2="321.211" y2="174.32"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="321.211" y1="164.32" x2="321.211" y2="166.32"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="4.6787,4.6787" x1="321.211" y1="178.999" x2="321.211" y2="195.374"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="4.6787,4.6787" x1="321.211" y1="170.999" x2="321.211" y2="187.374"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="321.211" y1="197.713" x2="321.211" y2="199.713"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="321.211" y1="189.713" x2="321.211" y2="191.713"/>
 		<g>
-			<polygon points="321.211,203.244 319.178,198.269 321.211,199.449 323.243,198.269 			"/>
+			<polygon points="321.211,195.244 319.178,190.269 321.211,191.449 323.243,190.269 			"/>
 		</g>
 	</g>
 </g>
 <g>
 	<g>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="144.667" x2="166.761" y2="142.667"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="136.667" x2="166.761" y2="134.667"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="3.5313,3.5313" x1="166.761" y1="139.135" x2="166.761" y2="119.713"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" stroke-dasharray="3.5313,3.5313" x1="166.761" y1="131.135" x2="166.761" y2="111.713"/>
 		
-			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="117.947" x2="166.761" y2="115.947"/>
+			<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="166.761" y1="109.947" x2="166.761" y2="107.947"/>
 	</g>
 </g>
-<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="104.222" x2="130.333" y2="104.222"/>
-<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="160.111" x2="130.333" y2="160.111"/>
-<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="216" x2="130.333" y2="216"/>
+<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="96.222" x2="130.333" y2="96.222"/>
+<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="152.111" x2="130.333" y2="152.111"/>
+<line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="208" x2="130.333" y2="208"/>
 </svg>

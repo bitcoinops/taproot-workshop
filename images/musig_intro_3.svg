@@ -10,160 +10,238 @@
 		L590.28,0z"/>
 </g>
 <g opacity="0.66">
-	<path fill="#C9C9C9" d="M218.667,113.53c0,1.1-0.9,2-2,2H98.949c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h117.718c1.1,0,2,0.9,2,2
-		V113.53z"/>
+	<path fill="#C9C9C9" d="M194,117.333c0,1.1-0.9,2-2,2H95.949c-1.1,0-2-0.9-2-2V103.53c0-1.1,0.9-2,2-2H192c1.1,0,2,0.9,2,2V117.333
+		z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M52.334,117.333c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2V103.53c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V117.333z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M82.334,117.333c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2V103.53c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V117.333z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M226.01,117.333c0,1.1-0.9,2-2,2H210c-1.1,0-2-0.9-2-2V103.53c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V117.333z"/>
 </g>
 <g opacity="0.66">
-	<path fill="#C9C9C9" d="M218.667,140.53c0,1.1-0.9,2-2,2H98.949c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h117.718c1.1,0,2,0.9,2,2
-		V140.53z"/>
+	<path fill="#C9C9C9" d="M194,142.712c0,1.1-0.9,2-2,2H95.949c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H192c1.1,0,2,0.9,2,2
+		V142.712z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M52.334,142.712c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V142.712z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M82.334,142.712c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V142.712z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M226.01,142.712c0,1.1-0.9,2-2,2H210c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V142.712z"/>
 </g>
 <g opacity="0.66">
-	<path fill="#C9C9C9" d="M218.667,168.53c0,1.1-0.9,2-2,2H98.949c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h117.718c1.1,0,2,0.9,2,2
-		V168.53z"/>
+	<path fill="#C9C9C9" d="M194,168.077c0,1.1-0.9,2-2,2H95.949c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H192c1.1,0,2,0.9,2,2
+		V168.077z"/>
 </g>
 <g opacity="0.66">
-	<path fill="#C9C9C9" d="M342.07,237.5c0,1.1-0.9,2-2,2H222.353c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2H340.07c1.1,0,2,0.9,2,2V237.5
-		z"/>
+	<path fill="#C9C9C9" d="M312.84,237.637c0,1.1-0.9,2-2,2h-96.051c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h96.051c1.1,0,2,0.9,2,2
+		V237.637z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M52.334,168.077c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V168.077z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M82.334,168.077c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V168.077z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M226.01,168.077c0,1.1-0.9,2-2,2H210c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
+		V168.077z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M110,237.637c0,1.1-0.9,2-2,2H36.324c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H108c1.1,0,2,0.9,2,2
+		V237.637z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M199.5,237.637c0,1.1-0.9,2-2,2h-71.676c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H197.5c1.1,0,2,0.9,2,2
+		V237.637z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M414,237.637c0,1.1-0.9,2-2,2h-80.676c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H412c1.1,0,2,0.9,2,2
+		V237.637z"/>
 </g>
 <g opacity="0.66">
-	<path fill="#C9C9C9" d="M342.07,276.156c0,1.1-0.9,2-2,2H222.353c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2H340.07c1.1,0,2,0.9,2,2
-		V276.156z"/>
+	<path fill="#C9C9C9" d="M312.84,286.637c0,1.1-0.9,2-2,2h-96.051c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2h96.051c1.1,0,2,0.9,2,2
+		V286.637z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M52.334,113.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2V113.53
-		z"/>
+	<path fill="#A1DADE" d="M110,286.637c0,1.1-0.9,2-2,2H36.324c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H108c1.1,0,2,0.9,2,2
+		V286.637z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M52.334,140.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2V140.53
-		z"/>
+	<path fill="#A1DADE" d="M199.5,286.637c0,1.1-0.9,2-2,2h-71.676c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H197.5c1.1,0,2,0.9,2,2
+		V286.637z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M52.334,168.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2V168.53
-		z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M115.5,236.5c0,1.65-1.35,3-3,3H37.324c-1.65,0-3-1.35-3-3v-8c0-1.65,1.35-3,3-3H112.5c1.65,0,3,1.35,3,3
-		V236.5z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M115.5,275.156c0,1.65-1.35,3-3,3H37.324c-1.65,0-3-1.35-3-3v-8c0-1.65,1.35-3,3-3H112.5c1.65,0,3,1.35,3,3
-		V275.156z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M208,236.5c0,1.65-1.35,3-3,3h-75.176c-1.65,0-3-1.35-3-3v-8c0-1.65,1.35-3,3-3H205c1.65,0,3,1.35,3,3
-		V236.5z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M208,275.156c0,1.65-1.35,3-3,3h-75.176c-1.65,0-3-1.35-3-3v-8c0-1.65,1.35-3,3-3H205c1.65,0,3,1.35,3,3
-		V275.156z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M446,236.5c0,1.65-1.35,3-3,3h-82.676c-1.65,0-3-1.35-3-3v-8c0-1.65,1.35-3,3-3H443c1.65,0,3,1.35,3,3
-		V236.5z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M446,275.156c0,1.65-1.35,3-3,3h-82.676c-1.65,0-3-1.35-3-3v-8c0-1.65,1.35-3,3-3H443c1.65,0,3,1.35,3,3
-		V275.156z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M83.334,113.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2V113.53
-		z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M83.334,140.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2V140.53
-		z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M83.334,168.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2V168.53
-		z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M250.334,113.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
-		V113.53z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M250.334,140.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
-		V140.53z"/>
-</g>
-<g opacity="0.65">
-	<path fill="#A1DADE" d="M250.334,168.53c0,1.1-0.9,2-2,2h-14.01c-1.1,0-2-0.9-2-2v-10c0-1.1,0.9-2,2-2h14.01c1.1,0,2,0.9,2,2
-		V168.53z"/>
+	<path fill="#A1DADE" d="M414,286.637c0,1.1-0.9,2-2,2h-80.676c-1.1,0-2-0.9-2-2v-13.803c0-1.1,0.9-2,2-2H412c1.1,0,2,0.9,2,2
+		V286.637z"/>
 </g>
 <g>
-	<rect x="37.422" y="104.093" fill="none" width="270.335" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 37.4224 111.9683)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">s0 = k0 + H(x(R_agg)|P_agg|m) * x0</text>
+	<rect x="37.422" y="101.515" fill="none" width="270.335" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 37.4224 112.0151)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 43.5967 116.6772)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 48.396 112.0151)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> = </text>
+	<text transform="matrix(0.9799 0 0 1 66.9189 112.0151)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 73.0933 116.6772)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 77.8926 112.0151)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + H(x(</text>
+	<text transform="matrix(0.9799 0 0 1 121.1128 112.0151)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 127.2871 116.6772)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 141.6855 112.0151)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">)|</text>
+	<text transform="matrix(0.9799 0 0 1 154.0352 112.0151)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 160.21 116.6772)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 174.6094 112.0151)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">|m) * </text>
+	<text transform="matrix(0.9799 0 0 1 211.6582 112.0151)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 217.833 116.6772)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
 </g>
 <g>
-	<rect x="37.422" y="130.802" fill="none" width="270.335" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 37.4224 138.6768)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">s1 = k1 + H(x(R_agg)|P_agg|m) * x1</text>
+	<rect x="37.422" y="126.894" fill="none" width="270.335" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 37.4224 137.394)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 43.5967 142.0562)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 48.396 137.394)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> = </text>
+	<text transform="matrix(0.9799 0 0 1 66.9189 137.394)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 73.0933 142.0562)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 77.8926 137.394)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + H(x(</text>
+	<text transform="matrix(0.9799 0 0 1 121.1128 137.394)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 127.2871 142.0562)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 141.6855 137.394)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">)|</text>
+	<text transform="matrix(0.9799 0 0 1 154.0352 137.394)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 160.21 142.0562)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 174.6094 137.394)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">|m) * </text>
+	<text transform="matrix(0.9799 0 0 1 211.6582 137.394)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 217.833 142.0562)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
 </g>
 <g>
-	<rect x="37.422" y="158.635" fill="none" width="270.335" height="15.833"/>
-	<text transform="matrix(0.9799 0 0 1 37.4224 166.5098)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">s2 = k2 + H(x(R_agg)|P_agg|m) * x2</text>
+	<rect x="37.422" y="152.273" fill="none" width="270.335" height="15.833"/>
+	<text transform="matrix(0.9799 0 0 1 37.4224 162.7734)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 43.5967 167.4355)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 48.396 162.7734)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> = </text>
+	<text transform="matrix(0.9799 0 0 1 66.9189 162.7734)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 73.0933 167.4355)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 77.8926 162.7734)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + H(x(</text>
+	<text transform="matrix(0.9799 0 0 1 121.1128 162.7734)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 127.2871 167.4355)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 141.6855 162.7734)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">)|</text>
+	<text transform="matrix(0.9799 0 0 1 154.0352 162.7734)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 160.21 167.4355)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 174.6094 162.7734)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">|m) * </text>
+	<text transform="matrix(0.9799 0 0 1 211.6582 162.7734)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 217.833 167.4355)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
 </g>
 <g>
-	<rect x="37.422" y="228.479" fill="none" width="489.578" height="33.354"/>
-	<text transform="matrix(0.9799 0 0 1 37.4224 236.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">s0 + s1 + s2 = k0 + k1 + k2 + H(x(R_agg)|P_agg|m) * (x0 + x1 + x2)</text>
+	<rect x="37.422" y="221.833" fill="none" width="489.578" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 37.4224 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 43.5967 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 48.396 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + </text>
+	<text transform="matrix(0.9799 0 0 1 66.9189 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 73.0933 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 77.8926 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + </text>
+	<text transform="matrix(0.9799 0 0 1 96.4155 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 102.5898 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 107.3892 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> = </text>
+	<text transform="matrix(0.9799 0 0 1 125.9121 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 132.0864 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 136.8857 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + </text>
+	<text transform="matrix(0.9799 0 0 1 155.4102 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 161.585 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 166.3848 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + </text>
+	<text transform="matrix(0.9799 0 0 1 184.9092 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 191.084 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 195.8838 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + H(x(</text>
+	<text transform="matrix(0.9799 0 0 1 239.1074 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 245.2822 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 259.6816 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">)|</text>
+	<text transform="matrix(0.9799 0 0 1 272.0312 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 278.2061 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 292.6055 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">|m) * (</text>
+	<text transform="matrix(0.9799 0 0 1 335.8291 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 342.0039 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 346.8037 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + </text>
+	<text transform="matrix(0.9799 0 0 1 365.3281 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 371.5029 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 376.3027 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5"> + </text>
+	<text transform="matrix(0.9799 0 0 1 394.8271 232.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 401.002 236.9956)" font-family="'RobotoMono-Bold'" font-size="14">2</text>
+	<text transform="matrix(0.9799 0 0 1 405.8018 232.3335)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">)</text>
 </g>
 <g>
-	<rect x="54.207" y="266.479" fill="none" width="40.244" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 58.8931 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">s_agg</text>
+	<rect x="212.789" y="271.49" fill="none" width="100.051" height="22.328"/>
+	<text transform="matrix(0.9799 0 0 1 214.4561 281.9897)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">H(x(</text>
+	<text transform="matrix(0.9799 0 0 1 239.1553 281.9897)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 245.3301 286.6519)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 259.7295 281.9897)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">)|</text>
+	<text transform="matrix(0.9799 0 0 1 272.0791 281.9897)" font-family="'RobotoMono-Bold'" font-size="10.5">P</text>
+	<text transform="matrix(0.5713 0 0 0.583 278.2539 286.6519)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
+	<text transform="matrix(0.9799 0 0 1 292.6533 281.9897)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">|m)</text>
 </g>
 <g>
-	<rect x="147.29" y="266.479" fill="none" width="40.244" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 151.9761 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">k_agg</text>
+	<rect x="34.422" y="270.833" fill="none" width="73.578" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 60.9248 281.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">s</text>
+	<text transform="matrix(0.5713 0 0 0.583 67.0991 285.9956)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
 </g>
 <g>
-	<rect x="100.29" y="266.479" fill="none" width="40.244" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 117.3247 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">=</text>
+	<rect x="127.824" y="270.833" fill="none" width="73.578" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 154.3267 281.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">k</text>
+	<text transform="matrix(0.5713 0 0 0.583 160.501 285.9956)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
 </g>
 <g>
-	<rect x="207" y="266.479" fill="none" width="13.578" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 210.7017 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">+</text>
+	<rect x="340.245" y="270.833" fill="none" width="73.577" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 366.748 281.3335)" font-family="'RobotoMono-Bold'" font-size="10.5">x</text>
+	<text transform="matrix(0.5713 0 0 0.583 372.9219 285.9956)" font-family="'RobotoMono-Bold'" font-size="14">agg</text>
 </g>
 <g>
-	<rect x="343.746" y="266.479" fill="none" width="13.578" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 347.4473 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">*</text>
+	<rect x="96.79" y="274.49" fill="none" width="40.244" height="19.354"/>
+	<text transform="matrix(0.9799 0 0 1 113.8247 282.3647)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">=</text>
 </g>
 <g>
+	<rect x="185.766" y="274.49" fill="none" width="40.244" height="19.354"/>
+	<text transform="matrix(0.9799 0 0 1 202.8003 282.3647)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">+</text>
 </g>
 <g>
-	<rect x="381.54" y="266.479" fill="none" width="40.244" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 386.2266 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">x_agg</text>
-</g>
-<g>
-	<rect x="221.396" y="266.479" fill="none" width="120.815" height="19.354"/>
-	<text transform="matrix(0.9799 0 0 1 223.147 274.354)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">H(x(R_agg)|P_agg|m)</text>
+	<rect x="301.001" y="274.49" fill="none" width="40.244" height="19.354"/>
+	<text transform="matrix(0.9799 0 0 1 318.0352 282.3647)" font-family="'RobotoMonoForPowerline-Bold'" font-size="10.5">*</text>
 </g>
 <g>
 	<g>
-		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="282.211" y1="257.173" x2="282.211" y2="241.5"/>
+		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="263.5" y1="260.512" x2="263.5" y2="244.839"/>
 		<g>
-			<polygon fill="#C9C9C9" points="282.211,261.833 284.894,255.267 282.211,256.825 279.528,255.267 			"/>
+			<polygon fill="#C9C9C9" points="263.5,265.172 266.183,258.606 263.5,260.164 260.817,258.606 			"/>
 		</g>
 	</g>
 </g>
 <g>
 	<g>
-		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="167.412" y1="257.173" x2="167.412" y2="241.5"/>
+		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="161.662" y1="260.512" x2="161.662" y2="244.839"/>
 		<g>
-			<polygon fill="#C9C9C9" points="167.412,261.833 170.095,255.267 167.412,256.825 164.729,255.267 			"/>
+			<polygon fill="#C9C9C9" points="161.662,265.172 164.345,258.606 161.662,260.164 158.979,258.606 			"/>
 		</g>
 	</g>
 </g>
 <g>
 	<g>
-		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="74.329" y1="257.173" x2="74.329" y2="241.5"/>
+		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="72.162" y1="260.512" x2="72.162" y2="244.839"/>
 		<g>
-			<polygon fill="#C9C9C9" points="74.329,261.833 77.012,255.267 74.329,256.825 71.646,255.267 			"/>
+			<polygon fill="#C9C9C9" points="72.162,265.172 74.845,258.606 72.162,260.164 69.479,258.606 			"/>
 		</g>
 	</g>
 </g>
 <g>
 	<g>
-		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="401.662" y1="257.173" x2="401.662" y2="241.5"/>
+		<line fill="none" stroke="#C9C9C9" stroke-miterlimit="10" x1="375" y1="260.512" x2="375" y2="244.839"/>
 		<g>
-			<polygon fill="#C9C9C9" points="401.662,261.833 404.346,255.267 401.662,256.825 398.979,255.267 			"/>
+			<polygon fill="#C9C9C9" points="375,265.172 377.684,258.606 375,260.164 372.317,258.606 			"/>
 		</g>
 	</g>
 </g>
@@ -173,6 +251,6 @@
 <text transform="matrix(1 0 0 1 34.3242 214)" font-family="'RobotoMonoForPowerline-Italic'" font-size="10">Aggregated Signature</text>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="18.667"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Linear Aggregation of Schnorr Signatures</text>
+	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Signature Aggregation</text>
 </g>
 </svg>
