@@ -43,19 +43,19 @@
 </g>
 <g>
 	<rect x="105.676" y="149.816" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 147.8687 155.8159)" font-family="'RobotoMono-Bold'" font-size="8">ECKey.add</text>
+	<text transform="matrix(0.9799 0 0 1 138.4604 155.8159)" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECKey</text>
 </g>
 <g>
 	<rect x="221.011" y="149.816" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 263.2036 155.8159)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey.add</tspan><tspan x="-33.605" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add scalar complement)</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 232.626 155.8159)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECkey.negate()</tspan><tspan x="-2.4" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add scalar complement)</tspan></text>
 </g>
 <g>
 	<rect x="453.895" y="149.816" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 496.0879 155.8159)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey.mul</tspan><tspan x="-26.405" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Mul scalar inverse)</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 486.6797 155.8159)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECKey</tspan><tspan x="-16.804" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Mul scalar inverse)</tspan></text>
 </g>
 <g>
 	<rect x="339.148" y="149.816" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 381.3418 155.8159)" font-family="'RobotoMono-Bold'" font-size="8">ECKey.mul</text>
+	<text transform="matrix(0.9799 0 0 1 371.9336 155.8159)" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECKey</text>
 </g>
 <g>
 	<rect x="339.038" y="127.053" fill="none" width="120.525" height="13"/>
@@ -63,23 +63,19 @@
 </g>
 <g>
 	<rect x="335.938" y="274.355" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 371.0752 280.3555)" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey.mul</text>
+	<text transform="matrix(0.9799 0 0 1 361.666 280.3555)" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECPubKey</text>
 </g>
 <g>
 	<rect x="451.102" y="274.355" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 486.2383 280.3555)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey.mul</tspan><tspan x="-16.803" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Mul with 1/scalar)</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 476.8301 280.3555)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECPubKey</tspan><tspan x="-7.201" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Mul with 1/scalar)</tspan></text>
 </g>
 <g>
 	<rect x="105.676" y="205.483" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 140.8125 211.4829)" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey.add</text>
+	<text transform="matrix(0.9799 0 0 1 124.3472 211.4829)" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey + ECPubKey</text>
 </g>
 <g>
 	<rect x="221.011" y="205.483" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 256.1475 211.4829)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey.add</tspan><tspan x="-31.207" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add complement of point)</tspan></text>
-</g>
-<g>
-	<rect x="221.011" y="205.483" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 256.1475 211.4829)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey.add</tspan><tspan x="-31.207" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add complement of point)</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 239.6821 211.4829)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECPubKey + ECPubKey</tspan><tspan x="-14.404" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add complement of point)</tspan></text>
 </g>
 <g>
 	<rect x="344.473" y="205.483" fill="none" width="110.014" height="24.684"/>
