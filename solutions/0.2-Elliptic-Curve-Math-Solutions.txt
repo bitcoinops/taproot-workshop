@@ -1,34 +1,34 @@
-#### 1.3 Commutative property of scalar operations
+#### 0.2.3 Commutative property of scalar operations
 
 ```
-a = random.randrange(1, SECP256K1_ORDER)
+a = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
 a_key = ECKey()
 a_key.set(a.to_bytes(32,'big'), True) 
 
-b = random.randrange(1, SECP256K1_ORDER)
+b = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
 b_key = ECKey()
 b_key.set(b.to_bytes(32,'big'), True) 
 
-# Left: Compute a + b
+# Left: Compute a + b as ints (modulo the sepc256k1 field order)
 left_ab = (a + b) % SECP256K1_ORDER
 
-# Right: Compute b + a
+# Right: Compute b + a as ECKeys
 right_ba = int().from_bytes((b_key + a_key).get_bytes(),'big')
 
 # Left/Right: Assert equality
 assert left_ab == right_ba
 
-# Left: Compute a * b
+# Left: Compute a * b as ints (modulo the sepc256k1 field order)
 left_ab = (a * b) % SECP256K1_ORDER
 
-# Right: Compute b * a
-right_ba = int().from_bytes((b_key * a_key).get_bytes(),'big')
+# Right: Compute b * a as ECKeys
+right_ba = b_key * a_key
 
 # Left/Right: Assert equality
-assert left_ab == right_ba
+assert left_ab == right_ba.as_int()
 ```
 
-#### 1.4 Distributivity of scalar operations
+#### 0.2.4 Distributivity of scalar operations
 
 ```
 a = random.randrange(1, SECP256K1_ORDER)
@@ -43,11 +43,11 @@ c = random.randrange(1, SECP256K1_ORDER)
 c_key = ECKey()
 c_key.set(c.to_bytes(32,'big'), True) 
 
-# Left: Compute (a - b) * c
+# Left: Compute (a - b) * c as ints (modulo the sepc256k1 field order)
 ab = (a + (SECP256K1_ORDER - b)) % SECP256K1_ORDER
 left_abc = (ab * c) % SECP256K1_ORDER
 
-# Right: Compute -b * c
+# Right: Compute -b * c as ECKeys
 # Negate a ECKey with negate() method.
 b_key.negate()
 
@@ -56,15 +56,14 @@ ac_key = a_key * c_key
 bc_key = b_key * c_key
 
 # Right: Compute a * c - b * c
-ac_bc_key = ac_key + bc_key
-right_abc = int().from_bytes(ac_bc_key.get_bytes(),'big')
+right_abc = ac_key + bc_key
 
 # Left/Right: Assert equality
-assert left_abc == right_abc
+assert left_abc == right_abc.as_int()
 print("Success!")
 ```
 
-#### 1.6 Distributivity over scalars and points
+#### 0.2.6 Distributivity over scalars and points
 
 ```
 a = ECKey()
@@ -75,11 +74,8 @@ b.generate()
 c.generate()
 C = c.get_pubkey()
 
-# Left: Compute a - b
-a_minus_b = a - b
-
 # Left: Compute (a - b) * C  
-left =  a_minus_b * C
+left =  (a - b) * C
 
 # Right: Compute a * C and (-b) * C
 aC = a * C
@@ -92,4 +88,3 @@ right = aC - bC
 assert left.get_bytes() == right.get_bytes()
 print("Success!")
 ```
-
