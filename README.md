@@ -67,7 +67,12 @@ taproot-workshop repository:
 $ git clone https://github.com/bitcoinops/bitcoin
 ```
 
-Note the path where you cloned the bitcoinops/bitcoin repository.
+Note the path where you cloned the bitcoinops/bitcoin repository and add it to
+the `config.ini` file in this repository. For example, set:
+
+```
+SOURCE_DIRECTORY=/Users/optech/bitcoin
+```
 
 Checkout the Optech taproot branch, which is tagged as `Taproot_V0.1.2`:
 
@@ -121,6 +126,9 @@ dependencies globally:
 ```
 $ python3 -m venv .venv && source .venv/bin/activate
 ```
+
+(if you're using the `csh` or `fish` shells, replace `.venv/bin/activate` with
+`.venv/bin/activate.csh` or `.venv/bin/activate.fish`)
 
 Install dependencies:
 
