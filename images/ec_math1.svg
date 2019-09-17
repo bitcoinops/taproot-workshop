@@ -39,15 +39,15 @@
 </g>
 <g>
 	<rect x="108.775" y="127.053" fill="none" width="120.525" height="13"/>
-	<text transform="matrix(0.9799 0 0 1 133.7559 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">(int + int) % n</text>
+	<text transform="matrix(0.9799 0 0 1 143.1646 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">(a + b) % n</text>
 </g>
 <g>
 	<rect x="105.676" y="149.816" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 138.4604 155.8159)" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECKey</text>
+	<text transform="matrix(0.9799 0 0 1 138.4604 155.8159)" font-family="'RobotoMono-Bold'" font-size="8">ECKey + ECKey</text>
 </g>
 <g>
 	<rect x="221.011" y="149.816" fill="none" width="126.725" height="24.684"/>
-	<text transform="matrix(0.9799 0 0 1 232.626 155.8159)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey * ECkey.negate()</tspan><tspan x="-2.4" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add scalar complement)</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 232.626 155.8159)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="8">ECKey + ECkey.negate()</tspan><tspan x="4.801" y="9.6" font-family="'RobotoMono-Regular'" font-size="8">(Add scalar inverse)</tspan></text>
 </g>
 <g>
 	<rect x="453.895" y="149.816" fill="none" width="126.725" height="24.684"/>
@@ -59,7 +59,7 @@
 </g>
 <g>
 	<rect x="339.038" y="127.053" fill="none" width="120.525" height="13"/>
-	<text transform="matrix(0.9799 0 0 1 364.0186 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">(int * int) % n</text>
+	<text transform="matrix(0.9799 0 0 1 373.4277 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">(a * b) % n</text>
 </g>
 <g>
 	<rect x="335.938" y="274.355" fill="none" width="126.725" height="24.684"/>
@@ -87,11 +87,11 @@
 </g>
 <g>
 	<rect x="454.895" y="127.053" fill="none" width="120.525" height="13"/>
-	<text transform="matrix(0.9799 0 0 1 463.4102 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">(int * int**(p-2)) % n</text>
+	<text transform="matrix(0.9799 0 0 1 472.8184 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">(a * b**(n-2)) % n</text>
 </g>
 <g>
 	<rect x="224.11" y="127.053" fill="none" width="120.525" height="13"/>
-	<text transform="matrix(0.9799 0 0 1 239.6821 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">int + (n - int) % n</text>
+	<text transform="matrix(0.9799 0 0 1 249.0908 133.0532)" font-family="'RobotoMono-Bold'" font-size="8">a + (n - b) % n</text>
 </g>
 <g>
 	<rect x="139.775" y="271.633" fill="none" width="58" height="19.525"/>
