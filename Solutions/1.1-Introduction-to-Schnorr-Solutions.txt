@@ -1,0 +1,74 @@
+#### 1.1.2 Verify that inverse nonce values `k` and `-k` generate inverse points `R` and `-R`
+
+```
+# Generate a random value in the secp256k1 field
+k = random.randrange(1, SECP256K1_ORDER)
+
+# Create an uncompressed key from k so it's easier to access the y-coordinate, and get the pubkey
+k_key = ECKey()
+k_key.set(k.to_bytes(32,'big'), False)
+R = k_key.get_pubkey()
+
+# Find the x- and y-coordinates from R
+R_x = int.from_bytes(R.get_bytes()[1:33], "big")
+R_y = int.from_bytes(R.get_bytes()[33:], "big")
+
+# Find k's inverse (SECP256K1_FIELD_SIZE - k)
+minus_k = SECP256K1_ORDER - k
+
+# Create an uncompressed key from -k so it's easier to access the y-coordinate, and get the pubkey
+minus_k_key = ECKey()
+minus_k_key.set(minus_k.to_bytes(32,'big'), False)
+minus_R = minus_k_key.get_pubkey()
+
+# Find the x- and y-coordinates from -R
+minus_R_x = int.from_bytes(minus_R.get_bytes()[1:33], "big")
+minus_R_y = int.from_bytes(minus_R.get_bytes()[33:], "big")
+
+assert R_x == minus_R_x
+assert SECP256K1_FIELD_SIZE - R_y == minus_R_y
+
+print("Success!")
+```
+
+#### 1.1.3 Sign a message with Schnorr
+
+```
+msg = hashlib.sha256(b'message').digest()
+x = ECKey()
+x.generate()
+P = x.get_pubkey()
+
+# We have to set uncompressed to get the y-coordinate.
+# k_int = random.randrange(1, SECP256K1_ORDER)
+k = ECKey()
+k.generate(False) # Uncompressed.
+R = k.get_pubkey()
+
+print(R.get_bytes().hex())
+# Check that nonce is quadratic residue modulo the field order.
+# Method: jacobi_symbol(int(y(R)), SECP256K1_FIELD_SIZE)
+if jacobi_symbol(int.from_bytes(R.get_bytes()[33:], "big"), SECP256K1_FIELD_SIZE) != 1:
+    k.negate()
+
+# Generate s = k + sha256(R_x|P|msg) * x
+# Method: hashlib.sha256(bytes)
+h_b = hashlib.sha256(R.get_bytes()[1:33] + P.get_bytes() + msg).digest()
+h = ECKey()
+h.set(h_b, True)
+s = k + h * x
+
+# Generate sig = R_x|s
+sig = R.get_bytes()[1:33] + s.secret.to_bytes(32,'big')
+
+# Verify the signature
+assert ECPubKey.verify_schnorr(sig, msg)
+
+print("Success!")
+```
+
+#### 1.1.4 Signing Schnorr with deterministic nonce.
+
+```
+
+```
