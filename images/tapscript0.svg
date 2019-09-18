@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 xml:space="preserve">
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M90.691,71.661c0,2.02-1.653,3.673-3.673,3.673H16.496c-2.02,0-3.673-1.653-3.673-3.673V57.982
+		c0-2.02,1.653-3.673,3.673-3.673h70.522c2.02,0,3.673,1.653,3.673,3.673V71.661z"/>
+</g>
+<g opacity="0.33">
+	<path fill="#A1DADE" d="M141,247.41c0,2.878-2.354,5.232-5.232,5.232h-33.449c-2.878,0-5.232-2.354-5.232-5.232v-65.202
+		c0-2.878,2.354-5.232,5.232-5.232h33.449c2.878,0,5.232,2.354,5.232,5.232V247.41z"/>
+</g>
+<g>
+	<rect x="12.656" y="205.747" fill="none" width="84.235" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 12.6558 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5">pk0 </tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">checksig </tspan><tspan x="0" y="27.6" font-family="'RobotoMono-Regular'" font-size="11.5">pk1 </tspan><tspan x="0" y="41.4" font-family="'RobotoMono-Regular'" font-size="11.5">checksigadd </tspan><tspan x="0" y="55.2" font-family="'RobotoMono-Regular'" font-size="11.5">pk2 </tspan><tspan x="0" y="69" font-family="'RobotoMono-Regular'" font-size="11.5">checksigadd </tspan><tspan x="0" y="82.8" font-family="'RobotoMono-Regular'" font-size="11.5">3 </tspan><tspan x="0" y="96.6" font-family="'RobotoMono-Regular'" font-size="11.5">equal</tspan></text>
+</g>
+<g>
+	<rect x="12.656" y="182.413" fill="none" width="48.902" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 12.6558 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Script</text>
+</g>
+<g>
+	<rect x="15.013" y="60" fill="none" width="489.251" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 15.0132 68.25)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="11">checksigadd -&gt;</tspan><tspan x="92.413" y="0" font-family="'RobotoMono-Medium'" font-size="11"> &lt;rot&gt; &lt;swap&gt; &lt;checksig&gt; &lt;add&gt;</tspan></text>
+</g>
+<g>
+	<rect x="15.013" y="94.871" fill="none" width="585.487" height="37.462"/>
+	<text transform="matrix(0.9799 0 0 1 15.0132 102.3711)"><tspan x="0" y="0" font-family="'RobotoMono-BoldItalic'" font-size="10">Initial Stack</tspan><tspan x="76.296" y="0" font-family="'RobotoMono-BoldItalic'" font-size="10" letter-spacing="29.595">	</tspan><tspan x="112.106" y="0" font-family="'RobotoMono-BoldItalic'" font-size="10">      After &lt;rot&gt;</tspan><tspan x="211.878" y="0" font-family="'RobotoMono-BoldItalic'" font-size="10" letter-spacing="6.123">	</tspan><tspan x="224.211" y="0" font-family="'RobotoMono-BoldItalic'" font-size="10">            After &lt;swap&gt;             After &lt;csg&gt;&lt;add&gt;</tspan></text>
+</g>
+<g>
+	<rect x="86.665" y="182.413" fill="none" width="48.902" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 102.4971 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Stack</text>
+</g>
+<g>
+	<rect x="106.034" y="205.747" fill="none" width="29.533" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 106.0337 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5">sig0</tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">sig1</tspan><tspan x="0" y="27.6" font-family="'RobotoMono-Regular'" font-size="11.5">sig2</tspan></text>
+</g>
+<g>
+	<rect x="15.013" y="111.602" fill="none" width="29.533" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 15.0132 119.1021)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="10">pk0</tspan><tspan x="0" y="12" font-family="'RobotoMono-Regular'" font-size="10">n</tspan><tspan x="0" y="24" font-family="'RobotoMono-Regular'" font-size="10">sig0</tspan><tspan x="0" y="36" opacity="0.55" font-family="'RobotoMono-Regular'" font-size="10">sig1</tspan></text>
+</g>
+<g>
+	<rect x="158.656" y="111.602" fill="none" width="29.533" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 158.6558 119.1021)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="10">sig0</tspan><tspan x="0" y="12" font-family="'RobotoMono-Regular'" font-size="10">pk0</tspan><tspan x="0" y="24" font-family="'RobotoMono-Regular'" font-size="10">n</tspan><tspan x="0" y="36" opacity="0.55" font-family="'RobotoMono-Regular'" font-size="10">sig1</tspan></text>
+</g>
+<g>
+	<rect x="302.394" y="111.602" fill="none" width="29.532" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 302.3936 119.1021)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="10">pk0</tspan><tspan x="0" y="12" font-family="'RobotoMono-Regular'" font-size="10">sig0</tspan><tspan x="0" y="24" font-family="'RobotoMono-Regular'" font-size="10">n</tspan><tspan x="0" y="36" opacity="0.55" font-family="'RobotoMono-Regular'" font-size="10">sig1</tspan></text>
+</g>
+<g>
+	<rect x="445.46" y="111.602" fill="none" width="29.532" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 445.46 119.1021)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="10">1+n</tspan><tspan x="0" y="12" font-family="'RobotoMono-Regular'" font-size="10">sig1</tspan></text>
+</g>
+<g opacity="0.44">
+	<path fill="#A1DADE" d="M287,247.41c0,2.878-2.354,5.232-5.232,5.232h-33.449c-2.878,0-5.232-2.354-5.232-5.232v-65.202
+		c0-2.878,2.354-5.232,5.232-5.232h33.449c2.878,0,5.232,2.354,5.232,5.232V247.41z"/>
+</g>
+<g>
+	<rect x="158.656" y="205.747" fill="none" width="84.235" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 158.6558 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5">pk1 </tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">checksigadd </tspan><tspan x="0" y="27.6" font-family="'RobotoMono-Regular'" font-size="11.5">pk2 </tspan><tspan x="0" y="41.4" font-family="'RobotoMono-Regular'" font-size="11.5">checksigadd </tspan><tspan x="0" y="55.2" font-family="'RobotoMono-Regular'" font-size="11.5">3 </tspan><tspan x="0" y="69" font-family="'RobotoMono-Regular'" font-size="11.5">equal</tspan></text>
+</g>
+<g>
+	<rect x="158.656" y="182.413" fill="none" width="48.902" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 158.6558 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Script</text>
+</g>
+<g>
+	<rect x="232.665" y="182.413" fill="none" width="48.902" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 248.4971 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Stack</text>
+</g>
+<g>
+	<rect x="252.034" y="205.747" fill="none" width="29.533" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 252.0337 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5">1</tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">sig1</tspan><tspan x="0" y="27.6" font-family="'RobotoMono-Regular'" font-size="11.5">sig2</tspan></text>
+</g>
+<g opacity="0.55">
+	<path fill="#A1DADE" d="M435.818,247.41c0,2.878-2.354,5.232-5.232,5.232h-33.449c-2.878,0-5.232-2.354-5.232-5.232v-65.202
+		c0-2.878,2.354-5.232,5.232-5.232h33.449c2.878,0,5.232,2.354,5.232,5.232V247.41z"/>
+</g>
+<g>
+	<rect x="307.475" y="205.747" fill="none" width="84.234" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 307.4746 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5">pk2 </tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">checksigadd </tspan><tspan x="0" y="27.6" font-family="'RobotoMono-Regular'" font-size="11.5">3 </tspan><tspan x="0" y="41.4" font-family="'RobotoMono-Regular'" font-size="11.5">equal</tspan></text>
+</g>
+<g>
+	<rect x="307.475" y="182.413" fill="none" width="48.901" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 307.4746 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Script</text>
+</g>
+<g>
+	<rect x="381.482" y="182.413" fill="none" width="48.902" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 397.3154 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Stack</text>
+</g>
+<g>
+	<rect x="400.852" y="205.747" fill="none" width="29.533" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 400.8516 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5">2</tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">sig2</tspan></text>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M583.356,247.41c0,2.878-2.354,5.232-5.232,5.232h-33.449c-2.878,0-5.232-2.354-5.232-5.232v-65.202
+		c0-2.878,2.354-5.232,5.232-5.232h33.449c2.878,0,5.232,2.354,5.232,5.232V247.41z"/>
+</g>
+<g>
+	<rect x="455.013" y="205.747" fill="none" width="84.234" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 455.0117 214.3716)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="11.5"> 3 </tspan><tspan x="0" y="13.8" font-family="'RobotoMono-Regular'" font-size="11.5">equal</tspan></text>
+</g>
+<g>
+	<rect x="455.013" y="182.413" fill="none" width="48.901" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 455.0117 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Script</text>
+</g>
+<g>
+	<rect x="529.021" y="182.413" fill="none" width="48.902" height="18.562"/>
+	<text transform="matrix(0.9799 0 0 1 544.8535 191.0381)" font-family="'RobotoMono-BoldItalic'" font-size="11.5">Stack</text>
+</g>
+<g>
+	<rect x="548.39" y="205.747" fill="none" width="29.533" height="143.896"/>
+	<text transform="matrix(0.9799 0 0 1 548.3906 214.3716)" font-family="'RobotoMono-Regular'" font-size="11.5">3</text>
+</g>
+<g>
+	<rect x="12.656" y="23.333" fill="none" width="332.078" height="50.667"/>
+	<text transform="matrix(0.9799 0 0 1 12.6558 32.3335)" font-family="'RobotoMono-Bold'" font-size="12">Multisig with Checksigadd</text>
+</g>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="147.82" y1="182.413" x2="147.82" y2="311.642"/>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="12.656" y1="169" x2="583.356" y2="169"/>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="12.656" y1="84.667" x2="583.356" y2="84.667"/>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="296.64" y1="182.413" x2="296.64" y2="311.642"/>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="445.46" y1="182.413" x2="445.46" y2="311.642"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="-1" y1="119.667" x2="-1" y2="273"/>
+<g>
+	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		L590.28,0z"/>
+</g>
+</svg>
