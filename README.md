@@ -52,6 +52,12 @@ through the exercises in this repository.
 
 ## Requirements
 
+#### Clone this (bitcoinops/taproot-workshop) repository
+
+```
+$ git clone https://github.com/bitcoinops/taproot-workshop
+```
+
 #### Build a taproot-supporting bitcoind
 
 These workbooks require a `bitcoind` built from the [Optech Taproot
@@ -68,7 +74,7 @@ $ git clone https://github.com/bitcoinops/bitcoin
 ```
 
 Note the path where you cloned the bitcoinops/bitcoin repository and add it to
-the `config.ini` file in this repository. For example, set:
+the `config.ini` file in your taproot-workshop repository. For example, set:
 
 ```
 SOURCE_DIRECTORY=/Users/optech/bitcoin
@@ -87,6 +93,9 @@ documentation on building bitcoind on
 [Unix](https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md),
 [macOS](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md), or
 [Windows](https://github.com/bitcoin/bitcoin/blob/master/doc/build-windows.md).
+
+No need to run `bitcoind` or download the mainchain or testnet blockchain. We will 
+run in regtest mode and spawn node instances via scripts.
 
 #### Python 3
 
@@ -121,7 +130,9 @@ Windows:
 This workshop uses some Python dependencies, particularly `jupyter-notebook`. To
 keep dependencies local to the project, you should create and activate a
 virtual environment. You can skip this step if you're happy to install the
-dependencies globally:
+dependencies globally.
+
+Make sure you are in your taproot-workshop repository folder.
 
 ```
 $ python3 -m venv .venv && source .venv/bin/activate
