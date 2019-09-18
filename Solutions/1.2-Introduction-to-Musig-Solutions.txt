@@ -1,0 +1,74 @@
+#### 1.2.1 Compute 3-of-3 MuSig public key
+
+```
+# Compute key pairs
+privkey0 = ECKey()
+privkey1 = ECKey()
+privkey2 = ECKey()
+privkey0.generate()
+privkey1.generate()
+privkey2.generate()
+pk0 = privkey0.get_pubkey()
+pk1 = privkey1.get_pubkey()
+pk2 = privkey2.get_pubkey()
+pk_v = [pk0, pk1, pk2]
+
+# Compute Key Challenges
+c_map, pk_musig = generate_musig_key(pk_v)
+print("Aggregated Public Key is {}\n".format(pk_musig.get_bytes().hex()))
+
+# Multiply key pairs by challenge factor
+privkey0_c = privkey0.mul(c_map[pk0])
+privkey1_c = privkey1.mul(c_map[pk1])
+privkey2_c = privkey2.mul(c_map[pk2])
+pk0_c = pk0.mul(c_map[pk0])
+pk1_c = pk1.mul(c_map[pk1])
+pk2_c = pk2.mul(c_map[pk2])
+
+print("Tweaked privkey0 is {}".format(privkey0_c.secret))
+print("Tweaked privkey1 is {}".format(privkey1_c.secret))
+print("Tweaked privkey2 is {}".format(privkey2_c.secret))
+```
+
+#### 1.2.2 Compute 3-of-3 MuSig nonce
+
+```
+# Generate nonces.
+k0 = generate_schnorr_nonce()
+k1 = generate_schnorr_nonce()
+k2 = generate_schnorr_nonce()
+R0 = k0.get_pubkey()
+R1 = k1.get_pubkey()
+R2 = k2.get_pubkey()
+
+# Nonce point commitment round.
+R0_digest = hashlib.sha256(R0.get_bytes()).digest()
+R1_digest = hashlib.sha256(R1.get_bytes()).digest()
+R2_digest = hashlib.sha256(R2.get_bytes()).digest()
+
+# Aggregate nonces.
+R_agg, negated = aggregate_schnorr_nonces([R0, R1, R2])
+if negated:
+    k0.negate()
+    k1.negate()
+    k2.negate()
+
+print("Individual nonces are {}, {}, {}.".format(k0.secret, k1.secret, k2.secret))
+print("Aggregate nonce point is {}".format(R_agg.get_bytes().hex()))
+print("R_agg was negated:", negated)
+```
+
+#### 1.2.3 Compute aggregated MuSig signature
+
+```
+msg = hashlib.sha256(b'transaction').digest()
+
+# Generate individual signatures.
+sig0 = sign_musig(privkey0_c, k0, R_agg, pk_musig, msg)
+sig1 = sign_musig(privkey1_c, k1, R_agg, pk_musig, msg)
+sig2 = sign_musig(privkey2_c, k2, R_agg, pk_musig, msg)
+
+# Aggregate signatures.
+sig_agg = aggregate_musig_signatures([sig0, sig1, sig2])
+print("Signature verifies against MuSig pubkey:", pk_musig.verify_schnorr(sig_agg, msg))
+```
