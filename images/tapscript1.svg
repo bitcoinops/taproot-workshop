@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 xml:space="preserve">
+<g opacity="0.55">
+	<path fill="#C9C9C9" d="M445.075,131c0,1.1-0.9,2-2,2h-306.03c-1.1,0-2-0.9-2-2v-18.868c0-1.1,0.9-2,2-2h306.03c1.1,0,2,0.9,2,2
+		V131z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M188.332,225c0,1.1-0.9,2-2,2H55.333c-1.1,0-2-0.9-2-2v-18c0-1.1,0.9-2,2-2h130.999c1.1,0,2,0.9,2,2V225z"
+		/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M356.166,225c0,1.1-0.9,2-2,2h-131c-1.1,0-2-0.9-2-2v-18c0-1.1,0.9-2,2-2h131c1.1,0,2,0.9,2,2V225z"/>
+</g>
+<g opacity="0.65">
+	<path fill="#A1DADE" d="M530.5,225c0,1.1-0.9,2-2,2h-131c-1.1,0-2-0.9-2-2v-18c0-1.1,0.9-2,2-2h131c1.1,0,2,0.9,2,2V225z"/>
+</g>
+<g>
+	<rect x="32.422" y="29.333" fill="none" width="416.578" height="50.667"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 38.3335)" font-family="'RobotoMono-Bold'" font-size="12">generate_threshold_csa(n, pubkeys)</text>
+</g>
+<rect x="78.422" y="257.333" fill="none" width="416.578" height="50.667"/>
+<text transform="matrix(0.9799 0 0 1 145.2329 266.3335)" fill="#919191" font-family="'RobotoMono-Italic'" font-size="12">Tapscripts are committed to same Taproot.</text>
+<g>
+	<rect x="135.408" y="116.001" fill="none" width="308.667" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 141.5566 125.001)" font-family="'RobotoMono-Bold'" font-size="12">generate_threshold_csa(2, [PK0, PK1, PK2])</text>
+</g>
+<g>
+	<rect x="47.667" y="211.334" fill="none" width="146.038" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 57.1772 220.3345)" font-family="'RobotoMono-Bold'" font-size="12">ts(csa(2,PK0,PK1))</text>
+</g>
+<g>
+	<rect x="222.333" y="211.334" fill="none" width="132.667" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 225.1587 220.3345)" font-family="'RobotoMono-Bold'" font-size="12">ts(csa(2,PK0,PK2))</text>
+</g>
+<g>
+	<rect x="189.332" y="211.334" fill="none" width="32.334" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 198.5977 220.3345)" font-family="'RobotoMono-Italic'" font-size="12">or</text>
+</g>
+<g>
+	<rect x="359.999" y="211.334" fill="none" width="32.334" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 369.2646 220.3345)" font-family="'RobotoMono-Italic'" font-size="12">or</text>
+</g>
+<g>
+	<rect x="386.333" y="211.334" fill="none" width="153.333" height="20.667"/>
+	<text transform="matrix(0.9799 0 0 1 399.4912 220.3345)" font-family="'RobotoMono-Bold'" font-size="12">ts(csa(2,PK1,PK2))</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#929393" stroke-width="1.5" stroke-miterlimit="10" x1="289.742" y1="140.838" x2="289.742" y2="183.312"/>
+		<g>
+			<polygon fill="#929393" points="289.742,189.138 286.388,180.93 289.742,182.877 293.095,180.93 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#929393" stroke-width="1.5" stroke-miterlimit="10" x1="289.742" y1="140.838" x2="129.667" y2="196.333"/>
+		<g>
+			<circle fill="#929393" cx="289.742" cy="140.838" r="1.861"/>
+		</g>
+		<g>
+			<polygon fill="#929393" points="124.163,198.242 130.819,192.384 130.078,196.191 133.017,198.721 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#929393" stroke-width="1.5" stroke-miterlimit="10" x1="289.743" y1="140.838" x2="444.314" y2="194.425"/>
+		<g>
+			<polygon fill="#929393" points="449.818,196.333 440.965,196.814 443.903,194.283 443.161,190.477 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<path fill="none" stroke="#C9C9C9" stroke-width="1.5" stroke-miterlimit="10" d="M60.333,238v9.5c0,1.65,1.35,3,3,3H518
+		c1.65,0,3-1.35,3-3V238"/>
+</g>
+<g>
+	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		L590.28,0z"/>
+</g>
+</svg>

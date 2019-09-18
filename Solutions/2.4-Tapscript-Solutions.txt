@@ -1,0 +1,170 @@
+#### 2.4.5 Programming Exercise: Generate a 2-of-2 csahasholder tapscript.
+
+```
+# Generate key pairs.
+privkey0 = ECKey()
+privkey1 = ECKey()
+privkey2 = ECKey()
+privkey0.generate()
+privkey1.generate()
+privkey2.generate()
+pubkey0 = privkey0.get_pubkey()
+pubkey1 = privkey1.get_pubkey()
+pubkey2 = privkey2.get_pubkey()
+c_map, pk_musig = generate_musig_key([pubkey1, pubkey2])
+print("MuSig pubkey: {}\n".format(pk_musig.get_bytes().hex()))
+
+secret = b'secret'
+preimage = hashlib.new('sha256', secret).digest()
+digest = hashlib.new('ripemd160', preimage).digest()
+
+# Construct Tapscript
+csahasholder_tapscript = TapLeaf()
+csahasholder_tapscript.construct_csahasholder(2, [pubkey0, pk_musig], digest, 20)
+print("Descriptor:", csahasholder_tapscript.desc, "\n")
+
+print("Tapscript operations:")
+for op in csahasholder_tapscript.script:
+    print(op.hex()) if isinstance(op, bytes) else print(op)
+
+print("\nSatisfying witness elements:")
+for element, value in csahasholder_tapscript.sat:
+    print("{}, {}".format(element, value.hex()))
+```
+
+#### 2.4.6 Programming Exercise: Generate and spend a tapscript.
+
+##### Part A
+```
+# Generate Keys.
+privkey_int = ECKey() 
+privkey_int.generate()
+pubkey_int = privkey_int.get_pubkey()
+privkey0 = ECKey()
+privkey1 = ECKey()
+privkey2 = ECKey()
+privkey3 = ECKey()
+privkey0.generate()
+privkey1.generate()
+privkey2.generate()
+privkey3.generate()
+pubkey0 = privkey0.get_pubkey()
+pubkey1 = privkey1.get_pubkey()
+pubkey2 = privkey2.get_pubkey()
+pubkey3 = privkey3.get_pubkey()
+
+# Generate MuSig keys.
+# c_map, pk_musig = # TODO: Implement
+# privkey2_c = # TODO: Implement
+# privkey3_c = # TODO: Implement
+
+c_map, pk_musig = generate_musig_key([pubkey2, pubkey3])
+privkey2_c = privkey2.mul(c_map[pubkey2])
+privkey3_c = privkey3.mul(c_map[pubkey3])
+print("MuSig pubkey: {}\n".format(pk_musig.get_bytes().hex()))
+
+# Generate ts(pkolder(key0, 20)).
+# pkolder_ts = # TODO: Implement
+pkolder_ts = TapLeaf()
+pkolder_ts.construct_pkolder(pubkey0, 20)
+
+# ts(csahash(2, key1, key23, b'secret').
+# csahash_ts = # TODO: Implement
+secret = b'secret'
+preimage = hashlib.new('sha256', secret).digest()
+digest = hashlib.new('ripemd160', preimage).digest()
+print(preimage.hex())
+print(digest.hex())
+
+csahash_ts = TapLeaf()
+csahash_ts.construct_csahash(2, [pubkey1, pk_musig], digest)
+
+# Satisfying witness elements.
+print("Satisfying witness elements:")
+for element, value in csahash_ts.sat:
+    print("{}, {}".format(element, value.hex()))
+
+# Construct TapTree.
+# taptree = # TODO: Implement
+taptree = TapTree()
+taptree.key = pubkey_int
+taptree.huffman_constructor([(1, pkolder_ts),(1, csahash_ts)])
+
+# Generate taproot output and segwit address.
+taproot_script, tweak, control_map = taptree.construct()
+pk_taproot_bytes = bytes(taproot_script[2:])
+segwit_address = program_to_witness(1, pk_taproot_bytes)
+print("\nBech32 address: {}".format(segwit_address))
+```
+
+##### Part B
+```
+tx_script_spend = CTransaction()
+tx_script_spend.nVersion = 2
+tx_script_spend.nLockTime = 0
+outpoint = COutPoint(tx.sha256, index)
+tx_script_spend_input = CTxIn(outpoint = outpoint)
+tx_script_spend.vin = [tx_script_spend_input]
+
+# Generate new Bitcoin Core wallet address to send funds back to.
+dest_addr = test.nodes[0].getnewaddress(address_type="bech32")
+scriptpubkey = bytes.fromhex(test.nodes[0].getaddressinfo(dest_addr)['scriptPubKey'])
+
+# Determine minimum fee required for mempool acceptance.
+min_fee = int(test.nodes[0].getmempoolinfo()['mempoolminfee'] * 100000000)
+
+# Complete output which returns funds to Bitcoin Core wallet.
+dest_output= CTxOut(nValue=output_value-min_fee, scriptPubKey=scriptpubkey)
+tx_script_spend.vout = [dest_output]
+
+# Construct witness according to required satisfaction elements.
+htv = [0, 1, 2, 3, 0x81, 0x82, 0x83]
+sighash = TaprootSignatureHash(tx_script_spend, [taproot_output], htv[0], 0, scriptpath=True, tapscript=csahash_ts.script)
+
+# Signature from privkey1.
+# sig1 = # TODO: Implement
+sig1 = privkey1.sign_schnorr(sighash)
+
+# MuSig signature.
+# k2 = # TODO: Implement
+# k3 = # TODO: Implement
+# R2 = # TODO: Implement
+# R3 = # TODO: Implement
+# R_agg, negated = # TODO: Implement
+# sig_agg = # TODO: Implement
+
+k2 = generate_schnorr_nonce()
+k3 = generate_schnorr_nonce()
+R2 = k2.get_pubkey()
+R3 = k3.get_pubkey()
+
+R_agg, negated = aggregate_schnorr_nonces([R2, R3])
+if negated:
+    k2.negate()
+    k3.negate()
+
+sig2 = sign_musig(privkey2_c, k2, R_agg, pk_musig, sighash)
+sig3 = sign_musig(privkey3_c, k3, R_agg, pk_musig, sighash)
+sig_agg = aggregate_musig_signatures([sig2, sig3])
+
+# Satisfying witness elements:
+witness_elements = []
+# witness_elements.append() TODO: Implement
+# witness_elements.append() TODO: Implement
+# witness_elements.append() TODO: Implement
+witness_elements.append(preimage)
+witness_elements.append(sig_agg)
+witness_elements.append(sig1)
+
+tx_script_spend.wit.vtxinwit.append(CTxInWitness())
+tx_script_spend.wit.vtxinwit[0].scriptWitness.stack = witness_elements + [csahash_ts.script, control_map[csahash_ts.script]]
+taproot_spend_str = tx_script_spend.serialize().hex()
+
+# Serialize Schnorr transaction for broadcast.
+tx_script_spend_str = tx_script_spend.serialize().hex()
+
+# Test mempool acceptance.
+print(test.nodes[0].testmempoolaccept([tx_script_spend_str]))
+
+```
+
