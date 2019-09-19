@@ -1,6 +1,6 @@
 # taproot-workshop
 
-This repo contains the Jupyter notebooks for Optech's [Schnorr/Taproot
+This repo contains the jupyter notebooks for Optech's [Schnorr/Taproot
 workshops](https://bitcoinops.org/workshops/#taproot-workshop).
 
 ## Introduction
@@ -21,7 +21,7 @@ Branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.2).
 
 Do not run test instances of bitcoind on the same machine that you store your
 Bitcoin private keys. These notebooks shouldn't interfere with your
-standard bitcoin data directory directory, but why risk it?
+standard bitcoin data directory, but why risk it?
 
 ## Background
 
@@ -80,7 +80,7 @@ the `config.ini` file in your taproot-workshop repository. For example, set:
 SOURCE_DIRECTORY=/Users/optech/bitcoin
 ```
 
-Checkout the Optech taproot branch, which is tagged as `Taproot_V0.1.2`:
+Checkout the Optech taproot branch in the bitcoinops/bitcoin repository, which is tagged as `Taproot_V0.1.2`:
 
 ```
 $ git checkout Taproot_V0.1.2
@@ -147,7 +147,7 @@ Install dependencies:
 $ pip3 install -r requirements.txt
 ```
 
-Ensure Jupyter Notebook is installed:
+Ensure jupyter notebook is installed:
 
 ```
 $ jupyter notebook --version
@@ -158,7 +158,7 @@ an interactive document like this one. The workshop materials are built
 directly with jupyter .ipynb files, which you can open once you have jupyter
 installed.
 
-Start Jupyter notebook to see exercises:
+Start jupyter notebook to see exercises:
 
 ```
 $ jupyter notebook
@@ -178,9 +178,9 @@ After you have run the 0.1 example exercises, please also run through the
 Notebooks 1.x, 2.x, etc will be covered during the workshop. There is no need to
 run through those beforehand.
 
-Stop the current running Jupyter session using Control-C in the terminal.
+Stop the current running jupyter session using Control-C in the terminal.
 
-After you have finished your Jupyter session, you can deactivate the Python
+After you have finished your jupyter session, you can deactivate the Python
 virtual environment with:
 
 ```
