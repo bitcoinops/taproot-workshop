@@ -1,0 +1,238 @@
+### 3.1.1. Determine different signing scenarios and their likelihoods.
+
+```
+# List spending paths in order of likelihood.
+# 1. 3 Main wallets sign.
+# 2. 2 Main wallets & 1 Backup wallet.
+# 3. 1 Main wallet & 2 Backup wallet.
+
+# Sketch out Taproot Descriptors.
+# 1. Internalkey: MuSig(pkA, pkB, pkC)
+# 2. 2 main keys & 1 backup key
+    # 2a. csaolder(3, pkA, pkB, pkD, 3 days)
+    # 2b. csaolder(3, pkB, pkC, pkD, 3 days)
+    # 2c. csaolder(3, pkA, pkB, pkE, 3 days)
+    # 2d. csaolder(3, pkB, pkC, pkE, 3 days)
+# 3. 1 main keys & 2 backup keys
+    # 3a. csaolder(3, pkA, pkD, pkE, 10 days)
+    # 3b. csaolder(3, pkB, pkD, pkE, 10 days)
+    # 3c. csaolder(3, pkC, pkD, pkE, 10 days)
+```
+
+
+### 3.1.2. Build your taproot output.
+
+```
+# Generate main wallet key pairs.
+main_privA = ECKey()
+main_privB = ECKey()
+main_privC = ECKey()
+main_privA.generate()
+main_privB.generate()
+main_privC.generate()
+main_pkA = main_privA.get_pubkey()
+main_pkB = main_privB.get_pubkey()
+main_pkC = main_privC.get_pubkey()
+
+# Generate back-up wallet key pairs.
+bckup_privD = ECKey()
+bckup_privE = ECKey()
+bckup_privD.generate()
+bckup_privE.generate()
+bckup_pkD = bckup_privD.get_pubkey()
+bckup_pkE = bckup_privE.get_pubkey()
+
+# 3-of-3 main key (MuSig public key).
+c_map, musig_ABC = generate_musig_key([main_pkA, main_pkB, main_pkC])
+main_privA_c = main_privA.mul(c_map[main_pkA])
+main_privB_c = main_privB.mul(c_map[main_pkB])
+main_privC_c = main_privC.mul(c_map[main_pkC])
+main_pkA_c = main_pkA.mul(c_map[main_pkA])
+main_pkB_c = main_pkA.mul(c_map[main_pkB])
+main_pkC_c = main_pkA.mul(c_map[main_pkC])
+
+# Tapscripts - 2 main keys & 1 backup key
+tapscript_2a = TapLeaf()
+tapscript_2b = TapLeaf()
+tapscript_2c = TapLeaf()
+tapscript_2d = TapLeaf()
+delay = 3*24*6
+tapscript_2a.construct_csaolder(3, [main_pkA, main_pkB, bckup_pkD], delay)
+tapscript_2b.construct_csaolder(3, [main_pkB, main_pkC, bckup_pkD], delay)
+tapscript_2c.construct_csaolder(3, [main_pkA, main_pkB, bckup_pkE], delay)
+tapscript_2d.construct_csaolder(3, [main_pkB, main_pkC, bckup_pkE], delay)
+
+# Tapscripts - 1 main keys & 2 backup keys
+tapscript_3a = TapLeaf()
+tapscript_3b = TapLeaf()
+long_delay = 10*24*6
+tapscript_3a.construct_csaolder(3, [main_pkA, bckup_pkD, bckup_pkE], long_delay)
+tapscript_3b.construct_csaolder(3, [main_pkB, bckup_pkD, bckup_pkE], long_delay)
+
+# Set list of backup tapscripts.
+# Suggestion: Include tapscripts with 3d timelocks first, then those with 10d timelocks
+backup_tapscripts = [tapscript_2a, tapscript_2b, tapscript_2c, tapscript_2d, tapscript_3a, tapscript_3b]
+
+# Construct taptree with huffman constructor.
+tapscript_v = [(2, tapscript_2a), (2, tapscript_2b), (2, tapscript_2c), (2, tapscript_2d), (1, tapscript_3a), (1, tapscript_3b)]
+multisig_taproot = TapTree()
+multisig_taproot.huffman_constructor(tapscript_v)
+multisig_taproot.key = musig_ABC
+
+# Print Taproot Descriptor.
+print(multisig_taproot.desc)
+
+# Construct Segwit Address.
+tapscript, taptweak, control_map = multisig_taproot.construct()
+output_pubkey = musig_ABC.tweak_add(taptweak)
+output_pubkey_b = output_pubkey.get_bytes()
+taproot_pubkey_v1 = bytes([output_pubkey_b[0] & 1]) + output_pubkey_b[1:]
+segwit_address = program_to_witness(1, taproot_pubkey_v1)
+print("\nSegwit Address:", segwit_address)
+```
+
+### 3.1.3. Test each possible spending path of your output design.
+
+```
+test = util.TestWrapper()
+test.setup(num_nodes=1)
+```
+```
+test.nodes[0].generate(101)
+balance = test.nodes[0].getbalance()
+print(balance)
+```
+```
+# Send funds to taproot output.
+txid = test.nodes[0].sendtoaddress(segwit_address, 0.5)
+print("Funding tx:", txid)
+
+# Deserialize wallet transaction.
+tx = CTransaction()
+tx_hex = test.nodes[0].getrawtransaction(txid)
+tx.deserialize(BytesIO(bytes.fromhex(tx_hex)))
+tx.rehash()
+
+# Determine Output Index of Segwit V1 Output.
+# (Wallet places change output at a random txout index.)
+outputs = iter(tx.vout)
+taproot_output = next(outputs)
+taproot_index = 0
+
+while (taproot_output.scriptPubKey != tapscript):
+    taproot_output = next(outputs)
+    taproot_index += 1
+taproot_value = taproot_output.nValue
+```
+```# Construct signing key map (pubkey-bytes: privkey)
+privkey_map = { main_pkA.get_bytes(): main_privA,
+                main_pkB.get_bytes(): main_privB,
+                main_pkC.get_bytes(): main_privC,
+                bckup_pkD.get_bytes(): bckup_privD,
+                bckup_pkE.get_bytes(): bckup_privE }
+
+# We will set tapscripts with different delays into separate lists.
+long_delays_idx = 4
+three_day_delay_txs = []
+ten_day_delay_txs = []
+
+# Iterate through all tapscripts.
+for idx, tapscript_to_spend in enumerate(backup_tapscripts):
+    taproot_spend_tx = CTransaction()
+    taproot_spend_tx.nLockTime = 0
+    taproot_spend_tx.nVersion = 2
+    taproot_output_point = COutPoint(tx.sha256, taproot_index)
+
+    if idx < long_delays_idx:
+        tx_input = CTxIn(outpoint=taproot_output_point, nSequence=delay)
+    else:
+        tx_input = CTxIn(outpoint=taproot_output_point, nSequence=long_delay)
+
+    taproot_spend_tx.vin = [tx_input]
+    dest_addr = test.nodes[0].getnewaddress(address_type="bech32")
+    spk = bytes.fromhex(test.nodes[0].getaddressinfo(dest_addr)['scriptPubKey'])
+
+    min_fee = 5000
+    dest_out = CTxOut(nValue=taproot_value - min_fee, scriptPubKey=spk)
+    taproot_spend_tx.vout = [dest_out]
+
+    # Construct witness according to required satisfaction elements.
+    htv = [0, 1, 2, 3, 0x81, 0x82, 0x83]
+    sighash = TaprootSignatureHash(taproot_spend_tx, [taproot_output], htv[0], 0, scriptpath=True, tapscript=tapscript_to_spend.script)
+    witness_elements = []
+
+    for typ, data in tapscript_to_spend.sat:
+        sig = privkey_map[data].sign_schnorr(sighash)
+        witness_elements.append(sig)
+
+    taproot_spend_tx.wit.vtxinwit.append(CTxInWitness())
+    taproot_spend_tx.wit.vtxinwit[0].scriptWitness.stack = witness_elements + [tapscript_to_spend.script, control_map[tapscript_to_spend.script]]
+    taproot_spend_str = taproot_spend_tx.serialize().hex()
+
+    # Test timelock.
+    assert_equal(
+        [{'txid': taproot_spend_tx.rehash(), 'allowed': False, 'reject-reason': '64: non-BIP68-final'}],
+        test.nodes[0].testmempoolaccept([taproot_spend_str])
+    )
+
+    print("Size of Transaction #{} size is {} bytes.".format(idx, len(taproot_spend_tx.serialize()))
+
+    # Sort txns into different vectors by delay.
+    if idx < long_delays_idx:
+        three_day_delay_txs.append(taproot_spend_tx)
+    else:
+        ten_day_delay_txs.append(taproot_spend_tx)
+
+
+# Rebroadcast timelocked txs 3 day delay.
+test.nodes[0].generate(delay)
+
+for tx in three_day_delay_txs:
+    assert_equal(
+        [{'txid': tx.rehash(), 'allowed': True}],
+        test.nodes[0].testmempoolaccept([tx.serialize().hex()])
+    )
+
+for tx in ten_day_delay_txs:
+    assert_equal(
+        [{'txid': tx.rehash(), 'allowed': False, 'reject-reason': '64: non-BIP68-final'}],
+        test.nodes[0].testmempoolaccept([tx.serialize().hex()])
+    )
+
+# Rebroadcast timelocked txs after 10 day delay.
+test.nodes[0].generate(long_delay-delay)
+
+for tx in ten_day_delay_txs:
+    assert_equal(
+        [{'txid': tx.rehash(), 'allowed': True}],
+        test.nodes[0].testmempoolaccept([tx.serialize().hex()])
+    )
+
+print("Success!")
+```
+```
+test.shutdown()
+```
+
+
+### 3.1.4 Remove the 3-of-3 spending path.
+```
+# Create a NUMS point for the internal pubkey.
+valid = False
+while not valid:
+    x_coord = random.randrange(1, SECP256K1_FIELD_SIZE)
+    nums_point_b = bytearray(b'\x02') + x_coord.to_bytes(32, "big")
+    nums_point = ECPubKey()
+    nums_point.set(nums_point_b)
+    valid = nums_point.valid
+
+multisig_taproot.key = nums_point
+
+# Construct Segwit Address.
+_, taptweak, control_map = multisig_taproot.construct()
+internal_pubkey = nums_point.tweak_add(taptweak)
+internal_pubkey_b = internal_pubkey.get_bytes()
+taproot_pubkey_v1 = bytes([internal_pubkey_b[0] & 1]) + internal_pubkey_b[1:]
+segwit_address = program_to_witness(1, taproot_pubkey_v1)
+print("\nSegwit Address:", segwit_address)
+```
