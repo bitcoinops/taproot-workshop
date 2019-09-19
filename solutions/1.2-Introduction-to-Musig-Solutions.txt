@@ -2,12 +2,9 @@
 
 ```
 # Compute key pairs
-privkey0 = ECKey()
-privkey1 = ECKey()
-privkey2 = ECKey()
-privkey0.generate()
-privkey1.generate()
-privkey2.generate()
+privkey0 = ECKey().generate()
+privkey1 = ECKey().generate()
+privkey2 = ECKey().generate()
 pk0 = privkey0.get_pubkey()
 pk1 = privkey1.get_pubkey()
 pk2 = privkey2.get_pubkey()
@@ -71,4 +68,8 @@ sig2 = sign_musig(privkey2_c, k2, R_agg, pk_musig, msg)
 # Aggregate signatures.
 sig_agg = aggregate_musig_signatures([sig0, sig1, sig2])
 print("Signature verifies against MuSig pubkey:", pk_musig.verify_schnorr(sig_agg, msg))
+
+# Verify signature
+assert pk_musig.verify_schnorr(sig_agg, msg)
+print("Success!")
 ```
