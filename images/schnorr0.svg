@@ -10,24 +10,24 @@
 		L590.28,0z"/>
 </g>
 <g opacity="0.33">
-	<path fill="#A1DADE" d="M323.211,208.527c0,0.979-0.801,1.779-1.777,1.779h-25.701c-0.979,0-1.779-0.8-1.779-1.779v-13.356
-		c0-0.979,0.8-1.779,1.779-1.779h25.701c0.977,0,1.777,0.8,1.777,1.779V208.527z"/>
+	<path fill="#A1DADE" d="M317.211,210.527c0,0.979-0.801,1.779-1.778,1.779h-25.7c-0.979,0-1.779-0.8-1.779-1.779v-13.356
+		c0-0.979,0.8-1.779,1.779-1.779h25.7c0.978,0,1.778,0.8,1.778,1.779V210.527z"/>
 </g>
 <g opacity="0.33">
-	<path fill="#A1DADE" d="M340.961,209.185c0,0.617-0.504,1.121-1.121,1.121h-9.377c-0.617,0-1.121-0.504-1.121-1.121v-14.671
-		c0-0.617,0.504-1.121,1.121-1.121h9.377c0.617,0,1.121,0.504,1.121,1.121V209.185z"/>
+	<path fill="#A1DADE" d="M334.961,211.185c0,0.617-0.505,1.121-1.121,1.121h-9.377c-0.616,0-1.121-0.504-1.121-1.121v-14.671
+		c0-0.617,0.505-1.121,1.121-1.121h9.377c0.616,0,1.121,0.504,1.121,1.121V211.185z"/>
 </g>
 <g opacity="0.33">
-	<path fill="#A1DADE" d="M66.075,171.932c0,0.546-0.446,0.992-0.992,0.992H56.95c-0.546,0-0.992-0.446-0.992-0.992v-13.236
-		c0-0.546,0.446-0.992,0.992-0.992h8.133c0.546,0,0.992,0.446,0.992,0.992V171.932z"/>
+	<path fill="#A1DADE" d="M58.075,179.932c0,0.546-0.447,0.992-0.992,0.992H48.95c-0.545,0-0.992-0.446-0.992-0.992v-13.236
+		c0-0.546,0.447-0.992,0.992-0.992h8.133c0.545,0,0.992,0.446,0.992,0.992V179.932z"/>
 </g>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="35.333"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Schnorr Signing</text>
+	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Schnorr Signing and Verification</text>
 </g>
 <g>
-	<rect x="57.379" y="134.715" fill="none" width="169.633" height="28.606"/>
-	<text transform="matrix(1 0 0 1 57.3789 139.9648)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="7">Secret nonce (must be quadratic residue </tspan><tspan x="0" y="9" font-family="'RobotoMono-Italic'" font-size="7">modulo field order p)</tspan></text>
+	<rect x="49.604" y="192.047" fill="none" width="169.633" height="28.606"/>
+	<text transform="matrix(1 0 0 1 49.6035 197.2969)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="7">Y-coordinate must be quadratic residue </tspan><tspan x="0" y="9" font-family="'RobotoMono-Italic'" font-size="7">modulo field order p.</tspan></text>
 </g>
 <g>
 	<rect x="397.812" y="174.516" fill="none" width="109.415" height="19.834"/>
@@ -36,21 +36,21 @@
 <rect x="397.812" y="196.35" fill="none" width="164.103" height="23.4"/>
 <text transform="matrix(1 0 0 1 397.8125 205.3501)" font-family="'RobotoMono-Bold'" font-size="12">S = R + H(x(R)|P|m)P</text>
 <g>
-	<rect x="57.379" y="109.183" fill="none" width="168.082" height="19.834"/>
-	<text transform="matrix(1 0 0 1 57.3789 118.1831)" font-family="'RobotoMono-Italic'" font-size="12">1) Nonce Creation</text>
+	<rect x="49.379" y="114.183" fill="none" width="168.082" height="19.834"/>
+	<text transform="matrix(1 0 0 1 49.3789 123.1831)" font-family="'RobotoMono-Italic'" font-size="12">1) Nonce Creation</text>
 </g>
 <g>
-	<rect x="57.379" y="209.689" fill="none" width="144.46" height="19.834"/>
-	<text transform="matrix(1 0 0 1 57.3789 218.6895)" font-family="'RobotoMono-Italic'" font-size="12">2) Compute s</text>
+	<rect x="49.379" y="225.689" fill="none" width="144.46" height="19.834"/>
+	<text transform="matrix(1 0 0 1 49.3789 234.6895)" font-family="'RobotoMono-Italic'" font-size="12">2) Compute s</text>
 </g>
 <g>
-	<rect x="295.171" y="174.516" fill="none" width="70.341" height="19.834"/>
-	<text transform="matrix(1 0 0 1 295.1709 183.5161)" font-family="'RobotoMono-Italic'" font-size="12">Signature</text>
+	<rect x="289.171" y="176.516" fill="none" width="70.341" height="19.834"/>
+	<text transform="matrix(1 0 0 1 289.1709 185.5161)" font-family="'RobotoMono-Italic'" font-size="12">Signature</text>
 </g>
-<rect x="295.022" y="196.35" fill="none" width="78.62" height="23.4"/>
-<text transform="matrix(1 0 0 1 295.0225 205.3501)" font-family="'RobotoMono-Bold'" font-size="12">x(R),s</text>
-<rect x="57.379" y="160.537" fill="none" width="76.661" height="23.4"/>
-<text transform="matrix(1 0 0 1 57.3789 169.5366)" font-family="'RobotoMono-Bold'" font-size="12">R = kG</text>
+<rect x="289.022" y="198.35" fill="none" width="78.62" height="23.4"/>
+<text transform="matrix(1 0 0 1 289.0225 207.3501)" font-family="'RobotoMono-Bold'" font-size="12">x(R),s</text>
+<rect x="49.379" y="168.537" fill="none" width="76.661" height="23.4"/>
+<text transform="matrix(1 0 0 1 49.3789 177.5366)" font-family="'RobotoMono-Bold'" font-size="12">R = kG</text>
 <g opacity="0.65">
 	<path fill="#A1DADE" d="M367.668,85.337c0,2.391-1.956,4.347-4.347,4.347H38.713c-2.391,0-4.347-1.956-4.347-4.347V66.365
 		c0-2.391,1.956-4.347,4.347-4.347h324.608c2.391,0,4.347,1.956,4.347,4.347V85.337z"/>
@@ -68,63 +68,55 @@
 	<text transform="matrix(0.9799 0 0 1 435.9316 79.0605)" font-family="'RobotoMono-Bold'" font-size="10.5">Verification</text>
 </g>
 <g>
-	<rect x="57.379" y="180.981" fill="none" width="87.476" height="13.155"/>
-	<text transform="matrix(1 0 0 1 57.3789 186.231)" font-family="'RobotoMono-Italic'" font-size="7">Nonce Point</text>
-</g>
-<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="61.017" y1="173.924" x2="61.017" y2="179.24"/>
-<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="89.75" y1="152.47" x2="89.75" y2="157.804"/>
-<g>
-	<rect x="129.609" y="277.627" fill="none" width="49.65" height="17.503"/>
-	<text transform="matrix(1 0 0 1 129.6089 282.877)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="7">X-coord of </tspan><tspan x="0" y="8" font-family="'RobotoMono-Italic'" font-size="7">Nonce Point</tspan></text>
+	<rect x="49.604" y="140.481" fill="none" width="87.476" height="13.155"/>
+	<text transform="matrix(1 0 0 1 49.6035 145.7314)" font-family="'RobotoMono-Italic'" font-size="7">Nonce point</text>
 </g>
 <g>
-	<rect x="86.393" y="277.627" fill="none" width="31.226" height="13.155"/>
-	<text transform="matrix(1 0 0 1 86.3931 282.877)" font-family="'RobotoMono-Italic'" font-size="7">Nonce</text>
+	<rect x="78.379" y="151.348" fill="none" width="24.121" height="6.578"/>
+	<text transform="matrix(1 0 0 1 78.3789 156.5981)" font-family="'RobotoMono-Italic'" font-size="7">Nonce</text>
+</g>
+<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="53.017" y1="183.924" x2="53.017" y2="189.24"/>
+<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="53.017" y1="148" x2="53.017" y2="163.583"/>
+<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="80.5" y1="158.926" x2="80.5" y2="164.583"/>
+<g>
+	<rect x="121.609" y="278.627" fill="none" width="49.65" height="17.503"/>
+	<text transform="matrix(1 0 0 1 121.6089 283.877)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="7">X-coord of </tspan><tspan x="0" y="8" font-family="'RobotoMono-Italic'" font-size="7">nonce point</tspan></text>
 </g>
 <g>
-	<rect x="194.271" y="277.627" fill="none" width="53.631" height="13.155"/>
-	<text transform="matrix(1 0 0 1 194.2705 282.877)" font-family="'RobotoMono-Italic'" font-size="7">Private Key</text>
+	<rect x="78.393" y="278.627" fill="none" width="31.226" height="13.155"/>
+	<text transform="matrix(1 0 0 1 78.3931 283.877)" font-family="'RobotoMono-Italic'" font-size="7">Nonce</text>
 </g>
 <g>
-	<rect x="111.024" y="233.446" fill="none" width="87.476" height="13.155"/>
-	<text transform="matrix(1 0 0 1 157.416 238.6958)" font-family="'RobotoMono-Italic'" font-size="7">k blinds x</text>
+	<rect x="186.271" y="278.627" fill="none" width="53.631" height="13.155"/>
+	<text transform="matrix(1 0 0 1 186.2705 283.877)" font-family="'RobotoMono-Italic'" font-size="7">Private key</text>
 </g>
 <g>
-	<rect x="295.171" y="215.372" fill="none" width="70.503" height="13.155"/>
-	<text transform="matrix(1 0 0 1 295.1709 220.6221)" font-family="'RobotoMono-Italic'" font-size="7">32B + 32B</text>
+	<rect x="289.171" y="217.372" fill="none" width="70.503" height="13.155"/>
+	<text transform="matrix(1 0 0 1 289.1709 222.6221)" font-family="'RobotoMono-Italic'" font-size="7">32B + 32B</text>
 </g>
-<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="197.5" y1="268.21" x2="197.5" y2="274.627"/>
-<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="133.04" y1="268.21" x2="133.04" y2="274.627"/>
-<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="89.667" y1="268.21" x2="89.667" y2="274.627"/>
+<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="189.5" y1="269.21" x2="189.5" y2="275.627"/>
+<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="125.04" y1="269.21" x2="125.04" y2="275.627"/>
+<line fill="none" stroke="#000000" stroke-width="0.5126" stroke-miterlimit="10" x1="81.667" y1="269.21" x2="81.667" y2="275.627"/>
 <g>
 	<g>
-		<path fill="none" stroke="#000000" stroke-width="0.532" stroke-miterlimit="10" d="M262.117,111.184h6.32
-			c2.872,0,5.222,2.35,5.222,5.222v80.354c0,2.872,1.365,5.222,3.034,5.222s3.034,0,3.034,0"/>
+		<path fill="none" stroke="#000000" stroke-width="0.532" stroke-miterlimit="10" d="M254.117,113.184h6.321
+			c2.872,0,5.222,2.35,5.222,5.222v80.355c0,2.872,1.365,5.222,3.034,5.222s3.034,0,3.034,0"/>
 	</g>
 	<g>
-		<path fill="none" stroke="#000000" stroke-width="0.532" stroke-miterlimit="10" d="M262.117,292.782h6.32
-			c2.872,0,5.222-2.35,5.222-5.222v-80.356c0-2.872,2.35-5.222,5.222-5.222h6.569"/>
-	</g>
-</g>
-<g opacity="0.55">
-	<g>
-		<path fill="none" stroke="#000000" stroke-width="0.4" stroke-miterlimit="10" d="M89.667,252.296v-7.273c0-1.1,0.9-2,2-2H195.5
-			c1.1,0,2,0.9,2,2v4.449"/>
-		<g>
-			<polygon points="197.5,252.296 195.874,248.317 197.5,249.261 199.126,248.317 			"/>
-		</g>
+		<path fill="none" stroke="#000000" stroke-width="0.532" stroke-miterlimit="10" d="M254.117,294.782h6.321
+			c2.872,0,5.222-2.35,5.222-5.222v-80.357c0-2.872,2.35-5.222,5.222-5.222h6.569"/>
 	</g>
 </g>
 <g opacity="0.33">
-	<path fill="#A1DADE" d="M158,267.431c0,0.979-0.8,1.779-1.779,1.779h-25.7c-0.979,0-1.779-0.8-1.779-1.779v-13.356
-		c0-0.979,0.8-1.779,1.779-1.779h25.7c0.979,0,1.779,0.8,1.779,1.779V267.431z"/>
+	<path fill="#A1DADE" d="M150,268.431c0,0.979-0.8,1.779-1.779,1.779h-25.7c-0.979,0-1.779-0.8-1.779-1.779v-13.356
+		c0-0.979,0.8-1.779,1.779-1.779h25.7c0.979,0,1.779,0.8,1.779,1.779V268.431z"/>
 </g>
 <g opacity="0.33">
-	<path fill="#A1DADE" d="M202.488,266.285c0,0.463-0.378,0.841-0.841,0.841h-7.294c-0.463,0-0.841-0.378-0.841-0.841v-10.647
-		c0-0.463,0.378-0.841,0.841-0.841h7.294c0.463,0,0.841,0.378,0.841,0.841V266.285z"/>
+	<path fill="#A1DADE" d="M194.488,267.285c0,0.463-0.378,0.841-0.841,0.841h-7.294c-0.463,0-0.841-0.378-0.841-0.841v-10.647
+		c0-0.463,0.378-0.841,0.841-0.841h7.294c0.463,0,0.841,0.378,0.841,0.841V267.285z"/>
 </g>
-<rect x="57.379" y="255.516" fill="none" width="147.505" height="13.694"/>
-<text transform="matrix(1 0 0 1 57.3789 264.5161)" font-family="'RobotoMono-Bold'" font-size="12">s = k + H(x(R)|P|m)x</text>
-<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="55.958" y1="124.5" x2="236.5" y2="124.5"/>
-<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="55.958" y1="225.111" x2="236.5" y2="225.111"/>
+<rect x="49.379" y="256.516" fill="none" width="147.505" height="13.694"/>
+<text transform="matrix(1 0 0 1 49.3789 265.5161)" font-family="'RobotoMono-Bold'" font-size="12">s = k + H(x(R)|P|m)x</text>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="47.958" y1="129.5" x2="228.5" y2="129.5"/>
+<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="47.958" y1="241.111" x2="228.5" y2="241.111"/>
 </svg>

@@ -130,12 +130,12 @@
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="83.667" x2="130.333" y2="83.667"/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="138" x2="130.333" y2="138"/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="94.667" y1="193.333" x2="130.333" y2="193.333"/>
-<polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="130.333,245.333 
-	112.5,245.333 112.5,193.333 "/>
+<polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="130.333,253 112.5,253 
+	112.5,193.333 "/>
 <polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="300.334,225.468 
 	278.5,225.468 278.5,193.333 "/>
 <polyline opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="130.333,282.002 
-	112.5,282.002 112.5,245.333 "/>
+	112.5,282.002 112.5,253 "/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="244.667" y1="193.333" x2="300.334" y2="193.333"/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="220.667" y1="253" x2="300.334" y2="253"/>
 <line opacity="0.35" fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="244.667" y1="282.002" x2="300.334" y2="282.002"/>
