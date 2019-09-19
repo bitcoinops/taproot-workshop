@@ -36,7 +36,7 @@ msg = hashlib.sha256(b'message').digest()
 x = ECKey().generate()
 P = x.get_pubkey()
 
-# Create an uncompressed key from -k so it's easier to access the y-coordinate, and get the pubkey
+# Generate a random uncompressed key k so it's easier to access the y-coordinate, and get the pubkey
 k = ECKey().generate(False)
 R = k.get_pubkey()
 
