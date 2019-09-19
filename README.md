@@ -28,7 +28,7 @@ standard bitcoin data directory directory, but why risk it?
 #### Build a taproot-supporting bitcoind
 
 These workbooks require a `bitcoind` built from the [Optech taproot
-branch, v0.1](https://github.com/bitcoinops/bitcoin/releases/tag/v0.1) which
+branch, v0.1.2](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.2) which
 supports schnorr and taproot. 
 
 ![workshop_repositories](files/0-repositories-diagram.jpg)
