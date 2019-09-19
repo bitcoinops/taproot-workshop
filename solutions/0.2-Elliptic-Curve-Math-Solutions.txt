@@ -2,12 +2,10 @@
 
 ```
 a = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
-a_key = ECKey()
-a_key.set(a.to_bytes(32,'big'), True) 
+a_key = ECKey().set(a, True)
 
 b = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
-b_key = ECKey()
-b_key.set(b.to_bytes(32,'big'), True) 
+b_key = ECKey().set(b, True)
 
 # Left: Compute a + b as ints (modulo the sepc256k1 field order)
 left_a_plus_b = (a + b) % SECP256K1_ORDER
@@ -33,16 +31,13 @@ print("Success!")
 
 ```
 a = random.randrange(1, SECP256K1_ORDER)
-a_key = ECKey()
-a_key.set(a.to_bytes(32,'big'), True) 
+a_key = ECKey().set(a, True)
 
 b = random.randrange(1, SECP256K1_ORDER)
-b_key = ECKey()
-b_key.set(b.to_bytes(32,'big'), True) 
+b_key = ECKey().set(b, True)
 
 c = random.randrange(1, SECP256K1_ORDER)
-c_key = ECKey()
-c_key.set(c.to_bytes(32,'big'), True) 
+c_key = ECKey().set(c, True)
 
 # Left: Compute (a - b) * c as ints (modulo the sepc256k1 field order)
 ab = (a + (SECP256K1_ORDER - b)) % SECP256K1_ORDER
@@ -67,12 +62,9 @@ print("Success!")
 #### 0.2.6 Distributivity over scalars and points
 
 ```
-a = ECKey()
-b = ECKey()
-c = ECKey()
-a.generate()
-b.generate()
-c.generate()
+a = ECKey().generate()
+b = ECKey().generate()
+c = ECKey().generate()
 C = c.get_pubkey()
 
 # Left: Compute (a - b) * C  
