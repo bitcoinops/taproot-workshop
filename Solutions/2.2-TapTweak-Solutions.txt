@@ -1,95 +1,169 @@
-#### 1.3 Commutative property of scalar operations
+#### 1.2 - Signing with a tweaked 2-of-2 Musig key pairs
 
 ```
-a = random.randrange(1, SECP256K1_ORDER)
-a_key = ECKey()
-a_key.set(a.to_bytes(32,'big'), True) 
+# A1) Generate Key Pairs.
+privkey0 = ECKey()
+privkey1 = ECKey()
+privkey0.generate()
+privkey1.generate()
+pk0 = privkey0.get_pubkey()
+pk1 = privkey1.get_pubkey()
 
-b = random.randrange(1, SECP256K1_ORDER)
-b_key = ECKey()
-b_key.set(b.to_bytes(32,'big'), True) 
+# A2) Aggregate all public keys: 
+c_map, pk_musig = generate_musig_key([pk0, pk1])
 
-# Left: Compute a + b
-left_ab = (a + b) % SECP256K1_ORDER
+# A3) Apply challenge factors to keys.
+privkey0_c = privkey0.mul(c_map[pk0])
+privkey1_c = privkey1.mul(c_map[pk1])
+pk0_c = pk0.mul(c_map[pk0])
+pk1_c = pk1.mul(c_map[pk1])
+    
+# B) Tweak musig public key.
+# Given: Tweak.
+tweak = hashlib.sha256(b'tweak').digest()
+pk_musig_tweaked = pk_musig.tweak_add(tweak)
 
-# Right: Compute b + a
-right_ba = int().from_bytes((b_key + a_key).get_bytes(),'big')
+# C1) Nonce generation & aggregation.
+k0 = generate_schnorr_nonce()
+k1 = generate_schnorr_nonce()
+R0 = k0.get_pubkey()
+R1 = k1.get_pubkey()
+R_agg, negated = aggregate_schnorr_nonces([R0, R1])
+if negated:
+    k0.negate()
+    k1.negate()
 
-# Left/Right: Assert equality
-assert left_ab == right_ba
+# C2) Signing and signature aggregation.
+msg = hashlib.sha256(b'msg').digest()
 
-# Left: Compute a * b
-left_ab = (a * b) % SECP256K1_ORDER
+# One person must tweak keys.
+privkey0_c_tweaked = privkey0_c.add(tweak) 
 
-# Right: Compute b * a
-right_ba = int().from_bytes((b_key * a_key).get_bytes(),'big')
-
-# Left/Right: Assert equality
-assert left_ab == right_ba
+sig0 = sign_musig(privkey0_c_tweaked, k0, R_agg, pk_musig_tweaked, msg)
+sig1 = sign_musig(privkey1_c, k1, R_agg, pk_musig_tweaked, msg)
+sig_agg = aggregate_musig_signatures([sig0, sig1])
+pk_musig_tweaked.verify_schnorr(sig_agg, msg)
 ```
 
-#### 1.4 Distributivity of scalar operations
+#### 3.1 - Constructing a TapTweak from TapScripts
 
 ```
-a = random.randrange(1, SECP256K1_ORDER)
-a_key = ECKey()
-a_key.set(a.to_bytes(32,'big'), True) 
+TAPSCRIPT_VER = bytes([0xc0]) # See TapScript chapter for more details.
+internal_pubkey = ECPubKey()
+internal_pubkey.set(bytes.fromhex('03af455f4989d122e9185f8c351dbaecd13adca3eef8a9d38ef8ffed6867e342e3'))
 
-b = random.randrange(1, SECP256K1_ORDER)
-b_key = ECKey()
-b_key.set(b.to_bytes(32,'big'), True) 
+# Derive pay-to-pubkey scripts.
+privkeyA = ECKey()
+privkeyB = ECKey()
+privkeyC = ECKey()
+privkeyA.generate()
+privkeyB.generate()
+privkeyC.generate()
+pkA = privkeyA.get_pubkey()
+pkB = privkeyA.get_pubkey()
+pkC = privkeyA.get_pubkey()
+scriptA = CScript([pkA.get_bytes(), OP_CHECKSIG])
+scriptB = CScript([pkB.get_bytes(), OP_CHECKSIG])
+scriptC = CScript([pkC.get_bytes(), OP_CHECKSIG])
 
-c = random.randrange(1, SECP256K1_ORDER)
-c_key = ECKey()
-c_key.set(c.to_bytes(32,'big'), True) 
+# Method: Returns Tagged Hash.
+def tagged_hash(tag, input_data):
+    data = hashlib.sha256(tag.encode('utf-8')).digest()
+    data += data
+    data += input_data
+    return hashlib.sha256(data).digest()
 
-# Left: Compute (a - b) * c
-ab = (a + (SECP256K1_ORDER - b)) % SECP256K1_ORDER
-left_abc = (ab * c) % SECP256K1_ORDER
+# Method: Returns TapBranch hash.
+def tapbranch(taggedhash_left, taggedhash_right):
+    if taggedhash_left > taggedhash_right:
+        taggedhash_left, taggedhash_right = taggedhash_right, taggedhash_left
+    return tagged_hash("TapBranch", taggedhash_left + taggedhash_right)  
 
-# Right: Compute -b * c
-# Negate a ECKey with negate() method.
-b_key.negate()
+# 1) Compute TapLeafs A, B and C.
+# Note: ser_string(data) is a function which adds compactsize to input data.
+hash_inputA = TAPSCRIPT_VER + ser_string(scriptA)
+hash_inputB = TAPSCRIPT_VER + ser_string(scriptB)
+hash_inputC = TAPSCRIPT_VER + ser_string(scriptC)
+taggedhash_leafA = tagged_hash("TapLeaf", hash_inputA)
+taggedhash_leafB = tagged_hash("TapLeaf", hash_inputB)
+taggedhash_leafC = tagged_hash("TapLeaf", hash_inputC)
 
-# Right: Compute a * c
-ac_key = a_key * c_key
-bc_key = b_key * c_key
+# 2) Compute Internal node TapBranch AB.
+internal_nodeAB = tapbranch(taggedhash_leafA, taggedhash_leafB)
 
-# Right: Compute a * c - b * c
-ac_bc_key = ac_key + bc_key
-right_abc = int().from_bytes(ac_bc_key.get_bytes(),'big')
+# 3) Compute TapTweak.
+rootABC = tapbranch(internal_nodeAB, taggedhash_leafC)
+taptweak = tagged_hash("TapTweak", internal_pubkey.get_bytes() + rootABC)
+print("TapTweak:", taptweak.hex())
 
-# Left/Right: Assert equality
-assert left_abc == right_abc
-print("Success!")
+# 4) Derive the segwit output address.
+taproot_pubkey_b = internal_pubkey.tweak_add(taptweak).get_bytes()
+taproot_pubkey_v1 = bytes([taproot_pubkey_b[0] & 1]) + taproot_pubkey_b[1:]
+segwit_address = program_to_witness(1, taproot_pubkey_v1)
+print('Segwit address:', segwit_address)
 ```
 
-#### 1.6 Distributivity over scalars and points
+#### 3.2 - Spending a Taproot Output along the Key Path
+
+##### 1) Construct taproot output with tweaked public key
 
 ```
-a = ECKey()
-b = ECKey()
-c = ECKey()
-a.generate()
-b.generate()
-c.generate()
-C = c.get_pubkey()
+# Create Tweaked Pubkey Output.
+sec = ECKey()
+sec.generate()
+internal_pubkey = sec.get_pubkey()
 
-# Left: Compute a - b
-a_minus_b = a - b
+# Taptweak from example 2.3.1
+taptweak = bytes.fromhex('2a2fb476ec9962f262ff358800db0e7364287340db73e5e48db36d1c9f374e30')
 
-# Left: Compute (a - b) * C  
-left =  a_minus_b * C
+# TODO: taproot_pubkey =
+taproot_pubkey = internal_pubkey.tweak_add(taptweak) 
+taproot_pubkey_b = taproot_pubkey.get_bytes()
 
-# Right: Compute a * C and (-b) * C
-aC = a * C
-bC = b * C
-
-# Right: Compute aC - bC
-right = aC - bC
-
-# Left/Right: Assert equality
-assert left.get_bytes() == right.get_bytes()
-print("Success!")
+# TODO: segwit_address =
+taproot_pubkey_v1 = bytes([taproot_pubkey_b[0] & 1]) + taproot_pubkey_b[1:]
+segwit_address = program_to_witness(1, taproot_pubkey_v1)
+print("Segwit Address:", segwit_address)
 ```
 
+##### 3) Spend taproot output with key path
+
+```
+tx_schnorr = CTransaction()
+tx_schnorr.nVersion = 1
+tx_schnorr.nLockTime = 0
+outpoint = COutPoint(tx.sha256, index)
+tx_schnorr_in = CTxIn(outpoint = outpoint)
+tx_schnorr.vin = [tx_schnorr_in]
+
+# Generate new Bitcoin Core wallet address to send funds back to.
+dest_addr = test.nodes[0].getnewaddress(address_type="bech32")
+scriptpubkey = bytes.fromhex(test.nodes[0].getaddressinfo(dest_addr)['scriptPubKey'])
+
+# Determine minimum fee required for mempool acceptance.
+min_fee = int(test.nodes[0].getmempoolinfo()['mempoolminfee'] * 100000000)
+
+# Complete output which returns funds to Bitcoin Core wallet.
+dest_output= CTxOut(nValue=output_value-min_fee, scriptPubKey=scriptpubkey)
+tx_schnorr.vout = [dest_output]
+
+# Sign transaction with tweaked private key.
+# TODO: sig =
+hash_types = [0,1,2,3,0x81,0x82,0x83]
+sighash = TaprootSignatureHash(tx_schnorr, [output], hash_types[0])
+tweaked_sec = sec.add(taptweak)
+sig = tweaked_sec.sign_schnorr(sighash)
+
+# Construct transaction witness.
+witness = CScriptWitness()
+witness.stack.append(sig)
+witness_in = CTxInWitness()
+witness_in.scriptWitness = witness
+tx_schnorr.wit.vtxinwit.append(witness_in)
+
+# Serialize Schnorr transaction for broadcast.
+tx_schnorr_str = tx_schnorr.serialize().hex()
+
+# Test mempool acceptance.
+print(test.nodes[0].testmempoolaccept([tx_schnorr_str]))
+```
