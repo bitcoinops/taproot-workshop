@@ -1,6 +1,30 @@
 #### 2.1 - Constructing a Taptree output
 
 ```
+# Generate Keypairs for internal pubkey and pay-to-pubkey TapScripts.
+privkey_internal = ECKey()
+privkey_internal.generate()
+pubkey_internal = privkey_internal.get_pubkey()
+
+privkeyA = ECKey()
+privkeyB = ECKey()
+privkeyC = ECKey()
+privkeyD = ECKey()
+privkeyA.generate()
+privkeyB.generate()
+privkeyC.generate()
+privkeyD.generate()
+pubkeyA = privkeyA.get_pubkey()
+pubkeyB = privkeyB.get_pubkey()
+pubkeyC = privkeyC.get_pubkey()
+pubkeyD = privkeyD.get_pubkey()
+
+# Construct Pay-to-Pubkey TapLeafs and Taptree.
+TapLeafA = TapLeaf()
+TapLeafB = TapLeaf()
+TapLeafC = TapLeaf()
+TapLeafD = TapLeaf()
+
 # TODO: construct scripts using construct_pk()
 TapLeafA.construct_pk(pubkeyA)
 TapLeafB.construct_pk(pubkeyB)
@@ -21,6 +45,24 @@ segwit_address = program_to_witness(1, pubkey_taproot_bytes)
 #### 2.2 - Spending a taproot output along a script path
 
 ```
+tx_script_spend = CTransaction()
+tx_script_spend.nVersion = 1
+tx_script_spend.nLockTime = 0
+outpoint = COutPoint(tx.sha256, index)
+tx_script_spend_input = CTxIn(outpoint = outpoint)
+tx_script_spend.vin = [tx_script_spend_input]
+
+# Generate new Bitcoin Core wallet address to send funds back to.
+dest_addr = test.nodes[0].getnewaddress(address_type="bech32")
+scriptpubkey = bytes.fromhex(test.nodes[0].getaddressinfo(dest_addr)['scriptPubKey'])
+
+# Determine minimum fee required for mempool acceptance.
+min_fee = int(test.nodes[0].getmempoolinfo()['mempoolminfee'] * 100000000)
+
+# Complete output which returns funds to Bitcoin Core wallet.
+dest_output= CTxOut(nValue=output_value-min_fee, scriptPubKey=scriptpubkey)
+tx_script_spend.vout = [dest_output]
+
 # Sign transaction with tweaked private key.
 # TODO: sig =
 hash_types = [0,1,2,3,0x81,0x82,0x83]
