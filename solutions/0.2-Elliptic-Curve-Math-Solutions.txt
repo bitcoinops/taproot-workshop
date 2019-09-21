@@ -10,22 +10,23 @@ b_key = ECKey()
 b_key.set(b.to_bytes(32,'big'), True) 
 
 # Left: Compute a + b as ints (modulo the sepc256k1 field order)
-left_ab = (a + b) % SECP256K1_ORDER
+left_a_plus_b = (a + b) % SECP256K1_ORDER
 
 # Right: Compute b + a as ECKeys
-right_ba = int().from_bytes((b_key + a_key).get_bytes(),'big')
+right_b_plus_a = b_key + a_key
 
 # Left/Right: Assert equality
-assert left_ab == right_ba
+assert left_a_plus_b == right_b_plus_a.as_int()
 
 # Left: Compute a * b as ints (modulo the sepc256k1 field order)
-left_ab = (a * b) % SECP256K1_ORDER
+left_a_times_b = (a * b) % SECP256K1_ORDER
 
 # Right: Compute b * a as ECKeys
-right_ba = b_key * a_key
+right_b_times_a = b_key * a_key
 
 # Left/Right: Assert equality
-assert left_ab == right_ba.as_int()
+assert left_a_times_b == right_b_times_a.as_int()
+print("Success!")
 ```
 
 #### 0.2.4 Distributivity of scalar operations
