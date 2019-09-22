@@ -2,18 +2,13 @@
 
 ```
 # Generate Keypairs for internal pubkey and pay-to-pubkey TapScripts.
-privkey_internal = ECKey()
-privkey_internal.generate()
+privkey_internal = ECKey().generate()
 pubkey_internal = privkey_internal.get_pubkey()
 
-privkeyA = ECKey()
-privkeyB = ECKey()
-privkeyC = ECKey()
-privkeyD = ECKey()
-privkeyA.generate()
-privkeyB.generate()
-privkeyC.generate()
-privkeyD.generate()
+privkeyA = ECKey().generate()
+privkeyB = ECKey().generate()
+privkeyC = ECKey().generate()
+privkeyD = ECKey().generate()
 pubkeyA = privkeyA.get_pubkey()
 pubkeyB = privkeyB.get_pubkey()
 pubkeyC = privkeyC.get_pubkey()
@@ -31,15 +26,15 @@ TapLeafB.construct_pk(pubkeyB)
 TapLeafC.construct_pk(pubkeyC)
 TapLeafD.construct_pk(pubkeyD)
 
-# TODO: create a TapTree with our pubkey and huffman tree
+# TODO: create a Taptree with our pubkey and huffman tree
 taptree.key = pubkey_internal
-taptree.huffman_constructor([(1,TapLeafA),(1, TapLeafB),(2,
-TapLeafC),(3,TapLeafD)])
+taptree.huffman_constructor([(1, TapLeafA), (1, TapLeafB), (2, TapLeafC), (3, TapLeafD)])
 
-# TODO: Generate taproot output by `construct`ing the tree then using the taproot pubkey to create the segwit address
+# TODO: Generate taproot tree with the `construct()` method, then use the taproot bytes to create a segwit address
 taproot_script, tweak, control_map = taptree.construct()
 pubkey_taproot_bytes = bytes(taproot_script[2:])
 segwit_address = program_to_witness(1, pubkey_taproot_bytes)
+print("Address: {}".format(segwit_address))
 ```
 
 #### 2.2 - Spending a taproot output along a script path
