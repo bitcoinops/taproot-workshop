@@ -1,4 +1,59 @@
-#### 2.1 - Constructing a Taptree output
+#### Programming Exercise 2.4.1: Compute a taptweak from a taptree
+
+```
+TAPSCRIPT_VER = bytes([0xc0]) # See TapScript chapter for more details.
+internal_pubkey = ECPubKey()
+internal_pubkey.set(bytes.fromhex('03af455f4989d122e9185f8c351dbaecd13adca3eef8a9d38ef8ffed6867e342e3'))
+
+# Derive pay-to-pubkey scripts.
+privkeyA = ECKey().generate()
+privkeyB = ECKey().generate()
+privkeyC = ECKey().generate()
+pkA = privkeyA.get_pubkey()
+pkB = privkeyA.get_pubkey()
+pkC = privkeyA.get_pubkey()
+scriptA = CScript([pkA.get_bytes(), OP_CHECKSIG])
+scriptB = CScript([pkB.get_bytes(), OP_CHECKSIG])
+scriptC = CScript([pkC.get_bytes(), OP_CHECKSIG])
+
+# Method: Returns Tagged Hash.
+def tagged_hash(tag, input_data):
+    data = hashlib.sha256(tag.encode('utf-8')).digest()
+    data += data
+    data += input_data
+    return hashlib.sha256(data).digest()
+
+# Method: Returns TapBranch hash.
+def tapbranch(taggedhash_left, taggedhash_right):
+    if taggedhash_left > taggedhash_right:
+        taggedhash_left, taggedhash_right = taggedhash_right, taggedhash_left
+    return tagged_hash("TapBranch", taggedhash_left + taggedhash_right)  
+
+# 1) Compute TapLeafs A, B and C.
+# Note: ser_string(data) is a function which adds compactsize to input data.
+hash_inputA = TAPSCRIPT_VER + ser_string(scriptA)
+hash_inputB = TAPSCRIPT_VER + ser_string(scriptB)
+hash_inputC = TAPSCRIPT_VER + ser_string(scriptC)
+taggedhash_leafA = tagged_hash("TapLeaf", hash_inputA)
+taggedhash_leafB = tagged_hash("TapLeaf", hash_inputB)
+taggedhash_leafC = tagged_hash("TapLeaf", hash_inputC)
+
+# 2) Compute Internal node TapBranch AB.
+internal_nodeAB = tapbranch(taggedhash_leafA, taggedhash_leafB)
+
+# 3) Compute TapTweak.
+rootABC = tapbranch(internal_nodeAB, taggedhash_leafC)
+taptweak = tagged_hash("TapTweak", internal_pubkey.get_bytes() + rootABC)
+print("TapTweak:", taptweak.hex())
+
+# 4) Derive the segwit output address.
+taproot_pubkey_b = internal_pubkey.tweak_add(taptweak).get_bytes()
+taproot_pubkey_v1 = bytes([taproot_pubkey_b[0] & 1]) + taproot_pubkey_b[1:]
+segwit_address = program_to_witness(1, taproot_pubkey_v1)
+print('Segwit address:', segwit_address)
+```
+
+#### Programming Exercise 2.4.5 - Constructing a taproot output from a taptree.
 
 ```
 # Generate Keypairs for internal pubkey and pay-to-pubkey TapScripts.
@@ -19,61 +74,55 @@ TapLeafA = TapLeaf()
 TapLeafB = TapLeaf()
 TapLeafC = TapLeaf()
 TapLeafD = TapLeaf()
-
-# TODO: construct scripts using construct_pk()
 TapLeafA.construct_pk(pubkeyA)
 TapLeafB.construct_pk(pubkeyB)
 TapLeafC.construct_pk(pubkeyC)
 TapLeafD.construct_pk(pubkeyD)
 
-# TODO: create a Taptree with our pubkey and huffman tree
+# Create a Taptree with tapleafs and huffman constructor.
+taptree = TapTree()
 taptree.key = pubkey_internal
 taptree.huffman_constructor([(1, TapLeafA), (1, TapLeafB), (2, TapLeafC), (3, TapLeafD)])
 
-# TODO: Generate taproot tree with the `construct()` method, then use the taproot bytes to create a segwit address
+# Generate taproot tree with the `construct()` method, then use the taproot bytes to create a segwit address
 taproot_script, tweak, control_map = taptree.construct()
-pubkey_taproot_bytes = bytes(taproot_script[2:])
-segwit_address = program_to_witness(1, pubkey_taproot_bytes)
-print("Address: {}".format(segwit_address))
+program = bytes(taproot_script[2:])
+address = program_to_witness(1, program)
+print("Address: {}".format(address))
 ```
 
-#### 2.2 - Spending a taproot output along a script path
+#### Programming Exercise 2.4.7: Sign the transaction for TapLeafA
 
 ```
-tx_script_spend = CTransaction()
-tx_script_spend.nVersion = 1
-tx_script_spend.nLockTime = 0
-outpoint = COutPoint(tx.sha256, index)
-tx_script_spend_input = CTxIn(outpoint = outpoint)
-tx_script_spend.vin = [tx_script_spend_input]
-
-# Generate new Bitcoin Core wallet address to send funds back to.
-dest_addr = test.nodes[0].getnewaddress(address_type="bech32")
-scriptpubkey = bytes.fromhex(test.nodes[0].getaddressinfo(dest_addr)['scriptPubKey'])
-
-# Determine minimum fee required for mempool acceptance.
-min_fee = int(test.nodes[0].getmempoolinfo()['mempoolminfee'] * 100000000)
-
-# Complete output which returns funds to Bitcoin Core wallet.
-dest_output= CTxOut(nValue=output_value-min_fee, scriptPubKey=scriptpubkey)
-tx_script_spend.vout = [dest_output]
-
-# Sign transaction with tweaked private key.
-# TODO: sig =
+# Generate the Taproot Signature Hash for signing
 hash_types = [0,1,2,3,0x81,0x82,0x83]
-sighash = TaprootSignatureHash(tx_script_spend, 
-                               [taproot_output], 
+
+sighashA = TaprootSignatureHash(spending_tx, 
+                               [output], 
                                hash_types[0], 
                                input_index = 0, 
                                scriptpath = True, 
                                tapscript = TapLeafA.script)
-sig = privkeyA.sign_schnorr(sighash)
+                               
+signatureA = privkeyA.sign_schnorr(sighashA)
 
-# TODO: Populate transaction witness.
+print("Signature for TapLeafA: {}\n".format(signatureA.hex()))
+```
+
+#### Programming Exercise 2.4.8: Construct the witness, add it to the transaction and verify mempool acceptance
+
+```
 witness = CScriptWitness()
-witness.stack = [sig, TapLeafA.script, control_map[TapLeafA.script]]
+witness.stack = [signatureA, TapLeafA.script, control_map[TapLeafA.script]]
 witness_in = CTxInWitness()
 witness_in.scriptWitness = witness
-tx_script_spend.wit.vtxinwit.append(witness_in)
+spending_tx.wit.vtxinwit.append(witness_in)
+
+# Serialize Schnorr transaction for broadcast
+spending_tx_str = spending_tx.serialize().hex()
+ 
+# Test mempool acceptance
+assert test.nodes[0].testmempoolaccept([spending_tx_str])[0]['allowed']
+print("Success!")
 
 ```
