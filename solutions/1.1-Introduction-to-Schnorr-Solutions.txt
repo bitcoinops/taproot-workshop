@@ -86,7 +86,7 @@ s = k + h * x
 sig = R.get_bytes()[1:33] + s.secret.to_bytes(32,'big')
 
 # Also, generate alternative sig with ECKey.sign_schnorr(msg)
- sig2 = x.sign_schnorr(msg)
+sig2 = x.sign_schnorr(msg)
 
 # Verify and compare signature(s)
 assert P.verify_schnorr(sig, msg)
