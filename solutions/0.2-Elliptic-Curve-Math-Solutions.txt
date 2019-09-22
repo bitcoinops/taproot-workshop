@@ -7,7 +7,7 @@ a_key = ECKey().set(a, True)
 b = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
 b_key = ECKey().set(b, True)
 
-# Left: Compute a + b as ints (modulo the sepc256k1 field order)
+# Left: Compute a + b as ints (modulo the sepc256k1 group order)
 left_a_plus_b = (a + b) % SECP256K1_ORDER
 
 # Right: Compute b + a as ECKeys
@@ -16,7 +16,7 @@ right_b_plus_a = b_key + a_key
 # Left/Right: Assert equality
 assert left_a_plus_b == right_b_plus_a.as_int()
 
-# Left: Compute a * b as ints (modulo the sepc256k1 field order)
+# Left: Compute a * b as ints (modulo the sepc256k1 group order)
 left_a_times_b = (a * b) % SECP256K1_ORDER
 
 # Right: Compute b * a as ECKeys
@@ -39,7 +39,7 @@ b_key = ECKey().set(b, True)
 c = random.randrange(1, SECP256K1_ORDER)
 c_key = ECKey().set(c, True)
 
-# Left: Compute (a - b) * c as ints (modulo the sepc256k1 field order)
+# Left: Compute (a - b) * c as ints (modulo the sepc256k1 group order)
 ab = (a + (SECP256K1_ORDER - b)) % SECP256K1_ORDER
 left_abc = (ab * c) % SECP256K1_ORDER
 
