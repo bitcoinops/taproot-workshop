@@ -4,21 +4,21 @@
 # Generate key pairs
 privkey0 = ECKey().generate()
 privkey1 = ECKey().generate()
-pk0 = privkey0.get_pubkey()
-pk1 = privkey1.get_pubkey()
+pubkey0 = privkey0.get_pubkey()
+pubkey1 = privkey1.get_pubkey()
 
 # Create an aggregate MuSig pubkey
-c_map, pk_musig = generate_musig_key([pk0, pk1])
+c_map, agg_pubkey = generate_musig_key([pubkey0, pubkey1])
 
 # Apply challenge factors to keys
-privkey0_c = privkey0.mul(c_map[pk0])
-privkey1_c = privkey1.mul(c_map[pk1])
-pk0_c = pk0.mul(c_map[pk0])
-pk1_c = pk1.mul(c_map[pk1])
+privkey0_c = privkey0.mul(c_map[pubkey0])
+privkey1_c = privkey1.mul(c_map[pubkey1])
+pubkey0_c = pubkey0.mul(c_map[pubkey0])
+pubkey1_c = pubkey1.mul(c_map[pubkey1])
     
 # Tweak musig public key
 tweak = random.randrange(1, SECP256K1_ORDER)
-pk_musig_tweaked = pk_musig.tweak_add(tweak)
+agg_pubkey_tweaked = agg_pubkey.tweak_add(tweak)
 
 # Nonce generation & aggregation
 # Remember to negate the individual nonce values if required
@@ -38,11 +38,11 @@ msg = hashlib.sha256(b'msg').digest()
 privkey0_c_tweaked = privkey0_c.add(tweak) 
 
 # Sign individually and then aggregate signatures
-sig0 = sign_musig(privkey0_c_tweaked, k0, R_agg, pk_musig_tweaked, msg)
-sig1 = sign_musig(privkey1_c, k1, R_agg, pk_musig_tweaked, msg)
+sig0 = sign_musig(privkey0_c_tweaked, k0, R_agg, agg_pubkey_tweaked, msg)
+sig1 = sign_musig(privkey1_c, k1, R_agg, agg_pubkey_tweaked, msg)
 sig_agg = aggregate_musig_signatures([sig0, sig1])
 
-assert pk_musig_tweaked.verify_schnorr(sig_agg, msg)
+assert agg_pubkey_tweaked.verify_schnorr(sig_agg, msg)
 print("Success!")
 ```
 
@@ -56,15 +56,17 @@ internal_pubkey = privatekey.get_pubkey()
 taptweak = bytes.fromhex('2a2fb476ec9962f262ff358800db0e7364287340db73e5e48db36d1c9f374e30')
 
 # Tweak the public key
+# Method: use internal_pubkey.tweak_add()
 taproot_pubkey = internal_pubkey.tweak_add(taptweak) 
 taproot_pubkey_b = taproot_pubkey.get_bytes()
 
 # Derive the bech32 address
+# Method: set the first byte of taproot_pubkey to 0 or 1 and then call program_to_witness(version, pubkey)
 taproot_pubkey_v1 = bytes([taproot_pubkey_b[0] & 1]) + taproot_pubkey_b[1:]
 segwit_address = program_to_witness(1, taproot_pubkey_v1)
 
 assert segwit_address == "bcrt1pq9lku0vuddzvcte8yvt3xct0dk6cjqeq2yzqp3vwpvh2e8afqpvqqyftl09"
-print("Success! Segwit Address:".format(segwit_address))
+print("Success! Segwit Address: {}".format(segwit_address))
 ```
 
 ##### 2.2.6: Spend taproot output with key path
@@ -72,26 +74,28 @@ print("Success! Segwit Address:".format(segwit_address))
 ```
 # Complete output which returns funds to Bitcoin Core wallet.
 dest_output = CTxOut(nValue=output_value-min_fee, scriptPubKey=scriptpubkey)
-tx2.vout = [dest_output]
+spending_tx.vout = [dest_output]
 
 # Sign transaction with tweaked private key
+# Method: use TaprootSignatureHash() to get the signature hash
+# and then sign with a the tweaked private key
 hash_types = [0,1,2,3,0x81,0x82,0x83]
-sighash = TaprootSignatureHash(tx2, [output], hash_types[0])
-tweaked_privatekey = privatekey.add(taptweak)
-sig = tweaked_privatekey.sign_schnorr(sighash)
+sighash = TaprootSignatureHash(spending_tx, [output], hash_types[0])
+tweaked_privkey = privkey.add(taptweak)
+sig = tweaked_privkey.sign_schnorr(sighash)
 
 # Construct transaction witness
 witness = CScriptWitness()
 witness.stack.append(sig)
 witness_in = CTxInWitness()
 witness_in.scriptWitness = witness
-tx2.wit.vtxinwit.append(witness_in)
+spending_tx.wit.vtxinwit.append(witness_in)
 
 # Serialize transaction for broadcast
-tx2_str = tx2.serialize().hex()
-print("Serialized tx: {}\n".format(tx2_str))
+spending_tx_str = spending_tx.serialize().hex()
+print("Serialized tx: {}\n".format(spending_tx_str))
 
 # Test mempool acceptance
-assert test.nodes[0].testmempoolaccept([tx2_str])[0]['allowed']
+assert test.nodes[0].testmempoolaccept([spending_tx_str])[0]['allowed']
 print("Success!")
 ```
