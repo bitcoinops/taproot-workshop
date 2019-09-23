@@ -66,26 +66,33 @@ print("Success!")
 #### 1.1.4 Signing Schnorr with deterministic nonce
 
 ```
-# Use the same message and pubkey as above
+msg = hashlib.sha256(b'message').digest()
+x = ECKey().generate()
+P = x.get_pubkey()
 print("message = {}".format(msg))
 print("pubkey = {}".format(P.get_bytes()))
 
-# Generate the nonce value k deterministically
+# Generate the nonce value k deterministically and get the nonce point R
+# Method: use hashlib.sha256(bytes).digest() on the message and pubkey
 k_bytes = hashlib.sha256(x.get_bytes() + msg).digest()
 k = ECKey().set(k_bytes, False) 
 R = k.get_pubkey()
 
 # Check that nonce is quadratic residue modulo the field size
+# If not, negate k
+# Method: jacobi_symbol(int(y(R)), SECP256K1_FIELD_SIZE)
 if jacobi_symbol(int.from_bytes(R.get_bytes()[33:], "big"), SECP256K1_FIELD_SIZE) != 1:
     k.negate()
 
-# Generate s = k + H(R_x|P|msg) * x
+# Generate s = k + sha256(R_x|P|msg) * x
 # Method: hashlib.sha256(bytes).digest() will give you the byte digest of the SHA256 of some bytes
+# Turn that digest into a ECKey object called h, and then set s = k + h * x
 h_b = hashlib.sha256(R.get_bytes()[1:33] + P.get_bytes() + msg).digest()
 h = ECKey().set(h_b, True)
 s = k + h * x
 
 # Generate sig = R_x|s
+# Method: get the x bytes from R and concatenate with the secret bytes from s
 sig = R.get_bytes()[1:33] + s.secret.to_bytes(32,'big')
 
 # Also, generate alternative sig with ECKey.sign_schnorr(msg)
