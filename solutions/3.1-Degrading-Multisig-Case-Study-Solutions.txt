@@ -170,26 +170,3 @@ print("Key path spending transaction weight: {}".format(test.nodes[0].decoderawt
 
 print("Success!")
 ```
-
-### 3.1.7 Remove the 3-of-3 spending path
-
-```
-# Create a NUMS point for the internal pubkey.
-valid = False
-while not valid:
-    x_coord = random.randrange(1, SECP256K1_FIELD_SIZE)
-    nums_point_b = bytearray(b'\x02') + x_coord.to_bytes(32, "big")
-    nums_point = ECPubKey()
-    nums_point.set(nums_point_b)
-    valid = nums_point.valid
-
-multisig_taproot.key = nums_point
-
-# Construct Segwit Address.
-_, taptweak, control_map = multisig_taproot.construct()
-internal_pubkey = nums_point.tweak_add(taptweak)
-internal_pubkey_b = internal_pubkey.get_bytes()
-taproot_pubkey_v1 = bytes([internal_pubkey_b[0] & 1]) + internal_pubkey_b[1:]
-segwit_address = program_to_witness(1, taproot_pubkey_v1)
-print("\nSegwit Address:", segwit_address)
-```
