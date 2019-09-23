@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Tapscript_Variants" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
 	 xml:space="preserve">
 <g>
@@ -15,7 +15,7 @@
 </g>
 <g>
 	<rect x="151.821" y="251.333" fill="none" width="85.025" height="17.167"/>
-	<text transform="matrix(0.9799 0 0 1 155.5229 259.5835)" font-family="'RobotoMono-Bold'" font-size="11">Taggedhash_A</text>
+	<text transform="matrix(0.9799 0 0 1 155.5229 259.5835)" font-family="'RobotoMono-Regular'" font-size="11">Taggedhash_A</text>
 </g>
 <g>
 	<rect x="258.105" y="251.333" fill="none" width="85.025" height="17.167"/>
@@ -35,7 +35,7 @@
 </g>
 <g>
 	<rect x="59.395" y="137.569" fill="none" width="138.702" height="38.5"/>
-	<text transform="matrix(0.9799 0 0 1 59.395 145.8193)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="11">Script Inclusion</tspan><tspan x="0" y="13.2" font-family="'RobotoMono-Italic'" font-size="11">Proof for branch A</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 59.395 145.8193)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="11">Script Inclusion</tspan><tspan x="0" y="13.2" font-family="'RobotoMono-Italic'" font-size="11">Proof for </tspan><tspan x="64.57" y="13.2" font-family="'RobotoMono-BoldItalic'" font-size="11">branch A</tspan></text>
 </g>
 <line fill="#FFFFFF" stroke="#000000" stroke-width="1.4" stroke-miterlimit="10" x1="194.333" y1="217.862" x2="247.475" y2="154"/>
 <line fill="#FFFFFF" stroke="#000000" stroke-width="1.4" stroke-miterlimit="10" x1="247.475" y1="154" x2="327" y2="90.667"/>
@@ -47,7 +47,7 @@
 <circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="327" cy="90.667" r="5.764"/>
 <circle fill="#F26C6D" stroke="#000000" stroke-miterlimit="10" cx="407" cy="154" r="5.764"/>
 <circle fill="#F26C6D" stroke="#000000" stroke-miterlimit="10" cx="45.5" cy="142.472" r="5.764"/>
-<circle fill="#F26C6D" stroke="#000000" stroke-miterlimit="10" cx="194.333" cy="217.862" r="5.764"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="194.333" cy="217.862" r="5.764"/>
 <circle fill="#F26C6D" stroke="#000000" stroke-miterlimit="10" cx="299.972" cy="217.862" r="5.764"/>
 <circle fill="#A1DADE" stroke="#000000" stroke-width="1.1972" stroke-miterlimit="10" cx="354.15" cy="217.862" r="5.765"/>
 <circle fill="#A1DADE" stroke="#000000" stroke-width="1.1972" stroke-miterlimit="10" cx="459.812" cy="217.862" r="5.765"/>
