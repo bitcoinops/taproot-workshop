@@ -9,12 +9,12 @@ internal_pubkey.set(bytes.fromhex('03af455f4989d122e9185f8c351dbaecd13adca3eef8a
 privkeyA = ECKey().generate()
 privkeyB = ECKey().generate()
 privkeyC = ECKey().generate()
-pkA = privkeyA.get_pubkey()
-pkB = privkeyA.get_pubkey()
-pkC = privkeyA.get_pubkey()
-scriptA = CScript([pkA.get_bytes(), OP_CHECKSIG])
-scriptB = CScript([pkB.get_bytes(), OP_CHECKSIG])
-scriptC = CScript([pkC.get_bytes(), OP_CHECKSIG])
+pubkeyA = privkeyA.get_pubkey()
+pubkeyB = privkeyA.get_pubkey()
+pubkeyC = privkeyA.get_pubkey()
+scriptA = CScript([pubkeyA.get_bytes(), OP_CHECKSIG])
+scriptB = CScript([pubkeyB.get_bytes(), OP_CHECKSIG])
+scriptC = CScript([pubkeyC.get_bytes(), OP_CHECKSIG])
 
 # Method: Returns Tagged Hash.
 def tagged_hash(tag, input_data):
