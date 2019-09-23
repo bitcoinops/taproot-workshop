@@ -49,6 +49,11 @@ through the exercises in this repository.
 - **[bip-tapscript](https://github.com/sipa/bips/blob/bip-schnorr/bip-tapscript.mediawiki)**: This technical document specifies the semantics of the initial scripting system under bip-taproot.
 - **[Bitcoin Optech’s Overview of the Taproot & Tapscript proposed BIPs](https://bitcoinops.org/en/newsletters/2019/05/14/#overview-of-the-taproot--tapscript-proposed-bips)**: Summary of bip-taproot and bip-tapscript.
 
+### Output Descriptors
+
+- **[Support for Output Descriptors in Bitcoin Core](https://github.com/bitcoin/bitcoin/blob/master/doc/descriptors.md)**:
+  Since Bitcoin Core v0.17, there is support for output descriptors. This is a simple language which can be used to describe collections of output scripts.
+
 
 ## Requirements
 
