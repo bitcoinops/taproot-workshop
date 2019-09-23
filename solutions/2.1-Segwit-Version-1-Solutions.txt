@@ -3,34 +3,26 @@
 # Generate individual key pairs
 privkey1 = ECKey().generate()
 privkey2 = ECKey().generate()
-privkey3 = ECKey().generate()
-pk1 = privkey1.get_pubkey()
-pk2 = privkey2.get_pubkey()
-pk3 = privkey3.get_pubkey()
+pubkey1 = privkey1.get_pubkey()
+pubkey2 = privkey2.get_pubkey()
 
-# Generate MuSig key
-c_map, pk_musig = generate_musig_key([pk1, pk2])
+# Generate a 2-of-2 aggregate MuSig key
+# Method: use generate_musig_key()
+c_map, agg_pubkey = generate_musig_key([pubkey1, pubkey2])
 
 # Multiply individual keys with challenges
-privkey1_c = privkey1.mul(c_map[pk1])
-privkey2_c = privkey2.mul(c_map[pk2])
-pk1_c = pk1.mul(c_map[pk1])
-pk2_c = pk2.mul(c_map[pk2])
+privkey1_c = privkey1.mul(c_map[pubkey1])
+privkey2_c = privkey2.mul(c_map[pubkey2])
+pubkey1_c = pubkey1.mul(c_map[pubkey1])
+pubkey2_c = pubkey2.mul(c_map[pubkey2])
 
 # Create a segwit v1 address for the MuSig aggregate pubkey
 # Use segwit_addr.encode("bcrt", witness_version, witness_program)
-pubkey_data_musig = pk_musig.get_bytes()
+pubkey_data_musig = agg_pubkey.get_bytes()
 program_musig = bytes([pubkey_data_musig[0] & 1]) + pubkey_data_musig[1:]
 version = 0x01
 address_musig = segwit_addr.encode("bcrt", version, program_musig)
 print("2-of-2 musig: ", address_musig)
-
-# Create segwit v1 address (single)
-pubkey_data_single = pk2.get_bytes()
-program_single = bytes([pubkey_data_single[0] & 1]) + pubkey_data_single[1:]
-version = 0x01
-address_single = segwit_addr.encode("bcrt", version, program_single)
-print("Single key: ", address_single)
 ```
 
 #### 2.1.11 Instantiate a CTransaction object and populate the version, locktime inputs and output
@@ -61,9 +53,9 @@ print("Spending transaction:\n{}\n".format(spending_tx))
 
 #### 2.1.12 Create a valid bip-schnorr signature for the MuSig aggregate pubkey
 ```
-# Create sighash for ANY|ALL
+# Create sighash for ALL (0x00)
 hash_types = [0,1,2,3,0x81,0x82,0x83]
-sighash_musig = TaprootSignatureHash(spending_tx, [output], hash_types[4], input_index = 0, scriptpath = False)
+sighash_musig = TaprootSignatureHash(spending_tx, [output], hash_types[0], input_index = 0, scriptpath = False)
  
 # Generate individual nonces for participants and an aggregate nonce point
 # Remember to negate the individual nonces if necessary
@@ -72,15 +64,11 @@ nonce2 = generate_schnorr_nonce()
 R_agg, negated = aggregate_schnorr_nonces([nonce1.get_pubkey(), nonce2.get_pubkey()])
 
 # Create an aggregate signature
-sig1 = sign_musig(privkey1_c, nonce1, R_agg, pk_musig, sighash_musig)
-sig2 = sign_musig(privkey2_c, nonce2, R_agg, pk_musig, sighash_musig)
+sig1 = sign_musig(privkey1_c, nonce1, R_agg, agg_pubkey, sighash_musig)
+sig2 = sign_musig(privkey2_c, nonce2, R_agg, agg_pubkey, sighash_musig)
 sig_agg = aggregate_musig_signatures([sig1, sig2])
-sig_agg += hash_types[4].to_bytes(1, 'big')
-print("Aggregate signature is {}".format(sig_agg.hex()))
-```
+print("Aggregate signature is {}\n".format(sig_agg.hex()))
 
-#### 2.1.13 Construct the witness, add it to the transaction and verify mempool acceptance
-```
 # Construct transaction witness
 witness = CScriptWitness()
 witness.stack.append(sig_agg)
