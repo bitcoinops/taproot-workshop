@@ -1,21 +1,15 @@
-#### 2.4.5 Programming Exercise: Generate a 2-of-2 csahasholder tapscript.
+#### 2.3.5 Programming Exercise: Generate a 2-of-2 csahasholder tapscript
 
 ```
-# Generate key pairs.
+# Generate key pairs
 privkey0 = ECKey().generate()
 privkey1 = ECKey().generate()
-privkey2 = ECKey().generate()
 
 pubkey0 = privkey0.get_pubkey()
 pubkey1 = privkey1.get_pubkey()
-pubkey2 = privkey2.get_pubkey()
 
-c_map, pk_musig = generate_musig_key([pubkey1, pubkey2])
-privkey1_c = privkey1.mul(c_map[pubkey1])
-privkey2_c = privkey2.mul(c_map[pubkey2])
-
-print("Single pubkey: {}".format(pubkey0.get_bytes().hex()))
-print("MuSig pubkey: {}\n".format(pk_musig.get_bytes().hex()))
+print("pubkey0: {}".format(pubkey0.get_bytes().hex()))
+print("pubkey1: {}\n".format(pubkey1.get_bytes().hex()))
 
 secret = b'secret'
 preimage = hashlib.new('sha256', secret).digest()
@@ -24,7 +18,7 @@ delay = 20
 
 # Construct Tapscript
 csahasholder_tapscript = TapLeaf()
-csahasholder_tapscript.construct_csahasholder(2, [pubkey0, pk_musig], digest, delay)
+csahasholder_tapscript.construct_csahasholder(2, [pubkey0, pubkey1], digest, delay)
 print("Descriptor:", csahasholder_tapscript.desc, "\n")
 
 print("Tapscript operations:")
@@ -36,7 +30,7 @@ for element, value in csahasholder_tapscript.sat:
     print("{}, {}".format(element, value.hex()))
 ```
 
-#### _2.4.6 Programming Exercise:_ Compute the taptweak from a tapscript.
+#### 2.3.6: Compute the taptweak from a tapscript
 
 ```
 def tagged_hash(tag, input_data):
@@ -54,7 +48,7 @@ taptweak = tagged_hash("TapTweak", pubkey_internal.get_bytes() + tapleaf)
 print("Your constructed taptweak is: {}.".format(taptweak.hex()))
 ```
 
-#### Programming Exercise 2.4.12: Construct CTransaction and populate inputs
+#### 2.3.12: Construct CTransaction and populate inputs
 ```
 # Construct transaction
 spending_tx = CTransaction()
@@ -73,41 +67,27 @@ spending_tx.vin = [spending_tx_in]
 print("Spending transaction:\n{}".format(spending_tx))
 ```
 
-#### Programming Exercise 2.4.14: Sign the transaction with MuSig and single keys
+#### 2.3.14: Sign the transaction
 
 ```
 # Generate the Taproot Signature Hash for signing
 hash_types = [0,1,2,3,0x81,0x82,0x83]
 sighash = TaprootSignatureHash(spending_tx, [output], hash_types[0], input_index = 0, scriptpath = True, tapscript=csahasholder_tapscript.script)
 
-# Signing for MuSig key.
-k0 = generate_schnorr_nonce()
-k1 = generate_schnorr_nonce()
-R0 = k0.get_pubkey()
-R1 = k1.get_pubkey()
-commitment_R0 = hashlib.new('sha256', R0.get_bytes()).digest()
-commitment_R1 = hashlib.new('sha256', R1.get_bytes()).digest()
-R_agg, negate = aggregate_schnorr_nonces([R0, R1])
-if negate:
-    k0.negate()
-    k1.negate()
-signature1 = sign_musig(privkey1_c, k0, R_agg, pk_musig, sighash)
-signature2 = sign_musig(privkey2_c, k1, R_agg, pk_musig, sighash)
-signature_musig = aggregate_musig_signatures([signature1, signature2])
-
-# Signing for pk0.
+# Sign with both privkeys
 signature0 = privkey0.sign_schnorr(sighash)
+signature1 = privkey1.sign_schnorr(sighash)
 
-print("Signature_musig: {}\n".format(signature_musig.hex()))
 print("Signature0: {}".format(signature0.hex()))
+print("Signature1: {}".format(signature1.hex()))
 ```
 
-#### Programming Exercise 2.4.15: Add the witness and test acceptance of the transaction.
+#### 2.3.15: Add the witness and test acceptance of the transaction.
 
 ```
 # Construct transaction witness
 witness = CScriptWitness()
-witness.stack = [preimage, signature_musig, signature0, csahasholder_tapscript.script, control_map[csahasholder_tapscript.script]]
+witness.stack = [preimage, signature1, signature0, csahasholder_tapscript.script, control_map[csahasholder_tapscript.script]]
 witness_in = CTxInWitness()
 witness_in.scriptWitness = witness
 
