@@ -117,6 +117,17 @@
 	<text transform="matrix(0.9799 0 0 1 371.3643 294.1938)" font-family="'RobotoMono-Bold'" font-size="9">, is_negated</text>
 </g>
 <g>
+	<rect x="222.721" y="270.968" fill="none" width="105.579" height="44.137"/>
+	<text transform="matrix(0.9799 0 0 1 231.6445 277.3936)" font-family="'HelveticaNeue'" font-size="9">Receive commitments</text>
+	<text transform="matrix(0.9799 0 0 1 230.1362 294.1938)" font-family="'RobotoMono-Bold'" font-size="9">H(</text>
+	<text transform="matrix(0.9799 0 0 1 240.7212 294.1938)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 246.8955 298.8555)" font-family="'RobotoMono-Bold'" font-size="14">0</text>
+	<text transform="matrix(0.9799 0 0 1 251.6948 294.1938)" font-family="'RobotoMono-Bold'" font-size="9">), H(</text>
+	<text transform="matrix(0.9799 0 0 1 278.1572 294.1938)" font-family="'RobotoMono-Bold'" font-size="10.5">R</text>
+	<text transform="matrix(0.5713 0 0 0.583 284.3315 298.8555)" font-family="'RobotoMono-Bold'" font-size="14">1</text>
+	<text transform="matrix(0.9799 0 0 1 289.1309 294.1938)" font-family="'RobotoMono-Bold'" font-size="9">), ...</text>
+</g>
+<g>
 	<rect x="456" y="147.834" fill="none" width="116" height="25.334"/>
 	<text transform="matrix(0.9799 0 0 1 473.6582 154.2603)" font-family="'HelveticaNeue'" font-size="9">Generate Signatu</text>
 	<text transform="matrix(0.9799 0 0 1 542.418 154.2603)" font-family="'HelveticaNeue'" font-size="9">r</text>
