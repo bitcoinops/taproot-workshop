@@ -5,22 +5,22 @@
 privkey0 = ECKey().generate()
 privkey1 = ECKey().generate()
 privkey2 = ECKey().generate()
-pk0 = privkey0.get_pubkey()
-pk1 = privkey1.get_pubkey()
-pk2 = privkey2.get_pubkey()
-pk_v = [pk0, pk1, pk2]
+pubkey0 = privkey0.get_pubkey()
+pubkey1 = privkey1.get_pubkey()
+pubkey2 = privkey2.get_pubkey()
+pubkeys = [pubkey0, pubkey1, pubkey2]
 
 # Compute Key Challenges
-c_map, pk_musig = generate_musig_key(pk_v)
-print("Aggregated Public Key is {}\n".format(pk_musig.get_bytes().hex()))
+c_map, pubkey_musig = generate_musig_key(pubkeys)
+print("Aggregated Public Key is {}\n".format(pubkey_musig.get_bytes().hex()))
 
 # Multiply key pairs by challenge factor
-privkey0_c = privkey0.mul(c_map[pk0])
-privkey1_c = privkey1.mul(c_map[pk1])
-privkey2_c = privkey2.mul(c_map[pk2])
-pk0_c = pk0.mul(c_map[pk0])
-pk1_c = pk1.mul(c_map[pk1])
-pk2_c = pk2.mul(c_map[pk2])
+privkey0_c = privkey0.mul(c_map[pubkey0])
+privkey1_c = privkey1.mul(c_map[pubkey1])
+privkey2_c = privkey2.mul(c_map[pubkey2])
+pubkey0_c = pubkey0.mul(c_map[pubkey0])
+pubkey1_c = pubkey1.mul(c_map[pubkey1])
+pubkey2_c = pubkey2.mul(c_map[pubkey2])
 
 print("Tweaked privkey0 is {}".format(privkey0_c.secret))
 print("Tweaked privkey1 is {}".format(privkey1_c.secret))
