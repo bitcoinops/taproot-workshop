@@ -166,7 +166,7 @@ assert_equal(
     test.nodes[0].testmempoolaccept([spending_tx_str])
 )
 
-print("Key path spending transaction weight: {}".format(test.nodes[0].decoderawtransaction(spending_tx_str)['weight']))
+print("Long delay script path spending transaction weight: {}".format(test.nodes[0].decoderawtransaction(spending_tx_str)['weight']))
 
 print("Success!")
 ```
