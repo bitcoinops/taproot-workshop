@@ -37,7 +37,7 @@ through the exercises in this repository.
   my!](https://www.youtube.com/watch?v=YSUVRj8iznU)**: video
   about Taproot, Schnorr, and SIGHASH_NOINPUT by Pieter Wuille, author of the
   Schnorr/Taproot proposal. (Note: since the video SIGHASH_NOINPUT is no longer
-  grouped with the taproot/schnorr soft fork proposal) 
+  grouped with the taproot/schnorr soft fork proposal) ([transcript](https://diyhpl.us/wiki/transcripts/sf-bitcoin-meetup/2018-07-09-taproot-schnorr-signatures-and-sighash-noinput-oh-my/))
 - **[Optech Executive Briefing The Next
   Softfork](https://www.youtube.com/watch?v=fDJRy6K_3yo)**: Optech's video
   presentation of the next proposed soft fork.
