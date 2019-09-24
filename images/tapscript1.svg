@@ -20,7 +20,7 @@
 </g>
 <g>
 	<rect x="32.422" y="29.333" fill="none" width="416.578" height="50.667"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 38.3335)" font-family="'RobotoMono-Bold'" font-size="12">generate_threshold_csa(n, pubkeys)</text>
+	<text transform="matrix(0.9799 0 0 1 32.4224 38.3335)" font-family="'RobotoMono-Bold'" font-size="12">generate_threshold_csa(k, pubkeys)</text>
 </g>
 <rect x="78.422" y="257.333" fill="none" width="416.578" height="50.667"/>
 <text transform="matrix(0.9799 0 0 1 145.2329 266.3335)" fill="#919191" font-family="'RobotoMono-Italic'" font-size="12">Tapscripts are committed to same Taproot.</text>
