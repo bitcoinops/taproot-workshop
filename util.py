@@ -16,7 +16,11 @@ print("Source directory configured as {}".format(SOURCE_DIRECTORY))
 
 # Import TestFramework
 sys.path.insert(0, SOURCE_DIRECTORY + '/test/functional')
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BitcoinTestFramework, OPTECH_TAG
+
+REQUIRED_OPTECH_TAG = "https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.4"
+
+assert OPTECH_TAG == REQUIRED_OPTECH_TAG, "Wrong Optech Taproot bitcoind version. Update to {}".format(REQUIRED_OPTECH_TAG)
 
 class TestWrapper:
     """Singleton TestWrapper class.
