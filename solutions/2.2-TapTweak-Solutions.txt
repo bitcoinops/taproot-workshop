@@ -11,10 +11,10 @@ pubkey1 = privkey1.get_pubkey()
 c_map, agg_pubkey = generate_musig_key([pubkey0, pubkey1])
 
 # Apply challenge factors to keys
-privkey0_c = privkey0.mul(c_map[pubkey0])
-privkey1_c = privkey1.mul(c_map[pubkey1])
-pubkey0_c = pubkey0.mul(c_map[pubkey0])
-pubkey1_c = pubkey1.mul(c_map[pubkey1])
+privkey0_c = privkey0 * c_map[pubkey0]
+privkey1_c = privkey1 * c_map[pubkey1]
+pubkey0_c = pubkey0 * c_map[pubkey0]
+pubkey1_c = pubkey1 * c_map[pubkey1]
     
 # Tweak musig public key
 tweak = random.randrange(1, SECP256K1_ORDER)

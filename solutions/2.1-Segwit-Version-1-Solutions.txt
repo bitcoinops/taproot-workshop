@@ -11,10 +11,10 @@ pubkey2 = privkey2.get_pubkey()
 c_map, agg_pubkey = generate_musig_key([pubkey1, pubkey2])
 
 # Multiply individual keys with challenges
-privkey1_c = privkey1.mul(c_map[pubkey1])
-privkey2_c = privkey2.mul(c_map[pubkey2])
-pubkey1_c = pubkey1.mul(c_map[pubkey1])
-pubkey2_c = pubkey2.mul(c_map[pubkey2])
+privkey1_c = privkey1 * c_map[pubkey1]
+privkey2_c = privkey2 * c_map[pubkey2]
+pubkey1_c = pubkey1 * c_map[pubkey1]
+pubkey2_c = pubkey2 * c_map[pubkey2]
 
 # Create a segwit v1 address for the MuSig aggregate pubkey
 # Use segwit_addr.encode("bcrt", witness_version, witness_program)
