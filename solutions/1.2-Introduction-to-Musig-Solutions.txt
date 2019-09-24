@@ -15,12 +15,12 @@ c_map, pubkey_musig = generate_musig_key(pubkeys)
 print("Aggregated Public Key is {}\n".format(pubkey_musig.get_bytes().hex()))
 
 # Multiply key pairs by challenge factor
-privkey0_c = privkey0.mul(c_map[pubkey0])
-privkey1_c = privkey1.mul(c_map[pubkey1])
-privkey2_c = privkey2.mul(c_map[pubkey2])
-pubkey0_c = pubkey0.mul(c_map[pubkey0])
-pubkey1_c = pubkey1.mul(c_map[pubkey1])
-pubkey2_c = pubkey2.mul(c_map[pubkey2])
+privkey0_c = privkey0 * c_map[pubkey0]
+privkey1_c = privkey1 * c_map[pubkey1]
+privkey2_c = privkey2 * c_map[pubkey2]
+pubkey0_c = pubkey0 * c_map[pubkey0]
+pubkey1_c = pubkey1 * c_map[pubkey1]
+pubkey2_c = pubkey2 * c_map[pubkey2]
 
 print("Tweaked privkey0 is {}".format(privkey0_c.secret))
 print("Tweaked privkey1 is {}".format(privkey1_c.secret))
