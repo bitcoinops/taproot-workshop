@@ -2,75 +2,119 @@
 
 ```
 # Compute key pairs
-privkey0 = ECKey().generate()
-privkey1 = ECKey().generate()
-privkey2 = ECKey().generate()
-pubkey0 = privkey0.get_pubkey()
-pubkey1 = privkey1.get_pubkey()
-pubkey2 = privkey2.get_pubkey()
-pubkeys = [pubkey0, pubkey1, pubkey2]
+privkey1, pubkey1 = generate_key_pair(hashlib.sha256(b'key0').digest())
+privkey2, pubkey2 = generate_key_pair(hashlib.sha256(b'key1').digest())
+privkey3, pubkey3 = generate_key_pair(hashlib.sha256(b'key2').digest())
+pubkeys = [pubkey1, pubkey2, pubkey3]
 
-# Compute Key Challenges
-c_map, pubkey_musig = generate_musig_key(pubkeys)
-print("Aggregated Public Key is {}\n".format(pubkey_musig.get_bytes().hex()))
+# Compute key challenges
+# Method: use generate_musig_key() on the list of pubkeys.
+# generate_musig_key() returns a challenge map and the aggregate public key.
+c_map, pubkey_agg = generate_musig_key(pubkeys)
+print("Aggregated Public Key is {}\n".format(pubkey_agg.get_bytes().hex()))
 
 # Multiply key pairs by challenge factor
-privkey0_c = privkey0 * c_map[pubkey0]
 privkey1_c = privkey1 * c_map[pubkey1]
 privkey2_c = privkey2 * c_map[pubkey2]
-pubkey0_c = pubkey0 * c_map[pubkey0]
+privkey3_c = privkey3 * c_map[pubkey3]
 pubkey1_c = pubkey1 * c_map[pubkey1]
 pubkey2_c = pubkey2 * c_map[pubkey2]
+pubkey3_c = pubkey3 * c_map[pubkey3]
 
-print("Tweaked privkey0 is {}".format(privkey0_c.secret))
-print("Tweaked privkey1 is {}".format(privkey1_c.secret))
-print("Tweaked privkey2 is {}".format(privkey2_c.secret))
+print("Tweaked privkey1 is {}".format(privkey1_c))
+print("Tweaked privkey2 is {}".format(privkey2_c))
+print("Tweaked privkey3 is {}".format(privkey3_c))
+
+assert privkey1_c.secret == 104717570570407299858230629579807834166658508605015363884161538594382975780625
+assert privkey2_c.secret == 65554880484297966965546994775376394861215085064604177497808278620612854069980
+assert privkey3_c.secret == 106998690642216524894360365246223287721822845133760006050846956016514597569168
+
+print("\nSuccess!")
 ```
 
 #### 1.2.2 Compute 3-of-3 MuSig nonce
 
 ```
-# Generate nonces
-k0 = generate_schnorr_nonce()
-k1 = generate_schnorr_nonce()
-k2 = generate_schnorr_nonce()
-R0 = k0.get_pubkey()
+# Generate nonces and nonce points
+# We set the nonces manually here for testing purposes, but usually we'll call generate_schnorr_nonce()
+# to generate a random nonce point
+# Method: generate_schnorr_nonce() with no argument generates a random nonce
+k1 = ECKey().set(101)
+k2 = ECKey().set(222)
+k3 = ECKey().set(333)
+test_k1 = ECKey().set(k1.secret)
+test_k2 = ECKey().set(k2.secret)
+test_k3 = ECKey().set(k3.secret)
+
+# Method: use get_pubkey() to get the associated nonce point.
 R1 = k1.get_pubkey()
 R2 = k2.get_pubkey()
+R3 = k3.get_pubkey()
 
-# Nonce point commitment round
-R0_digest = hashlib.sha256(R0.get_bytes()).digest()
-R1_digest = hashlib.sha256(R1.get_bytes()).digest()
-R2_digest = hashlib.sha256(R2.get_bytes()).digest()
+# Round 1: Generate nonce point commitments and exchange them
+# Method: use sha256() on the nonce point. sha256() takes a bytes object, so extract the bytes from the nonce point.
+R1_digest = sha256(R1.get_bytes())
+R2_digest = sha256(R2.get_bytes())
+R3_digest = sha256(R3.get_bytes())
+
+# Round 2: Exchange the nonce points. Each participant verifies that the nonce point commitment matches the nonce point.
+assert R1_digest.hex() == "aa5d4a40c1843456534d75f7246b9cbf0f825a36113102e76193f80e6c652c72"
+assert R2_digest.hex() == "6a78f2c6ca3bf1364f0575a02ef334d176df2051084c0e3062ec2af79b5b406a"
+assert R3_digest.hex() == "bc2c379a7b6ad82b40a7cf280697505ccc039370e50eb155324dcac3b5faa6a5"
 
 # Aggregate nonces
-# Method: use aggregate_schnorr_nonces()
-# Negate individual nonces if necessary
-R_agg, negated = aggregate_schnorr_nonces([R0, R1, R2])
-if negated:
-    k0.negate()
+# Tip: Add the individual nonce points together. If the aggregated nonce is not a quadratic residue
+# then negate the aggregate nonce and individual nonce scalars and nonce points.
+R_agg = sum([R1, R2, R3])
+if jacobi_symbol(R_agg.get_y(), SECP256K1_FIELD_SIZE) != 1:
+    R_agg.negate()
     k1.negate()
     k2.negate()
+    k3.negate()
 
-print("Individual nonces are {}, {}, {}.\n".format(k0.secret, k1.secret, k2.secret))
-print("Aggregate nonce point is {}\n".format(R_agg.get_bytes().hex()))
-print("R_agg was negated:", negated)
+print("Individual nonce scalars:\n\t{}, \n\t{}, \n\t{}.\n".format(k1, k2, k3))
+print("Aggregate nonce point: {}\n".format(R_agg))
+
+# Test your solution against the aggregate_schnorr_nonces() helper function.
+# aggregate_schnorr_nonces() aggregates the nonces and returns whether the individual nonces need to be negated.
+test_R_agg, negated = aggregate_schnorr_nonces([R1, R2, R3])
+if negated:
+    test_k1.negate()
+    test_k2.negate()
+    test_k3.negate()
+
+assert R_agg == test_R_agg
+assert k1 == test_k1
+assert k2 == test_k2
+assert k3 == test_k3
+
+print("Success!")
 ```
 
 #### 1.2.3 Compute aggregated MuSig signature
 
 ```
-msg = hashlib.sha256(b'transaction').digest()
+msg = sha256(b'transaction')
 
 # Generate partial signatures
-s0 = sign_musig(privkey0_c, k0, R_agg, pubkey_musig, msg)
-s1 = sign_musig(privkey1_c, k1, R_agg, pubkey_musig, msg)
-s2 = sign_musig(privkey2_c, k2, R_agg, pubkey_musig, msg)
+# Method: use sign_musig() with:
+#     - individual (tweaked) privkey
+#     - individual nonce scalar
+#     - aggregate nonce point
+#     - aggregate pubkey
+#     - msg
+s1 = sign_musig(privkey1_c, k1, R_agg, pubkey_agg, msg)
+s2 = sign_musig(privkey2_c, k2, R_agg, pubkey_agg, msg)
+s3 = sign_musig(privkey3_c, k3, R_agg, pubkey_agg, msg)
 
-# Aggregate partial signatures
-sig_agg = aggregate_musig_signatures([s0, s1, s2], R_agg)
+print("Partial signatures:\n\t{}\n\t{}\n\t{}\n".format(s1, s2, s3))
 
-# Verify signature
-assert pubkey_musig.verify_schnorr(sig_agg, msg)
-print("Success! Signature verifies against MuSig pubkey")
+# Aggregate signatures
+# Method: use aggregate_musig_signatures with list of individual signatures and the aggregate nonce point
+sig_agg = aggregate_musig_signatures([s1, s2, s3], R_agg)
+print("Aggregate signature:\n\t{}\n".format(sig_agg.hex()))
+
+# Verify signature against aggregate publick key
+assert pubkey_agg.verify_schnorr(sig_agg, msg)
+print("Success! Signature verifies against aggregate pubkey")
 ```
