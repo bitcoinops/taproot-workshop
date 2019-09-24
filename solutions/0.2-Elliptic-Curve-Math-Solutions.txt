@@ -2,10 +2,10 @@
 
 ```
 a = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
-a_key = ECKey().set(a, True)
+a_key = ECKey().set(a)
 
 b = random.randrange(SECP256K1_ORDER / 2, SECP256K1_ORDER)
-b_key = ECKey().set(b, True)
+b_key = ECKey().set(b)
 
 # Left: Compute a + b as ints (modulo the sepc256k1 group order)
 left_a_plus_b = (a + b) % SECP256K1_ORDER
@@ -13,8 +13,11 @@ left_a_plus_b = (a + b) % SECP256K1_ORDER
 # Right: Compute b + a as ECKeys
 right_b_plus_a = b_key + a_key
 
+print("Left: {}".format(left_a_plus_b))
+print("Right: {}\n".format(right_b_plus_a))
+
 # Left/Right: Assert equality
-assert left_a_plus_b == right_b_plus_a.as_int()
+assert left_a_plus_b == right_b_plus_a.secret
 
 # Left: Compute a * b as ints (modulo the sepc256k1 group order)
 left_a_times_b = (a * b) % SECP256K1_ORDER
@@ -23,45 +26,39 @@ left_a_times_b = (a * b) % SECP256K1_ORDER
 right_b_times_a = b_key * a_key
 
 print("Left: {}".format(left_a_times_b))
-print("Right: {}".format(right_b_times_a.as_int()))
+print("Right: {}\n".format(right_b_times_a))
 
 # Left/Right: Assert equality
-assert left_a_times_b == right_b_times_a.as_int()
-print("\nSuccess!")
+assert left_a_times_b == right_b_times_a.secret
+print("Success!")
 ```
 
 #### 0.2.4 Distributivity of scalar operations
 
 ```
 a = random.randrange(1, SECP256K1_ORDER)
-a_key = ECKey().set(a, True)
+a_key = ECKey().set(a)
 
 b = random.randrange(1, SECP256K1_ORDER)
-b_key = ECKey().set(b, True)
+b_key = ECKey().set(b)
 
 c = random.randrange(1, SECP256K1_ORDER)
-c_key = ECKey().set(c, True)
+c_key = ECKey().set(c)
+
+# Left: Compute a - b as ints (modulo the sepc256k1 group order)
+a_minus_b = (a  - b) % SECP256K1_ORDER
 
 # Left: Compute (a - b) * c as ints (modulo the sepc256k1 group order)
-ab = (a + (SECP256K1_ORDER - b)) % SECP256K1_ORDER
-left_abc = (ab * c) % SECP256K1_ORDER
+left = (a_minus_b * c) % SECP256K1_ORDER
 
-# Right: Compute -b * c as ECKeys
-# Negate a ECKey with negate() method.
-b_key.negate()
+# Right: Compute a * c - b * c as ECKeys
+right = a_key * c_key - b_key * c_key
 
-# Right: Compute a * c
-ac_key = a_key * c_key
-bc_key = b_key * c_key
-
-# Right: Compute a * c - b * c
-right_abc = ac_key + bc_key
-
-print("Left: {}".format(left_abc))
-print("Right: {}".format(right_abc.as_int()))
+print("Left: {}".format(left))
+print("Right: {}".format(right))
 
 # Left/Right: Assert equality
-assert left_abc == right_abc.as_int()
+assert left == right.secret
 print("\nSuccess!")
 ```
 
@@ -70,8 +67,7 @@ print("\nSuccess!")
 ```
 a = ECKey().generate()
 b = ECKey().generate()
-c = ECKey().generate()
-C = c.get_pubkey()
+c, C = generate_key_pair()
 
 # Left: Compute (a - b) * C  
 left =  (a - b) * C
@@ -79,10 +75,10 @@ left =  (a - b) * C
 # Right: Compute aC - bC
 right = (a * C) - (b * C)
 
-print("Left: {}".format(left.get_bytes().hex()))
-print("Right: {}".format(right.get_bytes().hex()))
+print("Left: {}".format(left))
+print("Right: {}".format(right))
 
 # Left/Right: Assert equality
-assert left.get_bytes() == right.get_bytes()
+assert left == right
 print("\nSuccess!")
 ```
