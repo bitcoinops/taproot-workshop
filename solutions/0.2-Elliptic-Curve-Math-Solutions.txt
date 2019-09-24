@@ -22,9 +22,12 @@ left_a_times_b = (a * b) % SECP256K1_ORDER
 # Right: Compute b * a as ECKeys
 right_b_times_a = b_key * a_key
 
+print("Left: {}".format(left_a_times_b))
+print("Right: {}".format(right_b_times_a.as_int()))
+
 # Left/Right: Assert equality
 assert left_a_times_b == right_b_times_a.as_int()
-print("Success!")
+print("\nSuccess!")
 ```
 
 #### 0.2.4 Distributivity of scalar operations
@@ -54,9 +57,12 @@ bc_key = b_key * c_key
 # Right: Compute a * c - b * c
 right_abc = ac_key + bc_key
 
+print("Left: {}".format(left_abc))
+print("Right: {}".format(right_abc.as_int()))
+
 # Left/Right: Assert equality
 assert left_abc == right_abc.as_int()
-print("Success!")
+print("\nSuccess!")
 ```
 
 #### 0.2.6 Distributivity over scalars and points
@@ -70,14 +76,13 @@ C = c.get_pubkey()
 # Left: Compute (a - b) * C  
 left =  (a - b) * C
 
-# Right: Compute a * C and (-b) * C
-aC = a * C
-bC = b * C
-
 # Right: Compute aC - bC
-right = aC - bC
+right = (a * C) - (b * C)
+
+print("Left: {}".format(left.get_bytes().hex()))
+print("Right: {}".format(right.get_bytes().hex()))
 
 # Left/Right: Assert equality
 assert left.get_bytes() == right.get_bytes()
-print("Success!")
+print("\nSuccess!")
 ```
