@@ -238,6 +238,13 @@ class ECPubKey():
     def __repr__(self):
         return self.get_bytes().hex()
 
+    def __eq__(self, other):
+        assert isinstance(other, ECPubKey)
+        return self.get_bytes() == other.get_bytes()
+
+    def __hash__(self):
+        return hash(self.get_bytes())
+
     def set(self, data):
         """Construct a public key from a serialization in compressed or uncompressed format"""
         if (len(data) == 65 and data[0] == 0x04):
@@ -435,6 +442,13 @@ class ECKey():
 
     def __repr__(self):
         return str(self.secret)
+
+    def __eq__(self, other):
+        assert isinstance(other, ECKey)
+        return self.secret == other.secret
+
+    def __hash__(self):
+        return hash(self.secret)
 
     def set(self, secret, compressed=True):
         """Construct a private key object from either 32-bytes or an int secret and a compressed flag."""
