@@ -235,6 +235,9 @@ class ECPubKey():
         """Construct an uninitialized public key"""
         self.valid = False
 
+    def __repr__(self):
+        return self.get_bytes().hex()
+
     def set(self, data):
         """Construct a public key from a serialization in compressed or uncompressed format"""
         if (len(data) == 65 and data[0] == 0x04):
@@ -429,6 +432,9 @@ class ECKey():
 
     def __init__(self):
         self.valid = False
+
+    def __repr__(self):
+        return str(self.secret)
 
     def set(self, secret, compressed=True):
         """Construct a private key object from either 32-bytes or an int secret and a compressed flag."""
