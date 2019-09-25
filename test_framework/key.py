@@ -430,7 +430,7 @@ class ECKey():
     def __init__(self):
         self.valid = False
 
-    def set(self, secret, compressed):
+    def set(self, secret, compressed=True):
         """Construct a private key object from either 32-bytes or an int secret and a compressed flag."""
         secret = int_or_bytes(secret)
 
