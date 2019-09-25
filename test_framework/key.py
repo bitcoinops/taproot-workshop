@@ -608,6 +608,17 @@ class ECKey():
         ret.set(tweaked.to_bytes(32, 'big'), self.compressed)
         return ret
 
+def generate_key_pair(secret=None, compressed=True):
+    """Convenience function to generate a private-public key pair."""
+    d = ECKey()
+    if secret:
+        d.set(secret, compressed)
+    else:
+        d.generate(compressed)
+
+    P = d.get_pubkey()
+    return d, P
+
 def generate_schnorr_nonce():
     """Generate a random valid bip-schnorr nonce.
 
