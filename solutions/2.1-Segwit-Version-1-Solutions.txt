@@ -63,6 +63,10 @@ nonce1 = generate_schnorr_nonce()
 nonce2 = generate_schnorr_nonce()
 R_agg, negated = aggregate_schnorr_nonces([nonce1.get_pubkey(), nonce2.get_pubkey()])
 
+if negated:
+    nonce1.negate()
+    nonce2.negate()
+
 # Create an aggregate signature
 sig1 = sign_musig(privkey1_c, nonce1, R_agg, agg_pubkey, sighash_musig)
 sig2 = sign_musig(privkey2_c, nonce2, R_agg, agg_pubkey, sighash_musig)
