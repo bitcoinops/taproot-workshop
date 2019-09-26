@@ -4,7 +4,7 @@
 # Generate a random value in the secp256k1 field
 k = random.randrange(1, SECP256K1_ORDER)
 
-k_key = ECKey().set(k)
+k_key = ECKey().set(k, True)
 R = k_key.get_pubkey()
 
 # Find the x- and y-coordinates from R
@@ -14,7 +14,7 @@ R_y = R.get_y()
 # Find k's inverse (SECP256K1_ORDER - k)
 minus_k = SECP256K1_ORDER - k
 
-minus_k_key = ECKey().set(minus_k)
+minus_k_key = ECKey().set(minus_k, True)
 minus_R = minus_k_key.get_pubkey()
 
 # Find the x- and y-coordinates from -R
@@ -45,7 +45,7 @@ if jacobi_symbol(R.get_y(), SECP256K1_FIELD_SIZE) != 1:
 
 # Generate s = k + sha256(R_x|P|msg) * d
 # Method: hashlib.sha256(bytes).digest() will give you the byte digest of the SHA256 of some bytes
-# Turn that digest into a ECKey object called h, and then set s = k + h * x
+# Turn that digest into a ECKey object called h, and then set s = k + h * d
 h_b = hashlib.sha256(R.get_x().to_bytes(32, 'big') + P.get_bytes() + msg).digest()
 h = ECKey().set(h_b, True)
 s = k + h * d
@@ -64,8 +64,8 @@ print("Success!")
 
 ```
 msg = hashlib.sha256(b'message').digest()
-x = ECKey().generate()
-P = x.get_pubkey()
+d = ECKey().generate()
+P = d.get_pubkey()
 print("message = {}".format(msg))
 print("pubkey = {}".format(P.get_bytes()))
 
@@ -83,7 +83,7 @@ if jacobi_symbol(R.get_y(), SECP256K1_FIELD_SIZE) != 1:
 
 # Generate s = k + H(R_x|P|msg) * d
 # Method: hashlib.sha256(bytes).digest() will give you the byte digest of the SHA256 of some bytes
-# Turn that digest into a ECKey object called h, and then set s = k + h * x
+# Turn that digest into a ECKey object called h, and then set s = k + h * d
 h_b = hashlib.sha256(R.get_x().to_bytes(32, 'big') + P.get_bytes() + msg).digest()
 h = ECKey().set(h_b, True)
 s = k + h * d
