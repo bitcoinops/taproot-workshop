@@ -10,13 +10,11 @@ anything but tests.
 See https://eprint.iacr.org/2018/068.pdf for the MuSig signature scheme implemented here.
 """
 
-from functools import reduce
 import hashlib
 
 from .key import (
     SECP256K1,
     SECP256K1_FIELD_SIZE,
-    SECP256K1_G,
     SECP256K1_ORDER,
     jacobi_symbol,
 )
@@ -49,29 +47,18 @@ def aggregate_schnorr_nonces(nonce_point_list):
     return R_agg, negated
 
 def sign_musig(priv_key, k_key, R_musig, P_musig, msg):
-    """Construct a musig signature."""
+    """Construct a MuSig partial signature and return the s value."""
     assert priv_key.valid
     assert priv_key.compressed
+    assert P_musig.compressed
     assert len(msg) == 32
     assert k_key is not None and k_key.secret != 0
-    Rm = SECP256K1.affine(R_musig.p)
-    assert jacobi_symbol(Rm[1], SECP256K1_FIELD_SIZE) == 1
-    R = SECP256K1.affine(SECP256K1.mul([(SECP256K1_G, k_key.secret)]))
-    e = int.from_bytes(hashlib.sha256(Rm[0].to_bytes(32, 'big') + P_musig.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
-    return R[0].to_bytes(32, 'big') + ((k_key.secret + e * priv_key.secret) % SECP256K1_ORDER).to_bytes(32, 'big')
+    assert jacobi_symbol(R_musig.get_y(), SECP256K1_FIELD_SIZE) == 1
+    e = int.from_bytes(hashlib.sha256(R_musig.get_x().to_bytes(32, 'big') + P_musig.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
+    return (k_key.secret + e * priv_key.secret) % SECP256K1_ORDER
 
-def aggregate_musig_signatures(sigs):
-    """Construct valid Schnorr signature from individually generated musig signatures."""
-    assert sigs
-    s_list = []
-    R_list = []
-    for sig in sigs:
-        assert len(sig) == 64
-        s_list.append(int.from_bytes(sig[32:], 'big'))
-        R = SECP256K1.lift_x(int.from_bytes(sig[:32], 'big'))
-        if jacobi_symbol(R[1], SECP256K1_FIELD_SIZE) != 1:
-            R = SECP256K1.negate(R)
-        R_list.append(R)
+def aggregate_musig_signatures(s_list, R_musig):
+    """Construct valid Schnorr signature from a list of partial MuSig signatures."""
+    assert s_list is not None and all(isinstance(s, int) for s in s_list)
     s_agg = sum(s_list) % SECP256K1_ORDER
-    R_agg = reduce(lambda x, y: SECP256K1.add_mixed(x, y), R_list)
-    return SECP256K1.affine(R_agg)[0].to_bytes(32, 'big') + s_agg.to_bytes(32, 'big')
+    return R_musig.get_x().to_bytes(32, 'big') + s_agg.to_bytes(32, 'big')

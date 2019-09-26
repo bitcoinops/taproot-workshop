@@ -38,9 +38,9 @@ msg = hashlib.sha256(b'msg').digest()
 privkey0_c_tweaked = privkey0_c.add(tweak) 
 
 # Sign individually and then aggregate signatures
-sig0 = sign_musig(privkey0_c_tweaked, k0, R_agg, agg_pubkey_tweaked, msg)
-sig1 = sign_musig(privkey1_c, k1, R_agg, agg_pubkey_tweaked, msg)
-sig_agg = aggregate_musig_signatures([sig0, sig1])
+s0 = sign_musig(privkey0_c_tweaked, k0, R_agg, agg_pubkey_tweaked, msg)
+s1 = sign_musig(privkey1_c, k1, R_agg, agg_pubkey_tweaked, msg)
+sig_agg = aggregate_musig_signatures([s0, s1], R_agg)
 
 assert agg_pubkey_tweaked.verify_schnorr(sig_agg, msg)
 print("Success!")

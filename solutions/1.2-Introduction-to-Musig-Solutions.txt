@@ -62,13 +62,13 @@ print("R_agg was negated:", negated)
 ```
 msg = hashlib.sha256(b'transaction').digest()
 
-# Generate individual signatures
-sig0 = sign_musig(privkey0_c, k0, R_agg, pubkey_musig, msg)
-sig1 = sign_musig(privkey1_c, k1, R_agg, pubkey_musig, msg)
-sig2 = sign_musig(privkey2_c, k2, R_agg, pubkey_musig, msg)
+# Generate partial signatures
+s0 = sign_musig(privkey0_c, k0, R_agg, pubkey_musig, msg)
+s1 = sign_musig(privkey1_c, k1, R_agg, pubkey_musig, msg)
+s2 = sign_musig(privkey2_c, k2, R_agg, pubkey_musig, msg)
 
-# Aggregate signatures
-sig_agg = aggregate_musig_signatures([sig0, sig1, sig2])
+# Aggregate partial signatures
+sig_agg = aggregate_musig_signatures([s0, s1, s2], R_agg)
 
 # Verify signature
 assert pubkey_musig.verify_schnorr(sig_agg, msg)

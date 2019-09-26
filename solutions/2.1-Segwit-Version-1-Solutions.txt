@@ -64,9 +64,9 @@ nonce2 = generate_schnorr_nonce()
 R_agg, negated = aggregate_schnorr_nonces([nonce1.get_pubkey(), nonce2.get_pubkey()])
 
 # Create an aggregate signature
-sig1 = sign_musig(privkey1_c, nonce1, R_agg, agg_pubkey, sighash_musig)
-sig2 = sign_musig(privkey2_c, nonce2, R_agg, agg_pubkey, sighash_musig)
-sig_agg = aggregate_musig_signatures([sig1, sig2])
+s1 = sign_musig(privkey1_c, nonce1, R_agg, agg_pubkey, sighash_musig)
+s2 = sign_musig(privkey2_c, nonce2, R_agg, agg_pubkey, sighash_musig)
+sig_agg = aggregate_musig_signatures([s1, s2], R_agg)
 print("Aggregate signature is {}\n".format(sig_agg.hex()))
 
 # Construct transaction witness
