@@ -434,6 +434,9 @@ class ECPubKey():
         other.set(data, True)
         return self * other
 
+    def negate(self):
+        self.p = SECP256K1.affine(SECP256K1.negate(self.p))
+
 class ECKey():
     """A secp256k1 private key"""
 
