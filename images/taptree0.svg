@@ -2,19 +2,19 @@
 <!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 y="0px" width="595.279px" height="330.643px" viewBox="0 0 595.279 330.643" enable-background="new 0 0 595.279 330.643"
 	 xml:space="preserve">
 <g>
 	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
-		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5H590.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
 		L590.28,0z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#B2B3B3" d="M396.46,147.195c0,1.79-1.465,3.254-3.255,3.254h-23.41c-1.79,0-3.255-1.464-3.255-3.254v-8.494
-		c0-1.79,1.465-3.254,3.255-3.254h23.41c1.79,0,3.255,1.464,3.255,3.254V147.195z"/>
+	<path fill="#B2B3B3" d="M396.46,147.195c0,1.79-1.465,3.255-3.255,3.255h-23.41c-1.79,0-3.255-1.465-3.255-3.255v-8.493
+		c0-1.79,1.465-3.255,3.255-3.255h23.41c1.79,0,3.255,1.465,3.255,3.255V147.195z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M336.664,75.385c0,1.65-1.35,3-3,3h-8c-1.65,0-3-1.35-3-3v-9.003c0-1.65,1.35-3,3-3h8c1.65,0,3,1.35,3,3
+	<path fill="#A1DADE" d="M336.664,75.385c0,1.65-1.351,3-3,3h-8c-1.65,0-3-1.35-3-3v-9.003c0-1.65,1.35-3,3-3h8c1.649,0,3,1.35,3,3
 		V75.385z"/>
 </g>
 <g opacity="0.65">
@@ -22,8 +22,9 @@
 		c0-0.825,0.675-1.5,1.5-1.5h4.506c0.825,0,1.5,0.675,1.5,1.5V109.151z"/>
 </g>
 <g>
-	<rect x="32.422" y="25.333" fill="none" width="507.911" height="17.667"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="13">Tagged Hashes in Taproot </tspan><tspan x="195.033" y="0" font-family="'RobotoMono-Regular'" font-size="13">(No Tapbranch/Tapleaf Ambiguity)</tspan></text>
+	<rect x="32.422" y="25.333" fill="none" width="507.91" height="17.667"/>
+	<text transform="matrix(0.9799 0 0 1 32.4216 35.0833)" font-family="'RobotoMono-Bold'" font-size="13">Tagged Hashes in Taproot </text>
+	<text transform="matrix(0.9799 0 0 1 223.5344 35.0833)" font-family="'RobotoMono-Regular'" font-size="13">(No Tapbranch/Tapleaf Ambiguity)</text>
 </g>
 <g>
 	<path fill="none" stroke="#000000" stroke-width="0.9" stroke-linecap="round" stroke-miterlimit="10" d="M329.668,153.763v13.206
@@ -40,12 +41,12 @@
 </g>
 <g>
 	<path fill="none" stroke="#000000" stroke-width="0.9" stroke-linecap="round" stroke-miterlimit="10" d="M230.511,231.246v13.206
-		c0,3.303-2.702,6.005-6.005,6.005h-87.147c-3.303,0-6.005,2.702-6.005,6.005v13.358"/>
+		c0,3.303-2.702,6.005-6.005,6.005h-87.147c-3.303,0-6.005,2.702-6.005,6.005v13.357"/>
 </g>
 <g>
 	<g>
-		<path fill="none" stroke="#000000" stroke-width="0.9" stroke-linecap="round" stroke-miterlimit="10" d="M230.511,235.44v9.012
-			c0,3.303,2.702,6.005,6.005,6.005h87.146c3.303,0,6.005,2.702,6.005,6.005v13.358"/>
+		<path fill="none" stroke="#000000" stroke-width="0.9" stroke-linecap="round" stroke-miterlimit="10" d="M230.511,235.44v9.013
+			c0,3.303,2.702,6.005,6.005,6.005h87.146c3.303,0,6.005,2.702,6.005,6.005v13.357"/>
 		<g>
 			<polygon points="230.511,231.246 228.096,237.156 230.511,235.753 232.925,237.156 			"/>
 		</g>
@@ -61,75 +62,76 @@
 	</g>
 </g>
 <g>
-	<rect x="393.2" y="198.27" fill="none" width="71.248" height="13.611"/>
-	<text transform="matrix(0.9799 0 0 1 426.4727 204.27)" font-family="'RobotoMono-Bold'" font-size="8">C</text>
+	<rect x="393.2" y="198.27" fill="none" width="71.247" height="13.611"/>
+	<text transform="matrix(0.9799 0 0 1 426.4719 204.2698)" font-family="'RobotoMono-Bold'" font-size="8">C</text>
 </g>
 <g>
-	<rect x="294.042" y="128.336" fill="none" width="71.248" height="13.611"/>
-	<text transform="matrix(0.9799 0 0 1 322.6104 134.3364)" font-family="'RobotoMono-Bold'" font-size="8">ABC</text>
+	<rect x="294.042" y="128.336" fill="none" width="71.248" height="13.61"/>
+	<text transform="matrix(0.9799 0 0 1 322.6096 134.3362)" font-family="'RobotoMono-Bold'" font-size="8">ABC</text>
 </g>
 <g>
 	<rect x="294.042" y="67.016" fill="none" width="71.248" height="13.611"/>
-	<text transform="matrix(0.9799 0 0 1 327.3145 73.0161)" font-family="'RobotoMono-Bold'" font-size="8">t</text>
+	<text transform="matrix(0.9799 0 0 1 327.3137 73.0159)" font-family="'RobotoMono-Bold'" font-size="8">t</text>
 </g>
 <g>
 	<rect x="118.988" y="274.314" fill="none" width="24.732" height="15.745"/>
-	<text transform="matrix(0.9799 0 0 1 129.002 280.3145)" font-family="'RobotoMono-Bold'" font-size="8">A</text>
+	<text transform="matrix(0.9799 0 0 1 129.0012 280.3147)" font-family="'RobotoMono-Bold'" font-size="8">A</text>
 </g>
 <g>
-	<rect x="317.3" y="274.314" fill="none" width="24.732" height="15.745"/>
-	<text transform="matrix(0.9799 0 0 1 327.3135 280.3145)" font-family="'RobotoMono-Bold'" font-size="8">B</text>
+	<rect x="317.3" y="274.314" fill="none" width="24.731" height="15.745"/>
+	<text transform="matrix(0.9799 0 0 1 327.3127 280.3147)" font-family="'RobotoMono-Bold'" font-size="8">B</text>
 </g>
 <g>
 	<rect x="218.145" y="198.27" fill="none" width="24.732" height="10.455"/>
-	<text transform="matrix(0.9799 0 0 1 225.8066 204.27)" font-family="'RobotoMono-Bold'" font-size="8">AB</text>
+	<text transform="matrix(0.9799 0 0 1 225.8059 204.2698)" font-family="'RobotoMono-Bold'" font-size="8">AB</text>
 </g>
 <g>
 	<rect x="48.369" y="98.388" fill="none" width="136" height="19.525"/>
-	<text transform="matrix(0.9799 0 0 1 48.3691 107.3882)" font-family="'RobotoMono-Bold'" font-size="12">Q = P + tG</text>
+	<text transform="matrix(0.9799 0 0 1 48.3684 107.3879)" font-family="'RobotoMono-Bold'" font-size="12">Q = P + tG</text>
 </g>
 <g>
-	<rect x="48.369" y="76.863" fill="none" width="136" height="39.051"/>
-	<text transform="matrix(0.9799 0 0 1 48.3691 85.8628)" font-family="'RobotoMono-Bold'" font-size="12">Taproot PubKey</text>
+	<rect x="48.369" y="76.863" fill="none" width="136" height="39.052"/>
+	<text transform="matrix(0.9799 0 0 1 48.3684 85.8625)" font-family="'RobotoMono-Bold'" font-size="12">Taproot PubKey</text>
 </g>
 <g>
 	<rect x="210.523" y="139.465" fill="none" width="238.283" height="28.597"/>
-	<text transform="matrix(0.9799 0 0 1 259.1001 145.4648)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapBranch’,AB &amp; D)</text>
+	<text transform="matrix(0.9799 0 0 1 259.0994 145.4641)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapBranch’,AB &amp; C)</text>
 </g>
 <g>
 	<rect x="210.523" y="80.627" fill="none" width="238.283" height="28.597"/>
-	<text transform="matrix(0.9799 0 0 1 263.8047 86.6274)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapTweak’,P|ABC)</text>
+	<text transform="matrix(0.9799 0 0 1 263.804 86.6272)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapTweak’,P|ABC)</text>
 </g>
 <g>
-	<rect x="393.2" y="113.262" fill="none" width="163.946" height="87.074"/>
-	<text transform="matrix(0.9799 0 0 1 443.2734 120.0122)"><tspan x="0" y="0" font-family="'RobotoMono-Italic'" font-size="9">Lexicographic Ordering </tspan><tspan x="10.56" y="10.8" font-family="'RobotoMono-Italic'" font-size="9">of Children in Hash.</tspan></text>
+	<rect x="393.2" y="113.262" fill="none" width="163.945" height="87.074"/>
+	<text transform="matrix(0.9799 0 0 1 443.2727 120.012)" font-family="'RobotoMono-Italic'" font-size="9">Lexicographic Ordering </text>
+	<text transform="matrix(0.9799 0 0 1 453.6204 130.8118)" font-family="'RobotoMono-Italic'" font-size="9">of Children in Hash.</text>
 </g>
 <g>
 	<rect x="33.477" y="287.483" fill="none" width="195.755" height="25.15"/>
-	<text transform="matrix(0.9799 0 0 1 39.6191 293.4834)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapLeaf’,ver|size|script_A)</text>
+	<text transform="matrix(0.9799 0 0 1 39.6184 293.4836)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapLeaf’,ver|size|script_A)</text>
 </g>
 <g>
 	<rect x="330.948" y="211.948" fill="none" width="195.755" height="25.15"/>
-	<text transform="matrix(0.9799 0 0 1 337.0908 217.9478)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapLeaf’,ver|size|script_C)</text>
+	<text transform="matrix(0.9799 0 0 1 337.0901 217.9475)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapLeaf’,ver|size|script_C)</text>
 </g>
 <g>
-	<rect x="231.787" y="287.483" fill="none" width="195.755" height="25.15"/>
-	<text transform="matrix(0.9799 0 0 1 237.9297 293.4834)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapLeaf’,ver|size|script_B)</text>
+	<rect x="231.787" y="287.483" fill="none" width="195.754" height="25.15"/>
+	<text transform="matrix(0.9799 0 0 1 237.929 293.4836)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapLeaf’,ver|size|script_B)</text>
 </g>
 <g opacity="0.65">
-	<path fill="#B2B3B3" d="M295.64,219.728c0,1.65-1.35,3-3,3h-19.422c-1.65,0-3-1.35-3-3v-9.003c0-1.65,1.35-3,3-3h19.422
-		c1.65,0,3,1.35,3,3V219.728z"/>
+	<path fill="#B2B3B3" d="M295.64,219.728c0,1.65-1.35,3-3,3h-19.422c-1.65,0-3-1.35-3-3v-9.003c0-1.649,1.35-3,3-3h19.422
+		c1.65,0,3,1.351,3,3V219.728z"/>
 </g>
 <g>
-	<rect x="111.369" y="211.948" fill="none" width="238.283" height="28.597"/>
-	<text transform="matrix(0.9799 0 0 1 162.2988 217.9478)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapBranch’|A &amp; B)</text>
+	<rect x="111.369" y="211.948" fill="none" width="238.282" height="28.598"/>
+	<text transform="matrix(0.9799 0 0 1 162.2981 217.9475)" font-family="'RobotoMono-Regular'" font-size="8">TaggedHash(’TapBranch’|A &amp; B)</text>
 </g>
 <g>
 	<path fill="none" stroke="#919191" stroke-width="0.4475" stroke-miterlimit="10" d="M381.495,133.142v-9.457
-		c0-1.477,1.208-2.685,2.685-2.685h53.487"/>
+		c0-1.477,1.208-2.685,2.685-2.685h53.486"/>
 </g>
 <g>
-	<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M171,120c0,1.65-1.35,3-3,3H36.477
-		c-1.65,0-3-1.35-3-3V66.382c0-1.65,1.35-3,3-3H168c1.65,0,3,1.35,3,3V120z"/>
+	<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M171,120c0,1.649-1.351,3-3,3H36.477
+		c-1.649,0-3-1.351-3-3V66.382c0-1.65,1.351-3,3-3H168c1.649,0,3,1.35,3,3V120z"/>
 </g>
 </svg>
