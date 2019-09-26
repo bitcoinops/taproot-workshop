@@ -41,7 +41,8 @@ privkey0_c_tweaked = privkey0_c.add(tweak)
 
 # Sign individually and then aggregate signatures
 # Method: sign_musig(private_key, nonce_key, nonce_point, public_key, msg)
-# Method: aggregate_musig_signatures(signature_list)s0 = sign_musig(privkey0_c_tweaked, k0, R_agg, agg_pubkey_tweaked, msg)
+# Method: aggregate_musig_signatures(signature_list)
+s0 = sign_musig(privkey0_c_tweaked, k0, R_agg, agg_pubkey_tweaked, msg)
 s1 = sign_musig(privkey1_c, k1, R_agg, agg_pubkey_tweaked, msg)
 sig_agg = aggregate_musig_signatures([s0, s1], R_agg)
 
