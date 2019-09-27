@@ -114,7 +114,7 @@ print("Partial signatures:\n\t{}\n\t{}\n\t{}\n".format(s1, s2, s3))
 sig_agg = aggregate_musig_signatures([s1, s2, s3], R_agg)
 print("Aggregate signature:\n\t{}\n".format(sig_agg.hex()))
 
-# Verify signature against aggregate publick key
+# Verify signature against aggregate public key
 assert pubkey_agg.verify_schnorr(sig_agg, msg)
 print("Success! Signature verifies against aggregate pubkey")
 ```
