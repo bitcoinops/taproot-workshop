@@ -64,7 +64,7 @@ assert R3_digest.hex() == "bc2c379a7b6ad82b40a7cf280697505ccc039370e50eb155324dc
 
 # Aggregate nonces
 # Tip: Add the individual nonce points together. If the aggregated nonce is not a quadratic residue
-# then negate the aggregate nonce and individual nonce scalars and nonce points.
+# then negate the aggregate nonce and individual nonce scalars.
 R_agg = sum([R1, R2, R3])
 if jacobi_symbol(R_agg.get_y(), SECP256K1_FIELD_SIZE) != 1:
     R_agg.negate()
