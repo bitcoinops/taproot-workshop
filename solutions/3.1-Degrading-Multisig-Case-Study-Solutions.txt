@@ -101,11 +101,11 @@ if negated:
 
 # Create an aggregate signature.
 # Remember to tweak one of the private keys.
-sigA = sign_musig(main_privA_c, nonceA, R_agg, output_pubkey, sighash_musig)
-sigB = sign_musig(main_privB_c, nonceB, R_agg, output_pubkey, sighash_musig)
+sA = sign_musig(main_privA_c, nonceA, R_agg, output_pubkey, sighash_musig)
+sB = sign_musig(main_privB_c, nonceB, R_agg, output_pubkey, sighash_musig)
 main_privC_tweaked = main_privC_c.add(taptweak) 
-sigC = sign_musig(main_privC_tweaked, nonceC, R_agg, output_pubkey, sighash_musig)
-sig_agg = aggregate_musig_signatures([sigA, sigB, sigC])
+sC = sign_musig(main_privC_tweaked, nonceC, R_agg, output_pubkey, sighash_musig)
+sig_agg = aggregate_musig_signatures([sA, sB, sC], R_agg)
 print("Aggregate signature is {}\n".format(sig_agg.hex()))
 
 assert output_pubkey.verify_schnorr(sig_agg, sighash_musig)
