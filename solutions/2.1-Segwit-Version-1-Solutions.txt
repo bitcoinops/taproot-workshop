@@ -57,8 +57,7 @@ print("Spending transaction:\n{}\n".format(spending_tx))
 #### 2.1.12 Create a valid bip-schnorr signature for the MuSig aggregate pubkey
 ```
 # Create sighash for ALL (0x00)
-hash_types = [0,1,2,3,0x81,0x82,0x83]
-sighash_musig = TaprootSignatureHash(spending_tx, [output], hash_types[0], input_index = 0, scriptpath = False)
+sighash_musig = TaprootSignatureHash(spending_tx, [output], SIGHASH_ALL_TAPROOT, input_index = 0, scriptpath = False)
 
 # Generate individual nonces for participants and an aggregate nonce point
 # Remember to negate the individual nonces if necessary

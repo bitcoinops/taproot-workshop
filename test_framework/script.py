@@ -588,6 +588,7 @@ class CScript(bytes):
         return n
 
 
+SIGHASH_ALL_TAPROOT = 0
 SIGHASH_ALL = 1
 SIGHASH_NONE = 2
 SIGHASH_SINGLE = 3
