@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="595.279px" height="330.643px" viewBox="0 0 595.279 330.643" enable-background="new 0 0 595.279 330.643"
+	 xml:space="preserve">
+<g>
+	<path fill="#444445" d="M590.281,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
+		H590.281 M590.281,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.281,2.25,593.031,0,590.281,0
+		L590.281,0z"/>
+</g>
+<rect x="45" y="163.322" opacity="0.44" fill="#A0D9DD" width="166.667" height="25.679"/>
+<rect x="138.001" y="203.879" opacity="0.44" fill="#A0D9DD" width="278.667" height="25.679"/>
+<rect x="324.195" y="245.379" opacity="0.44" fill="#A0D9DD" width="203.14" height="59.634"/>
+<line opacity="0.55" fill="none" stroke="#231F20" stroke-width="0.7" stroke-miterlimit="10" x1="426.998" y1="146.5" x2="426.998" y2="240"/>
+<line opacity="0.55" fill="none" stroke="#231F20" stroke-width="0.7" stroke-miterlimit="10" x1="277.6" y1="146.5" x2="277.6" y2="200.667"/>
+<g>
+	<rect x="32.423" y="25.07" fill="none" width="416.578" height="35.333"/>
+	<text transform="matrix(0.9799 0 0 1 32.4226 34.8201)" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="13">Segwit V1 Example: Transaction Chain</text>
+</g>
+<g>
+	<rect x="20.869" y="155.105" fill="none" width="214.667" height="35.895"/>
+	<text transform="matrix(0.9799 0 0 1 114.9719 172.6555)"><tspan x="0" y="0" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="9">Call:</tspan><tspan x="-67.511" y="10.8" fill="#231F20" font-family="'RobotoMono-Regular'" font-size="9">test.nodes[i].generate(blocks)</tspan></text>
+</g>
+<g>
+	<rect x="296.786" y="249.379" fill="none" width="260.425" height="77.264"/>
+	<text transform="matrix(0.9799 0 0 1 400.5374 256.1292)"><tspan x="0" y="0" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="9">Construct:</tspan><tspan x="-24.304" y="10.8" fill="#231F20" font-family="'RobotoMono-Regular'" font-size="9">CTransaction Object</tspan><tspan x="13.502" y="32.399" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="9">Call:</tspan><tspan x="-67.51" y="43.2" fill="#231F20" font-family="'RobotoMono-Regular'" font-size="9">test.nodes[i].testmempoolaccept(tx)</tspan></text>
+</g>
+<g>
+	<rect x="129.205" y="197.403" fill="none" width="298.789" height="38.632"/>
+	<text transform="matrix(0.9799 0 0 1 265.3689 214.9524)"><tspan x="0" y="0" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="9">Call:</tspan><tspan x="-121.519" y="10.801" fill="#231F20" font-family="'RobotoMono-Regular'" font-size="9">test.nodes[i].sendtoaddress(segwit_address,amount)</tspan></text>
+</g>
+<g opacity="0.5">
+	<rect x="165.388" y="72.444" fill="none" width="85.024" height="31.261"/>
+	<text transform="matrix(0.9799 0 0 1 188.4954 80.6941)"><tspan x="0" y="0" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="11">Wallet</tspan><tspan x="-3.3" y="13.2" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="11">address</tspan></text>
+</g>
+<g>
+	<rect x="221.838" y="122.853" fill="none" width="113.525" height="33.345"/>
+	<text transform="matrix(0.9799 0 0 1 230.2903 128.8533)" fill="#231F20" font-family="'RobotoMono-BoldItalic'" font-size="8">2) Wallet Transaction</text>
+</g>
+<g>
+	<rect x="71.44" y="122.853" fill="none" width="113.525" height="33.345"/>
+	<text transform="matrix(0.9799 0 0 1 75.2917 128.8533)" fill="#231F20" font-family="'RobotoMono-BoldItalic'" font-size="8">1) Coinbase Transaction</text>
+</g>
+<g>
+	<rect x="373.815" y="123.853" fill="none" width="113.523" height="24.254"/>
+	<text transform="matrix(0.9799 0 0 1 396.0696 129.8533)" fill="#231F20" font-family="'RobotoMono-BoldItalic'" font-size="8">3) CTransaction</text>
+</g>
+<g opacity="0.5">
+	<rect x="463.186" y="72.444" fill="none" width="85.023" height="31.261"/>
+	<text transform="matrix(0.9799 0 0 1 486.2922 80.6941)"><tspan x="0" y="0" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="11">Wallet </tspan><tspan x="-3.301" y="13.2" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="11">address</tspan></text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#231F20" stroke-width="1.5" stroke-miterlimit="10" x1="208.259" y1="139.526" x2="341.708" y2="139.526"/>
+		<g>
+			<circle fill="#231F20" cx="208.541" cy="139.526" r="5.64"/>
+		</g>
+		<g>
+			<polygon fill="#231F20" points="352.299,139.526 337.375,145.624 340.916,139.526 337.375,133.429 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#231F20" stroke-width="1.5" stroke-miterlimit="10" x1="58.862" y1="139.526" x2="192.311" y2="139.526"/>
+		<g>
+			<circle fill="#231F20" cx="59.143" cy="139.526" r="5.64"/>
+		</g>
+		<g>
+			<polygon fill="#231F20" points="202.902,139.526 187.978,145.624 191.519,139.526 187.978,133.429 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#231F20" stroke-width="1.5" stroke-miterlimit="10" x1="357.656" y1="139.526" x2="491.107" y2="139.526"/>
+		<g>
+			<circle fill="#231F20" cx="357.939" cy="139.526" r="5.64"/>
+		</g>
+		<g>
+			<polygon fill="#231F20" points="501.698,139.526 486.774,145.624 490.315,139.526 486.774,133.429 			"/>
+		</g>
+	</g>
+</g>
+<line opacity="0.55" fill="none" stroke="#231F20" stroke-width="0.7" stroke-miterlimit="10" x1="206.901" y1="128.398" x2="206.901" y2="103.705"/>
+<line opacity="0.55" fill="none" stroke="#231F20" stroke-width="0.7" stroke-miterlimit="10" x1="505.698" y1="128.398" x2="505.698" y2="103.705"/>
+<line opacity="0.55" fill="none" stroke="#231F20" stroke-width="0.7" stroke-miterlimit="10" x1="356.158" y1="128.398" x2="356.158" y2="103.705"/>
+<g>
+	<rect x="279.74" y="72.444" fill="none" width="152.836" height="26.223"/>
+	<text transform="matrix(0.9799 0 0 1 327.05 80.6941)"><tspan x="0" y="0" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="11">Segwit V1 </tspan><tspan x="6.601" y="13.2" fill="#231F20" font-family="'RobotoMono-Bold'" font-size="11">Address</tspan></text>
+</g>
+<circle fill="#231F20" cx="505.698" cy="139.525" r="3.657"/>
+<line opacity="0.55" fill="none" stroke="#231F20" stroke-width="0.7" stroke-miterlimit="10" x1="128.202" y1="146.5" x2="128.202" y2="160.5"/>
+</svg>
