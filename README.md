@@ -69,7 +69,7 @@ These workbooks require a `bitcoind` built from the [Optech Taproot
 V0.1.4 branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.4) which
 supports schnorr and taproot. 
 
-![workshop_repositories](files/0-repositories-diagram.jpg)
+![workshop_repositories](images/repositories.jpg)
 
 Clone the bitcoinops/bitcoin repository in a separate directory from this
 taproot-workshop repository:
