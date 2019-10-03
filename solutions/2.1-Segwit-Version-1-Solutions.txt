@@ -72,7 +72,8 @@ if negated:
     nonce2.negate()
 
 # Create an aggregate signature
-# Method: aggregate_musig_signatures(signature_list)
+# Method: sign_musig(privkey, nonce, R_agg, agg_pubkey, sighash_musig)
+# Method: aggregate_musig_signatures(partial_signature_list, R_agg)
 s1 = sign_musig(privkey1_c, nonce1, R_agg, agg_pubkey, sighash_musig)
 s2 = sign_musig(privkey2_c, nonce2, R_agg, agg_pubkey, sighash_musig)
 sig_agg = aggregate_musig_signatures([s1, s2], R_agg)
