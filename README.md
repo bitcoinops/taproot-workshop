@@ -178,7 +178,8 @@ provided by jupyter notebook server in the terminal.
 - Verify that `0.1-test-notebook.ipynb` passes all checks.
 
 After you have run the 0.1 example exercises, please also run through the
-0.2-Elliptic-Curve-Math.ipynb notebook and exercises before the workshop. 
+0.2-elliptic-curve-math.ipynb and 0.3-tagged-hashes.ipynb notebooks and
+exercises before the workshop. 
 
 Notebooks 1.x, 2.x, etc will be covered during the workshop. There is no need to
 run through those beforehand.
