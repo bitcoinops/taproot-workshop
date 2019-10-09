@@ -2,7 +2,7 @@
 # Copyright (c) 2015-2019 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Functionality to build scripts, as well as SignatureHash().
+"""Functionality to build scripts, as well as signature hash functions.
 
 This file is modified from python-bitcoinlib.
 """
@@ -626,7 +626,7 @@ def TaggedHash(tag, data):
 def GetP2SH(script):
     return CScript([OP_HASH160, hash160(script), OP_EQUAL])
 
-def SignatureHash(script, txTo, inIdx, hashtype):
+def LegacySignatureHash(script, txTo, inIdx, hashtype):
     """Consensus-correct SignatureHash
 
     Returns (hash, err) to precisely match the consensus-critical behavior of
@@ -676,11 +676,15 @@ def SignatureHash(script, txTo, inIdx, hashtype):
 
     return (hash, None)
 
+def get_p2pkh_script(pubkeyhash):
+    """Get the script associated with a P2PKH."""
+    return CScript([CScriptOp(OP_DUP), CScriptOp(OP_HASH160), pubkeyhash, CScriptOp(OP_EQUALVERIFY), CScriptOp(OP_CHECKSIG)])
+
 # TODO: Allow cached hashPrevouts/hashSequence/hashOutputs to be provided.
 # Performance optimization probably not necessary for python tests, however.
 # Note that this corresponds to sigversion == 1 in EvalScript, which is used
 # for version 0 witnesses.
-def SegwitVersion1SignatureHash(script, txTo, inIdx, hashtype, amount):
+def SegwitV0SignatureHash(script, txTo, inIdx, hashtype, amount):
 
     hashPrevouts = 0
     hashSequence = 0

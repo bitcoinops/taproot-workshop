@@ -1,7 +1,14 @@
 import argparse
 import configparser
+from io import BytesIO
 import os
 
+from test_framework.messages import (
+    COutPoint,
+    CTransaction,
+    CTxIn,
+    CTxOut,
+)
 from test_framework.test_framework import BitcoinTestFramework
 
 # Read configuration from config.ini
@@ -87,7 +94,39 @@ class TestWrapper:
             self.options.bitcoincli = bitcoincli
 
             super().setup()
+
+            # Add notebook-specific methods
+            for node in self.nodes:
+                node.generate_and_send_coins = generate_and_send_coins.__get__(node)
+                node.test_transaction = test_transaction.__get__(node)
             self.running = True
+
+        def create_spending_transaction(self, txid, version=1, nSequence=0):
+            """Construct a CTransaction object that spends the first ouput from txid."""
+            # Construct transaction
+            spending_tx = CTransaction()
+
+            # Populate the transaction version
+            spending_tx.nVersion = version
+
+            # Populate the locktime
+            spending_tx.nLockTime = 0
+
+            # Populate the transaction inputs
+            outpoint = COutPoint(int(txid, 16), 0)
+            spending_tx_in = CTxIn(outpoint=outpoint, nSequence=nSequence)
+            spending_tx.vin = [spending_tx_in]
+
+            # Generate new Bitcoin Core wallet address
+            dest_addr = self.nodes[0].getnewaddress(address_type="bech32")
+            scriptpubkey = bytes.fromhex(self.nodes[0].getaddressinfo(dest_addr)['scriptPubKey'])
+
+            # Complete output which returns 0.5 BTC to Bitcoin Core wallet
+            amount_sat = int(0.5 * 100_000_000)
+            dest_output = CTxOut(nValue=amount_sat, scriptPubKey=scriptpubkey)
+            spending_tx.vout = [dest_output]
+
+            return spending_tx
 
         def shutdown(self):
             if not self.running:
@@ -109,3 +148,49 @@ class TestWrapper:
 
     def __setattr__(self, name):
         return setattr(self.instance, name)
+
+def generate_and_send_coins(node, address):
+    """Generate blocks on node and then send 1 BTC to address.
+
+    No change output is added to the transaction.
+    Return a CTransaction object."""
+    version = node.getnetworkinfo()['subversion']
+    print("\nClient version is {}\n".format(version))
+
+    # Generate 101 blocks
+    node.generate(101)
+    balance = node.getbalance()
+    print("Balance: {}\n".format(balance))
+
+    assert balance > 1
+
+    unspent_txid = node.listunspent(1)[-1]["txid"]
+    inputs = [{"txid": unspent_txid, "vout": 0}]
+
+    # Create a raw transaction sending 1 BTC to the address, then sign and send it.
+    # We won't create a change output, so maxfeerate must be set to 0
+    # to allow any fee rate.
+    tx_hex = node.createrawtransaction(inputs=inputs, outputs=[{address: 1}])
+
+    res = node.signrawtransactionwithwallet(hexstring=tx_hex)
+
+    tx_hex = res["hex"]
+    assert res["complete"]
+    assert 'errors' not in res
+
+    txid = node.sendrawtransaction(hexstring=tx_hex, maxfeerate=0)
+
+    tx_hex = node.getrawtransaction(txid)
+
+    # Reconstruct wallet transaction locally
+    tx = CTransaction()
+    tx.deserialize(BytesIO(bytes.fromhex(tx_hex)))
+    tx.rehash()
+
+    return tx
+
+def test_transaction(node, tx):
+    tx_str = tx.serialize().hex()
+    ret = node.testmempoolaccept(rawtxs=[tx_str], maxfeerate=0)[0]
+    print(ret)
+    return ret['allowed']
