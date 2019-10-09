@@ -386,7 +386,7 @@ class ECPubKey():
             return self + other
 
     def __mul__(self, other):
-        """Multiplies ECPubKey point with a ECKey scalar."""
+        """Multiplies ECPubKey point with a scalar(int/32bytes/ECKey)."""
         if isinstance(other, ECKey):
             assert self.valid
             assert other.secret is not None
@@ -396,11 +396,16 @@ class ECPubKey():
             multiplier = int_or_bytes(other)
 
         assert multiplier < SECP256K1_ORDER
+        multiplier = multiplier % SECP256K1_ORDER
         ret = ECPubKey()
         ret.p = SECP256K1.mul([(self.p, multiplier)])
         ret.valid = True
         ret.compressed = self.compressed
         return ret
+
+    def __rmul__(self, other):
+        """Multiplies a scalar(int/32bytes/ECKey) with an ECPubKey point with"""
+        self * other
 
     def __sub__(self, other):
         """Subtract one point from another"""
@@ -525,6 +530,10 @@ class ECKey():
             assert self.valid
             second = ECKey().set(other, self.compressed)
             return self * second
+    
+    def __rmul__(self, other):
+        self * other
+
 
     def add(self, data):
         """Add key to scalar data. Returns compressed key."""
