@@ -404,8 +404,8 @@ class ECPubKey():
         return ret
 
     def __rmul__(self, other):
-        """Multiplies a scalar(int/32bytes/ECKey) with an ECPubKey point with"""
-        self * other
+        """Multiplies a scalar(int/32bytes/ECKey) with an ECPubKey point"""
+        return self * other
 
     def __sub__(self, other):
         """Subtract one point from another"""
@@ -530,10 +530,9 @@ class ECKey():
             assert self.valid
             second = ECKey().set(other, self.compressed)
             return self * second
-    
-    def __rmul__(self, other):
-        self * other
 
+    def __rmul__(self, other):
+        return self * other
 
     def add(self, data):
         """Add key to scalar data. Returns compressed key."""
