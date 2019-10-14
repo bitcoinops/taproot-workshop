@@ -1060,12 +1060,14 @@ class TapLeaf:
         args.append(expr_string_)
         return args
 
-    # TODO: Not nice, necessary for sorting priority queue.
+    def tagged_hash(self):
+        return TaggedHash("TapLeaf", bytes([self.version & 0xfe]) + ser_string(self.script))
+
     def __lt__(self, other):
-        return True
+        return self.tagged_hash() < other.tagged_hash()
 
     def __gt__(self, other):
-        return True
+        return self.tagged_hash() > other.tagged_hash()
 
     @staticmethod
     def generate_threshold_csa(k, pubkeys):
@@ -1135,16 +1137,16 @@ class TapTree:
     @staticmethod
     def _constructor(node):
         if isinstance(node, TapLeaf):
-            h = TaggedHash("TapLeaf", bytes([node.version & 0xfe]) + ser_string(node.script))
+            h = node.tagged_hash()
             ctrl = [(node.version, node.script, bytes())]
             return ctrl, h
         if isinstance(node.left, TapLeaf):
-            h_l = TaggedHash("TapLeaf", bytes([node.left.version & 0xfe]) + ser_string(node.left.script))
+            h_l = node.left.tagged_hash()
             ctrl_l = [(node.left.version, node.left.script, bytes())]
         else:
             ctrl_l, h_l  = TapTree._constructor(node.left)
         if isinstance(node.right, TapLeaf):
-            h_r = TaggedHash("TapLeaf", bytes([node.right.version & 0xfe]) + ser_string(node.right.script))
+            h_r = node.right.tagged_hash()
             ctrl_r = [(node.right.version, node.right.script, bytes())]
         else:
             ctrl_r, h_r = TapTree._constructor(node.right)
@@ -1221,12 +1223,14 @@ class Node(object):
         self.left = left
         self.right = right
 
-    # TODO: Not nice, but seems to be necessary for sorting by priority queue.
+    def tagged_hash(self):
+        return TaggedHash("TapBranch", b''.join(sorted([self.left.tagged_hash(),self.right.tagged_hash()])))
+
     def __lt__(self, other):
-        return True
+        return self.tagged_hash() < other.tagged_hash()
 
     def __gt__(self, other):
-        return True
+        return self.tagged_hash() > other.tagged_hash()
 
 # Miniscript Node.
 class node_type:
