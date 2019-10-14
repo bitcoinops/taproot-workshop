@@ -1114,16 +1114,14 @@ class TapTree:
 
     @property
     def desc(self):
-        if self.key.is_valid and self.root!= None:
-            res = 'tp(' +  self.key.get_bytes().hex() + ','
-            res += TapTree._encode_tree(self.root)
-            res += ')'
-            return res
-        else:
-            # TODO: Exception message.
-            raise Exception
+        assert self.key.valid == True, "Valid internal key must be set."
+        res = 'tp(' +  self.key.get_bytes().hex() + ','
+        res += TapTree._encode_tree(self.root)
+        res += ')'
+        return res
 
     def construct(self):
+        assert self.key.valid == True, "Valid internal key must be set."
         ctrl, h = self._constructor(self.root)
         tweak = TaggedHash("TapTweak", self.key.get_bytes() + h)
         control_map = dict((script, GetVersionTaggedPubKey(self.key, version) + control) for version, script, control in ctrl)
