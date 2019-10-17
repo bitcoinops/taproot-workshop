@@ -29,7 +29,7 @@ class TestWrapper:
 
         def set_test_params(self):
             # This can be overriden in setup() parameter.
-            self.num_nodes = 3
+            self.num_nodes = 1
 
         def run_test(self):
             pass
@@ -38,7 +38,7 @@ class TestWrapper:
                   bitcoind=os.path.abspath(SOURCE_DIRECTORY + "/src/bitcoind"),
                   bitcoincli=None,
                   setup_clean_chain=True,
-                  num_nodes=3,
+                  num_nodes=1,
                   network_thread=None,
                   rpc_timeout=60,
                   supports_cli=False,
