@@ -882,6 +882,7 @@ class TapLeaf:
         pk_node = miniscript.pk(key.get_bytes())
         self._set_miniscript(miniscript.c(pk_node))
         self.desc = TapLeaf._desc_serializer('pk',key.get_bytes().hex())
+        return self
 
     def construct_pkolder(self, key, delay): #ECPubKey, int
         pk_node = miniscript.pk(key.get_bytes())
@@ -889,6 +890,7 @@ class TapLeaf:
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, older_node))
         self.desc = TapLeaf._desc_serializer('pkolder', key.get_bytes().hex(), str(delay))
+        return self
 
     def construct_pkhash(self, key, data): #ECPubKey, 20B, int
         pk_node = miniscript.pk(key.get_bytes())
@@ -896,6 +898,7 @@ class TapLeaf:
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, hash_node))
         self.desc = TapLeaf._desc_serializer('pkhash', key.get_bytes().hex(), data.hex())
+        return self
 
     def construct_pkhasholder(self, key, data, delay): #ECPubKey, 20B, int
         pk_node = miniscript.pk(key.get_bytes())
@@ -904,6 +907,7 @@ class TapLeaf:
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, miniscript.and_v(v_hash_node, older_node)))
         self.desc = TapLeaf._desc_serializer('pkhasholder', key.get_bytes().hex(), data.hex(),str(delay))
+        return self
 
     def construct_csa(self, k, pkv):
         keys_data = [key.get_bytes() for key in pkv]
@@ -911,6 +915,7 @@ class TapLeaf:
         self._set_miniscript(thresh_csa_node)
         keys_string = [data.hex() for data in keys_data]
         self.desc = TapLeaf._desc_serializer('csa', str(k), *keys_string)
+        return self
 
     def construct_csaolder(self, k, pkv, delay):
         keys_data = [key.get_bytes() for key in pkv]
@@ -920,6 +925,7 @@ class TapLeaf:
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, older_node))
         keys_string = [data.hex() for data in keys_data]
         self.desc = TapLeaf._desc_serializer('csaolder', str(k), *keys_string, str(delay))
+        return self
 
     def construct_csahash(self, k, pkv, data):
         keys_data = [key.get_bytes() for key in pkv]
@@ -929,6 +935,7 @@ class TapLeaf:
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, hash_node))
         keys_string = [data.hex() for data in keys_data]
         self.desc = TapLeaf._desc_serializer('csahash', str(k), *keys_string, data.hex())
+        return self
 
     def construct_csahasholder(self, k, pkv, data, delay):
         keys_data = [key.get_bytes() for key in pkv]
@@ -940,6 +947,7 @@ class TapLeaf:
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, miniscript.and_v(v_hash_node, older_node)))
         keys_string = [data.hex() for data in keys_data]
         self.desc = TapLeaf._desc_serializer('csahasholder', str(k), *keys_string, data.hex(),str(delay))
+        return self
 
     def _set_miniscript(self, miniscript):
         self.miniscript = miniscript
@@ -1098,6 +1106,7 @@ class TapTree:
             self._decode_tree(desc[70:-1], parent=self.root)
         else:
             raise Exception
+        return self
 
     # Tree construction from list(weight(int), TapScript)
     def huffman_constructor(self, tuple_list):
