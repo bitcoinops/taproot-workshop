@@ -1,7 +1,8 @@
 import argparse
 import configparser
 import os
-import sys
+
+from test_framework.test_framework import BitcoinTestFramework
 
 # Read configuration from config.ini
 config = configparser.ConfigParser()
@@ -13,9 +14,6 @@ SOURCE_DIRECTORY = config["path"]["SOURCE_DIRECTORY"]
 assert not SOURCE_DIRECTORY == '', 'SOURCE_DIRECTORY not configured! Edit config.ini to configure SOURCE_DIRECTORY.'
 
 print("Source directory configured as {}".format(SOURCE_DIRECTORY))
-
-# Import TestFramework
-from test_framework.test_framework import BitcoinTestFramework
 
 class TestWrapper:
     """Singleton TestWrapper class.
@@ -31,33 +29,33 @@ class TestWrapper:
 
         def set_test_params(self):
             # This can be overriden in setup() parameter.
-            self.num_nodes=3
+            self.num_nodes = 3
 
         def run_test(self):
             pass
 
         def setup(self,
-            bitcoind=os.path.abspath(SOURCE_DIRECTORY +  "/src/bitcoind"),
-            bitcoincli=None,
-            setup_clean_chain=True,
-            num_nodes=3,
-            network_thread=None,
-            rpc_timeout=60,
-            supports_cli=False,
-            bind_to_localhost_only=True,
-            nocleanup=False,
-            noshutdown=False,
-            cachedir=os.path.abspath(SOURCE_DIRECTORY + "/test/cache"),
-            tmpdir=None,
-            loglevel='INFO',
-            trace_rpc=False,
-            port_seed=os.getpid(),
-            coveragedir=None,
-            configfile=os.path.abspath(SOURCE_DIRECTORY + "/test/config.ini"),
-            pdbonfailure=False,
-            usecli = False,
-            perf = False,
-            randomseed = None):
+                  bitcoind=os.path.abspath(SOURCE_DIRECTORY + "/src/bitcoind"),
+                  bitcoincli=None,
+                  setup_clean_chain=True,
+                  num_nodes=3,
+                  network_thread=None,
+                  rpc_timeout=60,
+                  supports_cli=False,
+                  bind_to_localhost_only=True,
+                  nocleanup=False,
+                  noshutdown=False,
+                  cachedir=os.path.abspath(SOURCE_DIRECTORY + "/test/cache"),
+                  tmpdir=None,
+                  loglevel='INFO',
+                  trace_rpc=False,
+                  port_seed=os.getpid(),
+                  coveragedir=None,
+                  configfile=os.path.abspath(SOURCE_DIRECTORY + "/test/config.ini"),
+                  pdbonfailure=False,
+                  usecli=False,
+                  perf=False,
+                  randomseed=None):
 
             if self.running:
                 print("TestWrapper is already running!")
