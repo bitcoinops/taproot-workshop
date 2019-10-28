@@ -157,8 +157,9 @@ def generate_and_send_coins(node, address):
     version = node.getnetworkinfo()['subversion']
     print("\nClient version is {}\n".format(version))
 
-    # Generate 101 blocks
-    node.generate(101)
+    # Generate 101 blocks and send reward to bech32 address
+    reward_address = node.getnewaddress(address_type="bech32")
+    node.generatetoaddress(101, reward_address)
     balance = node.getbalance()
     print("Balance: {}\n".format(balance))
 
