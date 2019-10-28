@@ -2,40 +2,41 @@
 <!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 y="0px" width="595.279px" height="330.643px" viewBox="0 0 595.279 330.643" enable-background="new 0 0 595.279 330.643"
 	 xml:space="preserve">
 <g>
 	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
-		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5H590.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
 		L590.28,0z"/>
 </g>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="17.667"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Commitments with Pubkey Tweaks</text>
+	<text transform="matrix(0.9799 0 0 1 32.4216 35.0833)" font-family="'RobotoMono-Bold'" font-size="13">Commitments with Pubkey Tweaks</text>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M566.667,79.698c0,2.101-1.718,3.819-3.819,3.819H313.241c-2.101,0-3.819-1.718-3.819-3.819V59.67
-		c0-2.101,1.719-3.819,3.819-3.819h249.606c2.102,0,3.819,1.718,3.819,3.819V79.698z"/>
+	<path fill="#A1DADE" d="M566.666,79.698c0,2.102-1.718,3.819-3.818,3.819H313.241c-2.102,0-3.819-1.718-3.819-3.819V59.67
+		c0-2.102,1.719-3.819,3.819-3.819h249.605c2.102,0,3.818,1.718,3.818,3.819L566.666,79.698L566.666,79.698z"/>
 </g>
 <g opacity="0.65">
-	<path fill="#A1DADE" d="M290.954,79.698c0,2.101-1.718,3.819-3.819,3.819H37.528c-2.101,0-3.819-1.718-3.819-3.819V59.67
-		c0-2.101,1.718-3.819,3.819-3.819h249.607c2.101,0,3.819,1.718,3.819,3.819V79.698z"/>
+	<path fill="#A1DADE" d="M290.954,79.698c0,2.102-1.719,3.819-3.819,3.819H37.528c-2.101,0-3.818-1.718-3.818-3.819V59.67
+		c0-2.102,1.718-3.819,3.818-3.819h249.607c2.101,0,3.819,1.718,3.819,3.819V79.698z"/>
 </g>
 <g>
 	<rect x="307.479" y="65.019" fill="none" width="260.977" height="26.982"/>
-	<text transform="matrix(0.9799 0 0 1 382.9863 73.2686)" font-family="'RobotoMono-Bold'" font-size="11">Commitment Scheme</text>
+	<text transform="matrix(0.9799 0 0 1 353.76 73.2688)" font-family="'RobotoMono-Bold'" font-size="11">Pay-to-Contract Commitment</text>
 </g>
 <g>
-	<rect x="88.656" y="220.952" fill="none" width="136" height="19.525"/>
-	<text transform="matrix(0.9799 0 0 1 103.1455 231.4521)" font-family="'RobotoMono-Bold'" font-size="14">Q = x’G + c’G</text>
+	<rect x="88.656" y="220.952" fill="none" width="136" height="19.524"/>
+	<text transform="matrix(0.9799 0 0 1 103.1448 231.4514)" font-family="'RobotoMono-Bold'" font-size="14">Q = x’G + c’G</text>
 </g>
 <g>
 	<rect x="387.76" y="263.645" fill="none" width="83.49" height="46"/>
-	<text transform="matrix(0.9799 0 0 1 393.2734 271.5195)"><tspan x="0" y="0" font-family="'RobotoMono-BoldItalic'" font-size="10.5">Cannot solve</tspan><tspan x="21.568" y="12.6" font-family="'RobotoMono-BoldItalic'" font-size="10.5">for x</tspan></text>
+	<text transform="matrix(0.9799 0 0 1 393.2727 271.5188)" font-family="'RobotoMono-BoldItalic'" font-size="10.5">Cannot solve</text>
+	<text transform="matrix(0.9799 0 0 1 414.4065 284.1194)" font-family="'RobotoMono-BoldItalic'" font-size="10.5">for x</text>
 </g>
 <g>
-	<rect x="79.666" y="263.145" fill="none" width="76.99" height="46"/>
-	<text transform="matrix(0.9799 0 0 1 81.9263 271.0195)" font-family="'RobotoMono-Italic'" font-size="10.5">Solve for x’</text>
+	<rect x="79.666" y="263.145" fill="none" width="76.989" height="46"/>
+	<text transform="matrix(0.9799 0 0 1 81.9255 271.0188)" font-family="'RobotoMono-Italic'" font-size="10.5">Solve for x’</text>
 </g>
 <g opacity="0.65">
 	<path fill="#A1DADE" d="M190.037,123.458c0,1.33-1.087,2.417-2.417,2.417h-4.252c-1.33,0-2.417-1.087-2.417-2.417V113.29
@@ -43,11 +44,11 @@
 </g>
 <g>
 	<rect x="88.656" y="112.611" fill="none" width="136" height="19.525"/>
-	<text transform="matrix(0.9799 0 0 1 115.4941 123.1113)" font-family="'RobotoMono-Bold'" font-size="14">Q = P + cG</text>
+	<text transform="matrix(0.9799 0 0 1 115.4934 123.1106)" font-family="'RobotoMono-Bold'" font-size="14">Q = P + cG</text>
 </g>
 <g>
-	<rect x="149.478" y="184.83" fill="none" width="21.711" height="19.525"/>
-	<text transform="matrix(0.9799 0 0 1 152.9829 203.5801)" fill="#F58148" font-family="'RobotoMono-Bold'" font-size="25">x</text>
+	<rect x="149.478" y="184.83" fill="none" width="21.711" height="19.524"/>
+	<text transform="matrix(0.9799 0 0 1 152.9822 203.5793)" fill="#F58148" font-family="'RobotoMono-Bold'" font-size="25">x</text>
 </g>
 <g opacity="0.65">
 	<path fill="#A1DADE" d="M483.723,123.458c0,1.33-1.088,2.417-2.417,2.417h-4.252c-1.329,0-2.417-1.087-2.417-2.417V113.29
@@ -55,19 +56,19 @@
 </g>
 <g>
 	<rect x="369.967" y="112.611" fill="none" width="136" height="19.525"/>
-	<text transform="matrix(0.9799 0 0 1 376.2227 123.1113)" font-family="'RobotoMono-Bold'" font-size="14">Q = P + H(P|c)G</text>
+	<text transform="matrix(0.9799 0 0 1 376.2219 123.1106)" font-family="'RobotoMono-Bold'" font-size="14">Q = P + H(P|c)G</text>
 </g>
 <g>
-	<rect x="343.377" y="220.452" fill="none" width="189.334" height="19.525"/>
-	<text transform="matrix(0.9799 0 0 1 351.6025 230.9521)" font-family="'RobotoMono-Bold'" font-size="14">Q != x’G + H(x’G|c’)G</text>
+	<rect x="343.377" y="220.452" fill="none" width="189.334" height="19.524"/>
+	<text transform="matrix(0.9799 0 0 1 351.6018 230.9514)" font-family="'RobotoMono-Bold'" font-size="14">Q != x’G + H(x’G|c’)G</text>
 </g>
 <g>
 	<path fill="none" stroke="#000000" stroke-width="0.4261" stroke-miterlimit="10" d="M396.046,241.766v7.444
-		c0,1.406,1.15,2.556,2.557,2.556h28.346c1.406,0,2.557,1.15,2.557,2.556v4.694"/>
+		c0,1.406,1.149,2.556,2.557,2.556h28.346c1.406,0,2.558,1.15,2.558,2.556v4.694"/>
 </g>
 <g>
 	<path fill="none" stroke="#000000" stroke-width="0.4261" stroke-miterlimit="10" d="M462.963,241.766v7.444
-		c0,1.406-1.15,2.556-2.557,2.556h-28.345c-1.406,0-2.557,1.15-2.557,2.556v4.694"/>
+		c0,1.406-1.15,2.556-2.558,2.556h-28.345c-1.406,0-2.557,1.15-2.557,2.556v4.694"/>
 </g>
 <g>
 	
@@ -75,7 +76,7 @@
 </g>
 <g>
 	<rect x="171.542" y="263.145" fill="none" width="76.99" height="46"/>
-	<text transform="matrix(0.9799 0 0 1 182.8604 271.0195)" font-family="'RobotoMono-Italic'" font-size="10.5">Modify c’</text>
+	<text transform="matrix(0.9799 0 0 1 182.8596 271.0188)" font-family="'RobotoMono-Italic'" font-size="10.5">Modify c’</text>
 </g>
 <g>
 	
@@ -83,7 +84,7 @@
 </g>
 <g>
 	<rect x="477.18" y="262.645" fill="none" width="76.99" height="46"/>
-	<text transform="matrix(0.9799 0 0 1 488.498 270.5195)" font-family="'RobotoMono-Italic'" font-size="10.5">Modify c’</text>
+	<text transform="matrix(0.9799 0 0 1 488.4973 270.5188)" font-family="'RobotoMono-Italic'" font-size="10.5">Modify c’</text>
 </g>
 <g>
 	
@@ -91,7 +92,7 @@
 </g>
 <g>
 	<rect x="31.844" y="65.019" fill="none" width="260.977" height="35.648"/>
-	<text transform="matrix(0.9799 0 0 1 110.585 73.2686)" font-family="'RobotoMono-Bold'" font-size="11">Public Key Tweak</text>
+	<text transform="matrix(0.9799 0 0 1 110.5842 73.2688)" font-family="'RobotoMono-Bold'" font-size="11">Public Key Tweak</text>
 </g>
 <polyline fill="none" stroke="#76C043" stroke-width="3.0002" stroke-linecap="round" stroke-miterlimit="10" points="
 	430.967,196.038 435.467,202.593 444.968,188.593 "/>
@@ -107,7 +108,7 @@
 	<g>
 		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="438.045" y1="139.137" x2="438.045" y2="170.897"/>
 		<g>
-			<polygon points="438.045,176.333 434.914,168.672 438.045,170.49 441.174,168.672 			"/>
+			<polygon points="438.045,176.333 434.913,168.672 438.045,170.49 441.174,168.672 			"/>
 		</g>
 	</g>
 </g>
