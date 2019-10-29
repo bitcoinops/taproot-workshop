@@ -1097,9 +1097,10 @@ class TapLeaf:
         return tapscripts
 
 class TapTree:
-    def __init__(self):
-        self.root = Tapbranch()
-        self.key = ECPubKey()
+    def __init__(self, *, key=None, root=None):
+        """Taptree constructor. Takes an optional `key` ECPubKey and `root` Tapbranch."""
+        self.key = key if key else ECPubKey()
+        self.root = root if root else Tapbranch()
 
     def from_desc(self, desc):
         desc = ''.join(desc.split())
