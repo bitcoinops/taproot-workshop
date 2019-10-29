@@ -1098,7 +1098,7 @@ class TapLeaf:
 
 class TapTree:
     def __init__(self):
-        self.root = Node()
+        self.root = Tapbranch()
         self.key = ECPubKey()
 
     def from_desc(self, desc):
@@ -1119,8 +1119,7 @@ class TapTree:
             p.put(weight_tapleaf)
         while p.qsize() > 1:
             l, r = p.get(), p.get()
-            node = Node()
-            node.left, node.right = l[1], r[1]
+            node = Tapbranch(l[1], r[1])
             p.put((l[0]+r[0], node))
         self.root = p.get()[1]
 
@@ -1193,13 +1192,13 @@ class TapTree:
             self.root.from_desc(l)
             return
         if (l[0] == '[' and l[-1] == ']'):
-            parent.left = Node()
+            parent.left = Tapbranch()
             self._decode_tree(l, parent=parent.left)
         else:
             parent.left = TapLeaf()
             parent.left.from_desc(l)
         if (r[0] == '[' and r[-1] == ']'):
-            parent.right = Node()
+            parent.right = Tapbranch()
             self._decode_tree(r, parent=parent.right)
         else:
             parent.right = TapLeaf()
@@ -1226,8 +1225,8 @@ class TapTree:
             # Malformed tuple.
             raise Exception
 
-class Node(object):
-    # Internal Taptree Node.
+class Tapbranch():
+    # Internal Taptree branch.
     def __init__(self, left=None, right=None):
         self.left = left
         self.right = right
