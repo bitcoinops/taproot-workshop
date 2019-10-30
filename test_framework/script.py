@@ -617,7 +617,7 @@ def IsPayToScriptHash(script):
 def IsPayToTaproot(script):
     return len(script) == 35 and script[0] == OP_1 and script[1] == 33 and script[2] >= 0 and script[2] <= 1
 
-def TaggedHash(tag, data):
+def tagged_hash(tag, data):
     ss = sha256(tag.encode('utf-8'))
     ss += ss
     ss += data
@@ -765,11 +765,11 @@ def TaprootSignatureHash(txTo, spent_utxos, hash_type, input_index = 0, scriptpa
         assert (input_index < len(txTo.vout))
         ss += sha256(txTo.vout[input_index].serialize())
     if (scriptpath):
-        ss += TaggedHash("TapLeaf", bytes([tapscript_ver]) + ser_string(tapscript))
+        ss += tagged_hash("TapLeaf", bytes([tapscript_ver]) + ser_string(tapscript))
         ss += bytes([0x02])
         ss += struct.pack("<h", codeseparator_pos)
     assert (len(ss) == 177 - bool(hash_type & SIGHASH_ANYONECANPAY) * 50 - ((hash_type & 3) == SIGHASH_NONE) * 32 - (IsPayToScriptHash(spk)) * 12 + (annex is not None) * 32 + scriptpath * 35)
-    return TaggedHash("TapSighash", ss)
+    return tagged_hash("TapSighash", ss)
 
 def GetVersionTaggedPubKey(pubkey, version):
     assert pubkey.is_compressed
@@ -789,7 +789,7 @@ def taproot_tree_helper(scripts):
         if isinstance(script, tuple):
             version, script = script
         assert isinstance(script, bytes)
-        h = TaggedHash("TapLeaf", bytes([version & 0xfe]) + ser_string(script))
+        h = tagged_hash("TapLeaf", bytes([version & 0xfe]) + ser_string(script))
         return ([(version, script, bytes())], h)
     split_pos = len(scripts) // 2
     left, left_h = taproot_tree_helper(scripts[0:split_pos])
@@ -798,7 +798,7 @@ def taproot_tree_helper(scripts):
     right = [(version, script, control + left_h) for version, script, control in right]
     if right_h < left_h:
         right_h, left_h = left_h, right_h
-    h = TaggedHash("TapBranch", left_h + right_h)
+    h = tagged_hash("TapBranch", left_h + right_h)
     return (left + right, h)
 
 def taproot_construct(pubkey, scripts=[]):
@@ -817,7 +817,7 @@ def taproot_construct(pubkey, scripts=[]):
 
     ret, h = taproot_tree_helper(scripts)
     control_map = dict((script, GetVersionTaggedPubKey(pubkey, version) + control) for version, script, control in ret)
-    tweak = TaggedHash("TapTweak", pubkey.get_bytes() + h)
+    tweak = tagged_hash("TapTweak", pubkey.get_bytes() + h)
     tweaked = pubkey.tweak_add(tweak)
     return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER)]), tweak, control_map)
 
@@ -1069,7 +1069,7 @@ class TapLeaf:
         return args
 
     def tagged_hash(self):
-        return TaggedHash("TapLeaf", bytes([self.version & 0xfe]) + ser_string(self.script))
+        return tagged_hash("TapLeaf", bytes([self.version & 0xfe]) + ser_string(self.script))
 
     def __lt__(self, other):
         return self.tagged_hash() < other.tagged_hash()
@@ -1138,7 +1138,7 @@ class TapTree:
     def construct(self):
         assert self.key.valid == True, "Valid internal key must be set."
         ctrl, h = self._constructor(self.root)
-        tweak = TaggedHash("TapTweak", self.key.get_bytes() + h)
+        tweak = tagged_hash("TapTweak", self.key.get_bytes() + h)
         control_map = dict((script, GetVersionTaggedPubKey(self.key, version) + control) for version, script, control in ctrl)
         tweaked = self.key.tweak_add(tweak)
         return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER)]), tweak, control_map)
@@ -1164,7 +1164,7 @@ class TapTree:
         ctrl_r = [(version, script, ctrl + h_l) for version, script, ctrl in ctrl_r]
         if h_r < h_l:
             h_r, h_l = h_l, h_r
-        h = TaggedHash("TapBranch", h_l + h_r)
+        h = tagged_hash("TapBranch", h_l + h_r)
         return (ctrl_l + ctrl_r , h)
 
     @staticmethod
@@ -1233,7 +1233,7 @@ class Tapbranch():
         self.right = right
 
     def tagged_hash(self):
-        return TaggedHash("TapBranch", b''.join(sorted([self.left.tagged_hash(),self.right.tagged_hash()])))
+        return tagged_hash("TapBranch", b''.join(sorted([self.left.tagged_hash(),self.right.tagged_hash()])))
 
     def __lt__(self, other):
         return self.tagged_hash() < other.tagged_hash()
