@@ -898,7 +898,7 @@ class TapLeaf:
 
     def construct_pkhash(self, key, data): #ECPubKey, 20B, int
         pk_node = miniscript.pk(key.get_bytes())
-        hash_node = miniscript.ripemd160(data)
+        hash_node = miniscript.hash160(data)
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, hash_node))
         self.desc = TapLeaf._desc_serializer('pkhash', key.get_bytes().hex(), data.hex())
@@ -907,7 +907,7 @@ class TapLeaf:
     def construct_pkhasholder(self, key, data, delay): #ECPubKey, 20B, int
         pk_node = miniscript.pk(key.get_bytes())
         older_node = miniscript.older(delay)
-        v_hash_node = miniscript.v(miniscript.ripemd160(data))
+        v_hash_node = miniscript.v(miniscript.hash160(data))
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, miniscript.and_v(v_hash_node, older_node)))
         self.desc = TapLeaf._desc_serializer('pkhasholder', key.get_bytes().hex(), data.hex(),str(delay))
@@ -935,7 +935,7 @@ class TapLeaf:
         keys_data = [key.get_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
-        hash_node = miniscript.ripemd160(data)
+        hash_node = miniscript.hash160(data)
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, hash_node))
         keys_string = [data.hex() for data in keys_data]
         self.desc = TapLeaf._desc_serializer('csahash', str(k), *keys_string, data.hex())
@@ -945,7 +945,7 @@ class TapLeaf:
         keys_data = [key.get_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
-        hash_node = miniscript.ripemd160(data)
+        hash_node = miniscript.hash160(data)
         v_hash_node = miniscript.v(hash_node)
         older_node = miniscript.older(delay)
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, miniscript.and_v(v_hash_node, older_node)))
@@ -1274,8 +1274,8 @@ class miniscript:
         tag, exprs = miniscript._parse(string)
 
         # Return terminal expressions:
-        # ['pk','pk_h','older','after','sha256','hash256','ripemd160','hash160','1','0']:
-        if tag in ['pk','pk_h', 'older', 'ripemd160', 'thresh_csa']:
+        # ['pk','pk_h','older','after','sha256','hash256','hash160','hash160','1','0']:
+        if tag in ['pk','pk_h', 'older', 'hash160', 'thresh_csa']:
 
             if tag in ['pk', 'pk_h']:
                 key_b = bytes.fromhex(exprs[0])
@@ -1285,7 +1285,7 @@ class miniscript:
                 n = int(exprs[0])
                 return getattr(miniscript, tag)(n)
 
-            elif tag in ['ripemd160']:
+            elif tag in ['hash160']:
                 digest = bytes.fromhex(exprs[0])
                 return getattr(miniscript, tag)(digest)
 
@@ -1357,9 +1357,9 @@ class miniscript:
         return node_type(script=script, nsat=nsat, sat_xy=sat_xy, sat_z=sat_z,  typ=typ, corr=corr, mal=mal,children=children)
 
     @staticmethod
-    def ripemd160(data):
+    def hash160(data):
         assert(len(data) == 20)
-        script = lambda x: [OP_SIZE, CScriptNum(32), OP_EQUALVERIFY, OP_RIPEMD160, data, OP_EQUAL]
+        script = lambda x: [OP_SIZE, CScriptNum(32), OP_EQUALVERIFY, OP_HASH160, data, OP_EQUAL]
         nsat = lambda x: [b'\x00'*32] # Not non-malleably.
         sat_xy = lambda x: [('preimage', data)]
         sat_z = lambda x: [False]
