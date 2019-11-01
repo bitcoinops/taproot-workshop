@@ -366,9 +366,10 @@ class CScriptWitness:
 class CTxInWitness:
     __slots__ = ("scriptWitness",)
 
-    def __init__(self, witness_stack):
+    def __init__(self, witness_stack=None):
         self.scriptWitness = CScriptWitness()
-        self.scriptWitness.stack = witness_stack
+        if witness_stack:
+            self.scriptWitness.stack = witness_stack
 
     def deserialize(self, f):
         self.scriptWitness.stack = deser_string_vector(f)
