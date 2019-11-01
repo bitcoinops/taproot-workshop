@@ -888,29 +888,29 @@ class TapLeaf:
         self.desc = TapLeaf._desc_serializer('pk',key.get_bytes().hex())
         return self
 
-    def construct_pkolder(self, key, delay): #ECPubKey, int
+    def construct_pk_delay(self, key, delay): #ECPubKey, int
         pk_node = miniscript.pk(key.get_bytes())
         older_node = miniscript.older(delay)
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, older_node))
-        self.desc = TapLeaf._desc_serializer('pkolder', key.get_bytes().hex(), str(delay))
+        self.desc = TapLeaf._desc_serializer('pk_delay', key.get_bytes().hex(), str(delay))
         return self
 
-    def construct_pkhash(self, key, data): #ECPubKey, 20B, int
+    def construct_pk_hashlock(self, key, data): #ECPubKey, 20B, int
         pk_node = miniscript.pk(key.get_bytes())
         hash_node = miniscript.hash160(data)
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, hash_node))
-        self.desc = TapLeaf._desc_serializer('pkhash', key.get_bytes().hex(), data.hex())
+        self.desc = TapLeaf._desc_serializer('pk_hashlock', key.get_bytes().hex(), data.hex())
         return self
 
-    def construct_pkhasholder(self, key, data, delay): #ECPubKey, 20B, int
+    def construct_pk_hashlock_delay(self, key, data, delay): #ECPubKey, 20B, int
         pk_node = miniscript.pk(key.get_bytes())
         older_node = miniscript.older(delay)
         v_hash_node = miniscript.v(miniscript.hash160(data))
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, miniscript.and_v(v_hash_node, older_node)))
-        self.desc = TapLeaf._desc_serializer('pkhasholder', key.get_bytes().hex(), data.hex(),str(delay))
+        self.desc = TapLeaf._desc_serializer('pk_hashlock_delay', key.get_bytes().hex(), data.hex(),str(delay))
         return self
 
     def construct_csa(self, k, pkv):
@@ -921,27 +921,27 @@ class TapLeaf:
         self.desc = TapLeaf._desc_serializer('csa', str(k), *keys_string)
         return self
 
-    def construct_csaolder(self, k, pkv, delay):
+    def construct_csa_delay(self, k, pkv, delay):
         keys_data = [key.get_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
         older_node = miniscript.older(delay)
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, older_node))
         keys_string = [data.hex() for data in keys_data]
-        self.desc = TapLeaf._desc_serializer('csaolder', str(k), *keys_string, str(delay))
+        self.desc = TapLeaf._desc_serializer('csa_delay', str(k), *keys_string, str(delay))
         return self
 
-    def construct_csahash(self, k, pkv, data):
+    def construct_csa_hashlock(self, k, pkv, data):
         keys_data = [key.get_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
         hash_node = miniscript.hash160(data)
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, hash_node))
         keys_string = [data.hex() for data in keys_data]
-        self.desc = TapLeaf._desc_serializer('csahash', str(k), *keys_string, data.hex())
+        self.desc = TapLeaf._desc_serializer('csa_hashlock', str(k), *keys_string, data.hex())
         return self
 
-    def construct_csahasholder(self, k, pkv, data, delay):
+    def construct_csa_hashlock_delay(self, k, pkv, data, delay):
         keys_data = [key.get_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
@@ -950,7 +950,7 @@ class TapLeaf:
         older_node = miniscript.older(delay)
         self._set_miniscript(miniscript.and_v(v_thresh_csa_node, miniscript.and_v(v_hash_node, older_node)))
         keys_string = [data.hex() for data in keys_data]
-        self.desc = TapLeaf._desc_serializer('csahasholder', str(k), *keys_string, data.hex(),str(delay))
+        self.desc = TapLeaf._desc_serializer('csa_hashlock_delay', str(k), *keys_string, data.hex(),str(delay))
         return self
 
     def _set_miniscript(self, miniscript):
@@ -978,28 +978,28 @@ class TapLeaf:
             pk.set(bytes.fromhex(args[0]))
             self.construct_pk(pk)
 
-        elif tss[:8] == 'pkolder(':
-            expr_s = ParseDesc(tss, 'pkolder' ,'(' ,')')
+        elif tss[:8] == 'pk_delay(':
+            expr_s = ParseDesc(tss, 'pk_delay' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
             pk.set(bytes.fromhex(args[0]))
-            self.construct_pkolder(pk, int(args[1]))
+            self.construct_pk_delay(pk, int(args[1]))
 
-        elif tss[:7] == 'pkhash(':
-            expr_s = ParseDesc(tss, 'pkhash' ,'(' ,')')
+        elif tss[:7] == 'pk_hashlock(':
+            expr_s = ParseDesc(tss, 'pk_hashlock' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
             pk.set(bytes.fromhex(args[0]))
             data = bytes.fromhex(args[1])
-            self.construct_pkhash(pk, data)
+            self.construct_pk_hashlock(pk, data)
 
-        elif tss[:12] == 'pkhasholder(':
-            expr_s = ParseDesc(tss, 'pkhasholder' ,'(' ,')')
+        elif tss[:12] == 'pk_hashlock_delay(':
+            expr_s = ParseDesc(tss, 'pk_hashlock_delay' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
             pk.set(bytes.fromhex(args[0]))
             data = bytes.fromhex(args[1])
-            self.construct_pkhasholder(pk, data, int(args[2]))
+            self.construct_pk_hashlock_delay(pk, data, int(args[2]))
 
         elif tss[:4] == 'csa(':
             expr_s = ParseDesc(tss, 'csa' ,'(' ,')')
@@ -1012,8 +1012,8 @@ class TapLeaf:
                 pkv.append(pk)
             self.construct_csa(k, pkv)
 
-        elif tss[:9] == 'csaolder(':
-            expr_s = ParseDesc(tss, 'csaolder' ,'(' ,')')
+        elif tss[:9] == 'csa_delay(':
+            expr_s = ParseDesc(tss, 'csa_delay' ,'(' ,')')
             args = self._param_parser(expr_s)
             k = int(args[0])
             pkv = []
@@ -1022,10 +1022,10 @@ class TapLeaf:
                 pk.set(bytes.fromhex(key_string))
                 pkv.append(pk)
             delay = int(args[-1])
-            self.construct_csaolder(k, pkv, delay)
+            self.construct_csa_delay(k, pkv, delay)
 
-        elif tss[:8] == 'csahash(':
-            expr_s = ParseDesc(tss, 'csahash' ,'(' ,')')
+        elif tss[:8] == 'csa_hashlock(':
+            expr_s = ParseDesc(tss, 'csa_hashlock' ,'(' ,')')
             args = self._param_parser(expr_s)
             k = int(args[0])
             pkv = []
@@ -1034,10 +1034,10 @@ class TapLeaf:
                 pk.set(bytes.fromhex(key_string))
                 pkv.append(pk)
             data = bytes.fromhex(args[-1])
-            self.construct_csahash(k, pkv, data)
+            self.construct_csa_hashlock(k, pkv, data)
 
-        elif tss[:13] == 'csahasholder(':
-            expr_s = ParseDesc(tss, 'csahasholder' ,'(' ,')')
+        elif tss[:13] == 'csa_hashlock_delay(':
+            expr_s = ParseDesc(tss, 'csa_hashlock_delay' ,'(' ,')')
             args = self._param_parser(expr_s)
             k = int(args[0])
             pkv = []
@@ -1047,7 +1047,7 @@ class TapLeaf:
                 pkv.append(pk)
             data = bytes.fromhex(args[-2])
             delay = int(args[-1])
-            self.construct_csahasholder(k, pkv, data, delay)
+            self.construct_csa_hashlock_delay(k, pkv, data, delay)
 
         elif tss[:4] =='raw(':
             self.script = CScript(binascii.unhexlify(tss[4:-1]))
