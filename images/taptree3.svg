@@ -27,7 +27,7 @@
 <circle fill="#FFFFFF" stroke="#000000" stroke-width="1.2624" stroke-miterlimit="10" cx="324.751" cy="90.707" r="5.128"/>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="35.333"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leafs.</text>
+	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leaves.</text>
 </g>
 <g>
 	<rect x="129.335" y="289" fill="none" width="106.51" height="17.667"/>

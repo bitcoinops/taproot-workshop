@@ -65,7 +65,7 @@
 	<text transform="matrix(0.9799 0 0 1 -155.0083 0.9414)" display="inline"><tspan x="0" y="0" font-family="'HelveticaNeue-Medium'" font-size="12" letter-spacing="-1.021">T</tspan><tspan x="5.916" y="0" font-family="'HelveticaNeue-Medium'" font-size="12">ap</tspan><tspan x="19.92" y="0" font-family="'HelveticaNeue-Medium'" font-size="12">r</tspan><tspan x="23.928" y="0" font-family="'HelveticaNeue-Medium'" font-size="12">oot</tspan></text>
 	<g display="inline">
 		<rect x="56.717" y="268.581" fill="none" width="88.919" height="47.434"/>
-		<text transform="matrix(0.9799 0 0 1 70.1177 277.5806)" font-family="'RobotoMono-LightItalic'" font-size="12">Tap Leafs</text>
+		<text transform="matrix(0.9799 0 0 1 70.1177 277.5806)" font-family="'RobotoMono-LightItalic'" font-size="12">Tap Leaves</text>
 	</g>
 	
 		<rect x="-85.499" y="55.389" display="inline" fill="none" stroke="#000000" stroke-width="1.5413" stroke-miterlimit="10" width="65.332" height="48.645"/>
@@ -4122,7 +4122,7 @@ Q/MBgLT/F2AATNsG49IskogAAAAASUVORK5CYII=" transform="matrix(0.6867 0 0 0.6867 -3
 		<circle display="inline" fill="#FFFFFF" stroke="#000000" stroke-width="1.2624" stroke-miterlimit="10" cx="352.658" cy="72.707" r="5.128"/>
 	<g display="inline">
 		<rect x="32.422" y="25.333" fill="none" width="416.578" height="35.333"/>
-		<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leafs.</text>
+		<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leaves.</text>
 	</g>
 	<g display="inline">
 		<rect x="73.721" y="291.643" fill="none" width="396.332" height="48"/>
@@ -4174,7 +4174,7 @@ Q/MBgLT/F2AATNsG49IskogAAAAASUVORK5CYII=" transform="matrix(0.6867 0 0 0.6867 -3
 		<circle display="inline" fill="#FFFFFF" stroke="#000000" stroke-width="1.2624" stroke-miterlimit="10" cx="324.751" cy="90.707" r="5.128"/>
 	<g display="inline">
 		<rect x="32.422" y="25.333" fill="none" width="416.578" height="35.333"/>
-		<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leafs.</text>
+		<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leaves.</text>
 	</g>
 	<g display="inline">
 		<rect x="129.335" y="289" fill="none" width="106.51" height="17.667"/>
