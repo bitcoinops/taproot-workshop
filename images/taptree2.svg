@@ -39,7 +39,7 @@
 <circle fill="#FFFFFF" stroke="#000000" stroke-width="1.2624" stroke-miterlimit="10" cx="352.658" cy="72.707" r="5.128"/>
 <g>
 	<rect x="32.422" y="25.333" fill="none" width="416.578" height="35.333"/>
-	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leafs.</text>
+	<text transform="matrix(0.9799 0 0 1 32.4224 35.0835)" font-family="'RobotoMono-Bold'" font-size="13">Example: A simple taptree with 3 leaves.</text>
 </g>
 <g>
 	<rect x="73.721" y="291.643" fill="none" width="396.332" height="48"/>
