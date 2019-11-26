@@ -54,8 +54,12 @@ def sign_musig(priv_key, k_key, R_musig, P_musig, msg):
     assert len(msg) == 32
     assert k_key is not None and k_key.secret != 0
     assert jacobi_symbol(R_musig.get_y(), SECP256K1_FIELD_SIZE) == 1
-    e = int.from_bytes(hashlib.sha256(R_musig.get_x().to_bytes(32, 'big') + P_musig.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
+    e = musig_digest(R_musig, P_musig, msg)
     return (k_key.secret + e * priv_key.secret) % SECP256K1_ORDER
+
+def musig_digest(R_musig, P_musig, msg):
+    """Get the digest to sign for musig"""
+    return int.from_bytes(hashlib.sha256(R_musig.get_x().to_bytes(32, 'big') + P_musig.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
 
 def aggregate_musig_signatures(s_list, R_musig):
     """Construct valid Schnorr signature from a list of partial MuSig signatures."""
