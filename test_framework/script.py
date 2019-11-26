@@ -852,35 +852,11 @@ def ParseDesc(desc, tag, op, cl):
         raise Exception
 
 class TapLeaf:
-    def __init__(self, script=CScript(), version=DEFAULT_TAPSCRIPT_VER):
+    def __init__(self, version=DEFAULT_TAPSCRIPT_VER):
         self.version = version
-        self.script = script
+        self.script = None
         self.miniscript = None
         self.sat = None
-        self.keys = None # TODO: Remove.
-
-    def from_keys(self, keys):
-        if len(keys) == 1:
-            if keys[0].is_valid:
-                self.construct_pk(keys[0])
-            else:
-                raise Exception
-        elif len(keys) > 1:
-            self.construct_csa(len(keys), keys)
-        else:
-            raise Exception
-
-    # TODO: use raw constructor here.
-    def from_script(self, script):
-        if IsPayToPubkey(script):
-            self.keys = [script[1:34]]
-        elif IsCheckSigAdd(script):
-            self.keys = []
-            for op in script:
-                if isinstance(op, bytes):
-                    self.keys.append(ECPubKey())
-                    self.keys[-1].set(op)
-        self.script = script
 
     def construct_pk(self, key): #ECPubKey
         pk_node = miniscript.pk(key.get_bytes())
@@ -967,7 +943,6 @@ class TapLeaf:
         return desc
 
     def from_desc(self,string):
-
         string = ''.join(string.split())
         tss = ParseDesc(string, 'ts', '(',')')
 
