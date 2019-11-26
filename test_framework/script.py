@@ -852,11 +852,13 @@ def ParseDesc(desc, tag, op, cl):
         raise Exception
 
 class TapLeaf:
-    def __init__(self, version=DEFAULT_TAPSCRIPT_VER):
+    def __init__(self, desc=None, version=DEFAULT_TAPSCRIPT_VER):
         self.version = version
         self.script = None
         self.miniscript = None
         self.sat = None
+        if desc:
+            self.from_desc(desc)
 
     def construct_pk(self, key): #ECPubKey
         pk_node = miniscript.pk(key.get_bytes())
