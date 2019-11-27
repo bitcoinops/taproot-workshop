@@ -1,6 +1,6 @@
 # taproot-workshop
 
-This repo contains the jupyter notebooks for Optech's [Schnorr/Taproot
+This repo contains the Jupyter notebooks for Optech's [Schnorr/Taproot
 workshops](https://bitcoinops.org/workshops/#taproot-workshop).
 
 ## Introduction
@@ -54,8 +54,38 @@ through the exercises in this repository.
 - **[Support for Output Descriptors in Bitcoin Core](https://github.com/bitcoin/bitcoin/blob/master/doc/descriptors.md)**:
   Since Bitcoin Core v0.17, there is support for output descriptors. This is a simple language which can be used to describe collections of output scripts.
 
+## Running the notebooks
 
-## Requirements
+The notebooks can either be run in the cloud or in a local Jupyter environment.
+
+### Google Colab cloud
+
+Google Colab is a Jupyter notebook environment that requires no setup, is free to use and runs entirely in the Google cloud.
+Running the Optech Schnorr/Taproot workshop in Google Colab requires you to login with your Google account.
+The Colab environment disconnects your runtime after 30 minutes of inactivity and has a maximum session length of 12 hours.
+Don't forget to save your progress.
+You can have multiple runtimes and notebooks open at the same time.
+
+
+The following notebooks are located in the [Colab](https://github.com/bitcoinops/taproot-workshop/tree/Colab) branch of this repository and are modified to run on Google Colab.
+
+- [`0.1-test-notebook.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/0.1-test-notebook.ipynb)
+- [`0.2-elliptic-curve-math.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/0.2-elliptic-curve-math.ipynb)
+- [`0.3-tagged-hashes.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/0.3-tagged-hashes.ipynb)
+- [`1.1-schnorr-signatures.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/1.1-schnorr-signatures.ipynb)
+- [`1.2-musig.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/1.2-musig.ipynb)
+- [`2.0-taproot-introduction.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/2.0-taproot-introduction.ipynb)
+- [`2.1-segwit-version-1.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/2.1-segwit-version-1.ipynb)
+- [`2.2-taptweak.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/2.2-taptweak.ipynb)
+- [`2.3-tapscript.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/2.3-tapscript.ipynb)
+- [`2.4-taptree.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/2.4-taptree.ipynb)
+- [`2.5-huffman.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/2.5-huffman.ipynb)
+- [`3.1-degrading-multisig-case-study.ipynb` on Colab](https://colab.research.google.com/github/bitcoinops/taproot-workshop/blob/Colab/3.1-degrading-multisig-case-study.ipynb)
+
+### Local setup
+
+The Optech Schnorr/Taproot workshop can be setup and run locally.
+This section lists the necessary steps and requirements.
 
 #### Clone this (bitcoinops/taproot-workshop) repository
 
@@ -67,7 +97,7 @@ $ git clone https://github.com/bitcoinops/taproot-workshop
 
 These workbooks require a `bitcoind` built from the [Optech Taproot
 V0.1.4 branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.4) which
-supports schnorr and taproot. 
+supports schnorr and taproot.
 
 ![workshop_repositories](images/repositories.jpg)
 
@@ -99,7 +129,7 @@ documentation on building bitcoind on
 [macOS](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md), or
 [Windows](https://github.com/bitcoin/bitcoin/blob/master/doc/build-windows.md).
 
-No need to run `bitcoind` or download the mainchain or testnet blockchain. We will 
+No need to run `bitcoind` or download the mainchain or testnet blockchain. We will
 run in regtest mode and spawn node instances via scripts.
 
 #### Python 3
@@ -179,7 +209,7 @@ provided by jupyter notebook server in the terminal.
 
 After you have run the 0.1 example exercises, please also run through the
 0.2-elliptic-curve-math.ipynb and 0.3-tagged-hashes.ipynb notebooks and
-exercises before the workshop. 
+exercises before the workshop.
 
 Notebooks 1.x, 2.x, etc will be covered during the workshop. There is no need to
 run through those beforehand.
