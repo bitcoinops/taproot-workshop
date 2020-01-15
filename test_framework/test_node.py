@@ -135,25 +135,6 @@ class TestNode():
         assert len(self.PRIV_KEYS) == MAX_NODES
         return self.PRIV_KEYS[self.index]
 
-    def get_mem_rss_kilobytes(self):
-        """Get the memory usage (RSS) per `ps`.
-
-        Returns None if `ps` is unavailable.
-        """
-        assert self.running
-
-        try:
-            return int(subprocess.check_output(
-                ["ps", "h", "-o", "rss", "{}".format(self.process.pid)],
-                stderr=subprocess.DEVNULL).split()[-1])
-
-        # Avoid failing on platforms where ps isn't installed.
-        #
-        # We could later use something like `psutils` to work across platforms.
-        except (FileNotFoundError, subprocess.SubprocessError):
-            self.log.exception("Unable to get memory usage")
-            return None
-
     def _node_msg(self, msg: str) -> str:
         """Return a modified msg that identifies this node by its index as a debugging aid."""
         return "[node %d] %s" % (self.index, msg)
@@ -313,51 +294,24 @@ class TestNode():
         with open(debug_log, encoding='utf-8') as dl:
             dl.seek(0, 2)
             prev_size = dl.tell()
-        try:
-            yield
-        finally:
-            while True:
-                found = True
-                with open(debug_log, encoding='utf-8') as dl:
-                    dl.seek(prev_size)
-                    log = dl.read()
-                print_log = " - " + "\n - ".join(log.splitlines())
-                for expected_msg in expected_msgs:
-                    if re.search(re.escape(expected_msg), log, flags=re.MULTILINE) is None:
-                        found = False
-                if found:
-                    return
-                if time.time() >= time_end:
-                    break
-                time.sleep(0.05)
-            self._raise_assertion_error('Expected messages "{}" does not partially match log:\n\n{}\n\n'.format(str(expected_msgs), print_log))
-
-    @contextlib.contextmanager
-    def assert_memory_usage_stable(self, *, increase_allowed=0.03):
-        """Context manager that allows the user to assert that a node's memory usage (RSS)
-        hasn't increased beyond some threshold percentage.
-
-        Args:
-            increase_allowed (float): the fractional increase in memory allowed until failure;
-                e.g. `0.12` for up to 12% increase allowed.
-        """
-        before_memory_usage = self.get_mem_rss_kilobytes()
 
         yield
 
-        after_memory_usage = self.get_mem_rss_kilobytes()
-
-        if not (before_memory_usage and after_memory_usage):
-            self.log.warning("Unable to detect memory usage (RSS) - skipping memory check.")
-            return
-
-        perc_increase_memory_usage = (after_memory_usage / before_memory_usage) - 1
-
-        if perc_increase_memory_usage > increase_allowed:
-            self._raise_assertion_error(
-                "Memory usage increased over threshold of {:.3f}% from {} to {} ({:.3f}%)".format(
-                    increase_allowed * 100, before_memory_usage, after_memory_usage,
-                    perc_increase_memory_usage * 100))
+        while True:
+            found = True
+            with open(debug_log, encoding='utf-8') as dl:
+                dl.seek(prev_size)
+                log = dl.read()
+            print_log = " - " + "\n - ".join(log.splitlines())
+            for expected_msg in expected_msgs:
+                if re.search(re.escape(expected_msg), log, flags=re.MULTILINE) is None:
+                    found = False
+            if found:
+                return
+            if time.time() >= time_end:
+                break
+            time.sleep(0.05)
+        self._raise_assertion_error('Expected messages "{}" does not partially match log:\n\n{}\n\n'.format(str(expected_msgs), print_log))
 
     @contextlib.contextmanager
     def profile_with_perf(self, profile_name):
@@ -489,7 +443,7 @@ class TestNode():
         if 'dstaddr' not in kwargs:
             kwargs['dstaddr'] = '127.0.0.1'
 
-        p2p_conn.peer_connect(**kwargs)()
+        p2p_conn.peer_connect(**kwargs, net=self.chain)()
         self.p2ps.append(p2p_conn)
         if wait_for_verack:
             p2p_conn.wait_for_verack()

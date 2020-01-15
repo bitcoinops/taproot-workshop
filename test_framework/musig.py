@@ -10,6 +10,7 @@ anything but tests.
 See https://eprint.iacr.org/2018/068.pdf for the MuSig signature scheme implemented here.
 """
 
+from functools import reduce
 import hashlib
 
 from .key import (
@@ -17,6 +18,7 @@ from .key import (
     SECP256K1_FIELD_SIZE,
     SECP256K1_ORDER,
     jacobi_symbol,
+    TaggedHash,
 )
 
 def generate_musig_key(pubkey_list):
@@ -53,16 +55,19 @@ def sign_musig(priv_key, k_key, R_musig, P_musig, msg):
     assert P_musig.compressed
     assert len(msg) == 32
     assert k_key is not None and k_key.secret != 0
-    assert jacobi_symbol(R_musig.get_y(), SECP256K1_FIELD_SIZE) == 1
+    assert R_musig.is_positive
+    if not P_musig.is_positive:
+        priv_key.negate()
     e = musig_digest(R_musig, P_musig, msg)
     return (k_key.secret + e * priv_key.secret) % SECP256K1_ORDER
 
 def musig_digest(R_musig, P_musig, msg):
     """Get the digest to sign for musig"""
-    return int.from_bytes(hashlib.sha256(R_musig.get_x().to_bytes(32, 'big') + P_musig.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
+    return int.from_bytes(tagged_hash("BIPSchnorr", R_musig.get_xonly_bytes() + P_musig.get_xonly_bytes() + msg), 'big') % SECP256K1_ORDER
+
 
 def aggregate_musig_signatures(s_list, R_musig):
     """Construct valid Schnorr signature from a list of partial MuSig signatures."""
     assert s_list is not None and all(isinstance(s, int) for s in s_list)
     s_agg = sum(s_list) % SECP256K1_ORDER
-    return R_musig.get_x().to_bytes(32, 'big') + s_agg.to_bytes(32, 'big')
+    return R_musig.get_xonly_bytes() + s_agg.to_bytes(32, 'big')

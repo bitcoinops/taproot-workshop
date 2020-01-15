@@ -25,13 +25,15 @@ from .util import (
     PortSeed,
     assert_equal,
     check_json_precision,
-    connect_nodes_bi,
+    connect_nodes,
     disconnect_nodes,
     get_datadir_path,
     initialize_datadir,
     sync_blocks,
     sync_mempools,
 )
+
+OPTECH_TAG = "https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.5"
 
 class TestStatus(Enum):
     PASSED = 1
@@ -98,21 +100,37 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.supports_cli = False
         self.bind_to_localhost_only = True
         self.set_test_params()
-
-        assert hasattr(self, "num_nodes"), "Test must set self.num_nodes in set_test_params()"
+        self.parse_args()
 
     def main(self):
         """Main function. This should not be overridden by the subclass test scripts."""
 
-        self.parse_args()
+        assert hasattr(self, "num_nodes"), "Test must set self.num_nodes in set_test_params()"
 
         try:
-            e = None
             self.setup()
             self.run_test()
-        except BaseException as exception:
-            e = exception
-        self.shutdown(e = e, exit = True)
+        except JSONRPCException:
+            self.log.exception("JSONRPC error")
+            self.success = TestStatus.FAILED
+        except SkipTest as e:
+            self.log.warning("Test Skipped: %s" % e.message)
+            self.success = TestStatus.SKIPPED
+        except AssertionError:
+            self.log.exception("Assertion failed")
+            self.success = TestStatus.FAILED
+        except KeyError:
+            self.log.exception("Key error")
+            self.success = TestStatus.FAILED
+        except Exception:
+            self.log.exception("Unexpected exception caught during testing")
+            self.success = TestStatus.FAILED
+        except KeyboardInterrupt:
+            self.log.warning("Exiting after keyboard interrupt")
+            self.success = TestStatus.FAILED
+        finally:
+            exit_code = self.shutdown()
+            sys.exit(exit_code)
 
     def parse_args(self):
         parser = argparse.ArgumentParser(usage="%(prog)s [options]")
@@ -145,9 +163,8 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.add_options(parser)
         self.options = parser.parse_args()
 
-    # Methods to encapsulate setup and shutdown of test.
     def setup(self):
-        """Call this method to startup the test object with options already set."""
+        """Call this method to start up the test framework object with options set."""
 
         PortSeed.n = self.options.port_seed
 
@@ -195,8 +212,6 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.network_thread = NetworkThread()
         self.network_thread.start()
 
-        self.success = TestStatus.FAILED
-
         if self.options.usecli:
             if not self.supports_cli:
                 raise SkipTest("--usecli specified but test does not support using CLI")
@@ -205,13 +220,10 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.setup_chain()
         self.setup_network()
 
-    def shutdown(self, e=None, exit=False):
-        """Call this method to shutdown the test object and optionally handle an exception."""
+        self.success = TestStatus.PASSED
 
-        if e != None:
-            self.handle_exception(e)
-        else:
-            self.success = TestStatus.PASSED
+    def shutdown(self):
+        """Call this method to shut down the test framework object."""
 
         if self.success == TestStatus.FAILED and self.options.pdbonfailure:
             print("Testcase failed. Attaching python debugger. Enter ? for help")
@@ -254,29 +266,23 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
             self.log.error("Test failed. Test logging available at %s/test_framework.log", self.options.tmpdir)
             self.log.error("Hint: Call {} '{}' to consolidate all logs".format(os.path.normpath(os.path.dirname(os.path.realpath(__file__)) + "/../combine_logs.py"), self.options.tmpdir))
             exit_code = TEST_EXIT_FAILED
-        logging.shutdown()
+        # Logging.shutdown will not remove stream- and filehandlers, so we must
+        # do it explicitly. Handlers are removed so the next test run can apply
+        # different log handler settings.
+        # See: https://docs.python.org/3/library/logging.html#logging.shutdown
+        for h in list(self.log.handlers):
+            h.flush()
+            h.close()
+            self.log.removeHandler(h)
+        rpc_logger = logging.getLogger("BitcoinRPC")
+        for h in list(rpc_logger.handlers):
+            h.flush()
+            rpc_logger.removeHandler(h)
         if cleanup_tree_on_exit:
             shutil.rmtree(self.options.tmpdir)
 
         self.nodes.clear()
-
-        if exit:
-            sys.exit(exit_code)
-
-    def handle_exception(self, e):
-        if isinstance(e, JSONRPCException):
-            self.log.exception("JSONRPC error")
-        elif isinstance(e, SkipTest):
-            self.log.warning("Test Skipped: %s" % e.message)
-            self.success = TestStatus.SKIPPED
-        elif isinstance(e, AssertionError):
-            self.log.exception("Assertion failed")
-        elif isinstance(e, KeyError):
-            self.log.exception("Key error")
-        elif isinstance(e, Exception):
-            self.log.exception("Unexpected exception caught during testing")
-        elif isinstance(e, KeyboardInterrupt):
-            self.log.warning("Exiting after keyboard interrupt")
+        return exit_code
 
     # Methods to override in subclass test scripts.
     def set_test_params(self):
@@ -306,8 +312,18 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         # Connect the nodes as a "chain".  This allows us
         # to split the network between nodes 1 and 2 to get
         # two halves that can work on competing chains.
+        #
+        # Topology looks like this:
+        # node0 <-- node1 <-- node2 <-- node3
+        #
+        # If all nodes are in IBD (clean chain from genesis), node0 is assumed to be the source of blocks (miner). To
+        # ensure block propagation, all nodes will establish outgoing connections toward node0.
+        # See fPreferredDownload in net_processing.
+        #
+        # If further outbound connections are needed, they can be added at the beginning of the test with e.g.
+        # connect_nodes(self.nodes[1], 2)
         for i in range(self.num_nodes - 1):
-            connect_nodes_bi(self.nodes, i, i + 1)
+            connect_nodes(self.nodes[i + 1], i)
         self.sync_all()
 
     def setup_nodes(self):
@@ -448,7 +464,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         """
         Join the (previously split) network halves together.
         """
-        connect_nodes_bi(self.nodes, 1, 2)
+        connect_nodes(self.nodes[1], 2)
         self.sync_all()
 
     def sync_blocks(self, nodes=None, **kwargs):
@@ -465,7 +481,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
 
     def _start_logging(self):
         # Add logger and logging handlers
-        self.log = logging.getLogger('TestFramework.'+ self.options.tmpdir) # Assign new logger name to prevent temp path reuse.
+        self.log = logging.getLogger('TestFramework')
         self.log.setLevel(logging.DEBUG)
         # Create file handler to log all messages
         fh = logging.FileHandler(self.options.tmpdir + '/test_framework.log', encoding='utf-8')

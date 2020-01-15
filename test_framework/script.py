@@ -8,7 +8,7 @@ This file is modified from python-bitcoinlib.
 """
 
 from .messages import CTransaction, CTxOut, sha256, hash256, uint256_from_str, ser_uint256, ser_string, CTxInWitness
-from .key import ECKey, ECPubKey
+from .key import ECKey, ECPubKey, TaggedHash
 
 import binascii
 import hashlib
@@ -615,16 +615,7 @@ def IsPayToScriptHash(script):
     return len(script) == 23 and script[0] == OP_HASH160 and script[1] == 20 and script[22] == OP_EQUAL
 
 def IsPayToTaproot(script):
-    return len(script) == 35 and script[0] == OP_1 and script[1] == 33 and script[2] >= 0 and script[2] <= 1
-
-def tagged_hash(tag, data):
-    ss = sha256(tag.encode('utf-8'))
-    ss += ss
-    ss += data
-    return sha256(ss)
-
-def GetP2SH(script):
-    return CScript([OP_HASH160, hash160(script), OP_EQUAL])
+    return len(script) == 34 and script[0] == OP_1 and script[1] == 32
 
 def LegacySignatureHash(script, txTo, inIdx, hashtype):
     """Consensus-correct SignatureHash
@@ -740,17 +731,14 @@ def TaprootSignatureHash(txTo, spent_utxos, hash_type, input_index = 0, scriptpa
     if (hash_type & 3) != SIGHASH_SINGLE and (hash_type & 3) != SIGHASH_NONE:
         ss += sha256(b"".join(o.serialize() for o in txTo.vout))
     spend_type = 0
-    if IsPayToScriptHash(spk):
-        spend_type = 1
-    else:
-        assert(IsPayToTaproot(spk))
+    assert(IsPayToTaproot(spk))
     if annex is not None:
         assert (annex[0] == ANNEX_TAG)
-        spend_type |= 2
+        spend_type |= 1
     if (scriptpath):
         assert (len(tapscript) > 0)
         assert (codeseparator_pos >= -1)
-        spend_type |= 4
+        spend_type |= 2
     ss += bytes([spend_type])
     ss += ser_string(spk)
     if (hash_type & SIGHASH_ANYONECANPAY):
@@ -758,27 +746,18 @@ def TaprootSignatureHash(txTo, spent_utxos, hash_type, input_index = 0, scriptpa
         ss += struct.pack("<q", spent_utxos[input_index].nValue)
         ss += struct.pack("<I", txTo.vin[input_index].nSequence)
     else:
-        ss += struct.pack("<H", input_index)
-    if (spend_type & 2):
+        ss += struct.pack("<I", input_index)
+    if (spend_type & 1):
         ss += sha256(ser_string(annex))
     if (hash_type & 3 == SIGHASH_SINGLE):
         assert (input_index < len(txTo.vout))
         ss += sha256(txTo.vout[input_index].serialize())
     if (scriptpath):
         ss += tagged_hash("TapLeaf", bytes([tapscript_ver]) + ser_string(tapscript))
-        ss += bytes([0x02])
-        ss += struct.pack("<h", codeseparator_pos)
-    assert (len(ss) == 177 - bool(hash_type & SIGHASH_ANYONECANPAY) * 50 - ((hash_type & 3) == SIGHASH_NONE) * 32 - (IsPayToScriptHash(spk)) * 12 + (annex is not None) * 32 + scriptpath * 35)
+        ss += bytes([0])
+        ss += struct.pack("<i", codeseparator_pos)
+    assert len(ss) == 178 - ((hash_type & SIGHASH_ANYONECANPAY) != 0) * 52 - (hash_type & 3 == SIGHASH_NONE) * 32 + (annex is not None) * 32 + scriptpath * 37
     return tagged_hash("TapSighash", ss)
-
-def GetVersionTaggedPubKey(pubkey, version):
-    assert pubkey.is_compressed
-    assert pubkey.is_valid
-    # When the version 0xfe is used, the control block may become indistinguishable from annex.
-    # In such case, use of annex becomes mandatory.
-    assert version >= 0 and version < 0xff and not (version & 1)
-    data = pubkey.get_bytes()
-    return bytes([data[0] & 1 | version]) + data[1:]
 
 def taproot_tree_helper(scripts):
     if len(scripts) == 1:
@@ -813,21 +792,22 @@ def taproot_construct(pubkey, scripts=[]):
     Returns: script (sPK or redeemScript), tweak, {script:control, ...}
     """
     if len(scripts) == 0:
-        return (CScript([OP_1, GetVersionTaggedPubKey(pubkey, TAPROOT_VER)]), bytes([0 for i in range(32)]), {})
+        return (CScript([OP_1, pubkey.get_xonly_bytes()]), bytes([0 for i in range(32)]), {})
 
     ret, h = taproot_tree_helper(scripts)
-    control_map = dict((script, GetVersionTaggedPubKey(pubkey, version) + control) for version, script, control in ret)
-    tweak = tagged_hash("TapTweak", pubkey.get_bytes() + h)
+    pubkey.set_xonly(pubkey.get_xonly_bytes())
+    tweak = tagged_hash("TapTweak", pubkey.get_xonly_bytes() + h)
     tweaked = pubkey.tweak_add(tweak)
-    return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER)]), tweak, control_map)
+    control_map = dict((script, bytes([(version & 0xfe) + (0 if tweaked.is_positive else 1)]) + pubkey.get_xonly_bytes() + control) for version, script, control in ret)
+    return (CScript([OP_1, tweaked.get_xonly_bytes()]), tweak, control_map)
 
 def is_op_success(o):
     return o == 0x50 or o == 0x62 or o == 0x89 or o == 0x8a or o == 0x8d or o == 0x8e or (o >= 0x7e and o <= 0x81) or (o >= 0x83 and o <= 0x86) or (o >= 0x95 and o <= 0x99) or (o >= 0xbb and o <= 0xfe)
 
 def IsPayToPubkey(script):
     pk = ECPubKey()
-    pk.set(script[1:34])
-    return pk.is_valid and len(script) == 35 and script[-1] == OP_CHECKSIG
+    pk.set_xonly(script[1:33])
+    return pk.is_valid and len(script) == 34 and script[-1] == OP_CHECKSIG
 
 def IsCheckSigAdd(script):
     if script[-1] == OP_EQUAL and isinstance(script[-2], int) and script[-3] == OP_CHECKSIGADD:
@@ -861,17 +841,17 @@ class TapLeaf:
             self.from_desc(desc)
 
     def construct_pk(self, key): #ECPubKey
-        pk_node = miniscript.pk(key.get_bytes())
+        pk_node = miniscript.pk(key.get_xonly_bytes())
         self._set_miniscript(miniscript.c(pk_node))
-        self.desc = TapLeaf._desc_serializer('pk',key.get_bytes().hex())
+        self.desc = TapLeaf._desc_serializer('pk',key.get_xonly_bytes().hex())
         return self
 
     def construct_pk_delay(self, key, delay): #ECPubKey, int
-        pk_node = miniscript.pk(key.get_bytes())
+        pk_node = miniscript.pk(key.get_xonly_bytes())
         older_node = miniscript.older(delay)
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, older_node))
-        self.desc = TapLeaf._desc_serializer('pk_delay', key.get_bytes().hex(), str(delay))
+        self.desc = TapLeaf._desc_serializer('pk_delay', key.get_xonly_bytes().hex(), str(delay))
         return self
 
     def construct_pk_hashlock(self, key, data): #ECPubKey, 20B, int
@@ -879,20 +859,18 @@ class TapLeaf:
         hash_node = miniscript.hash160(data)
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, hash_node))
-        self.desc = TapLeaf._desc_serializer('pk_hashlock', key.get_bytes().hex(), data.hex())
-        return self
+        self.desc = TapLeaf._desc_serializer('pk_hashlock', key.get_xonly_bytes().hex(), data.hex())
 
     def construct_pk_hashlock_delay(self, key, data, delay): #ECPubKey, 20B, int
-        pk_node = miniscript.pk(key.get_bytes())
+        pk_node = miniscript.pk(key.get_xonly_bytes())
         older_node = miniscript.older(delay)
         v_hash_node = miniscript.v(miniscript.hash160(data))
         v_c_pk_node = miniscript.v(miniscript.c(pk_node))
         self._set_miniscript(miniscript.and_v(v_c_pk_node, miniscript.and_v(v_hash_node, older_node)))
-        self.desc = TapLeaf._desc_serializer('pk_hashlock_delay', key.get_bytes().hex(), data.hex(),str(delay))
-        return self
+        self.desc = TapLeaf._desc_serializer('pk_hashlock_delay', key.get_xonly_bytes().hex(), data.hex(),str(delay))
 
     def construct_csa(self, k, pkv):
-        keys_data = [key.get_bytes() for key in pkv]
+        keys_data = [key.get_xonly_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         self._set_miniscript(thresh_csa_node)
         keys_string = [data.hex() for data in keys_data]
@@ -900,7 +878,7 @@ class TapLeaf:
         return self
 
     def construct_csa_delay(self, k, pkv, delay):
-        keys_data = [key.get_bytes() for key in pkv]
+        keys_data = [key.get_xonly_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
         older_node = miniscript.older(delay)
@@ -910,7 +888,7 @@ class TapLeaf:
         return self
 
     def construct_csa_hashlock(self, k, pkv, data):
-        keys_data = [key.get_bytes() for key in pkv]
+        keys_data = [key.get_xonly_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
         hash_node = miniscript.hash160(data)
@@ -920,7 +898,7 @@ class TapLeaf:
         return self
 
     def construct_csa_hashlock_delay(self, k, pkv, data, delay):
-        keys_data = [key.get_bytes() for key in pkv]
+        keys_data = [key.get_xonly_bytes() for key in pkv]
         thresh_csa_node = miniscript.thresh_csa(k, *keys_data)
         v_thresh_csa_node = miniscript.v(thresh_csa_node)
         hash_node = miniscript.hash160(data)
@@ -945,6 +923,7 @@ class TapLeaf:
         return desc
 
     def from_desc(self,string):
+
         string = ''.join(string.split())
         tss = ParseDesc(string, 'ts', '(',')')
 
@@ -952,21 +931,21 @@ class TapLeaf:
             expr_s = ParseDesc(tss, 'pk' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
-            pk.set(bytes.fromhex(args[0]))
+            pk.set_xonly(bytes.fromhex(args[0]))
             self.construct_pk(pk)
 
         elif tss[:8] == 'pk_delay(':
             expr_s = ParseDesc(tss, 'pk_delay' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
-            pk.set(bytes.fromhex(args[0]))
+            pk.set_xonly(bytes.fromhex(args[0]))
             self.construct_pk_delay(pk, int(args[1]))
 
         elif tss[:7] == 'pk_hashlock(':
             expr_s = ParseDesc(tss, 'pk_hashlock' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
-            pk.set(bytes.fromhex(args[0]))
+            pk.set_xonly(bytes.fromhex(args[0]))
             data = bytes.fromhex(args[1])
             self.construct_pk_hashlock(pk, data)
 
@@ -974,7 +953,7 @@ class TapLeaf:
             expr_s = ParseDesc(tss, 'pk_hashlock_delay' ,'(' ,')')
             args = self._param_parser(expr_s)
             pk = ECPubKey()
-            pk.set(bytes.fromhex(args[0]))
+            pk.set_xonly(bytes.fromhex(args[0]))
             data = bytes.fromhex(args[1])
             self.construct_pk_hashlock_delay(pk, data, int(args[2]))
 
@@ -985,7 +964,7 @@ class TapLeaf:
             pkv = []
             for key_string in args[1:]:
                 pk = ECPubKey()
-                pk.set(bytes.fromhex(key_string))
+                pk.set_xonly(bytes.fromhex(key_string))
                 pkv.append(pk)
             self.construct_csa(k, pkv)
 
@@ -996,31 +975,31 @@ class TapLeaf:
             pkv = []
             for key_string in args[1:-1]:
                 pk = ECPubKey()
-                pk.set(bytes.fromhex(key_string))
+                pk.set_xonly(bytes.fromhex(key_string))
                 pkv.append(pk)
             delay = int(args[-1])
             self.construct_csa_delay(k, pkv, delay)
 
         elif tss[:8] == 'csa_hashlock(':
-            expr_s = ParseDesc(tss, 'csa_hashlock' ,'(' ,')')
+            expr_s = ParseDesc(tss, 'csahash' ,'(' ,')')
             args = self._param_parser(expr_s)
             k = int(args[0])
             pkv = []
             for key_string in args[1:-1]:
                 pk = ECPubKey()
-                pk.set(bytes.fromhex(key_string))
+                pk.set_xonly(bytes.fromhex(key_string))
                 pkv.append(pk)
             data = bytes.fromhex(args[-1])
             self.construct_csa_hashlock(k, pkv, data)
 
         elif tss[:13] == 'csa_hashlock_delay(':
-            expr_s = ParseDesc(tss, 'csa_hashlock_delay' ,'(' ,')')
+            expr_s = ParseDesc(tss, 'csahasholder' ,'(' ,')')
             args = self._param_parser(expr_s)
             k = int(args[0])
             pkv = []
             for key_string in args[1:-2]:
                 pk = ECPubKey()
-                pk.set(bytes.fromhex(key_string))
+                pk.set_xonly(bytes.fromhex(key_string))
                 pkv.append(pk)
             data = bytes.fromhex(args[-2])
             delay = int(args[-1])
@@ -1058,7 +1037,7 @@ class TapLeaf:
     def generate_threshold_csa(k, pubkeys):
         if k == 1 or len(pubkeys) <= k:
             raise Exception
-        pubkeys_b = [pubkey.get_bytes() for pubkey in pubkeys]
+        pubkeys_b = [pubkey.get_xonly_bytes() for pubkey in pubkeys]
         pubkeys_b.sort()
         pubkey_b_sets = list(itertools.combinations(iter(pubkeys_b), k))
         tapscripts = []
@@ -1066,7 +1045,7 @@ class TapLeaf:
             pubkey_set = []
             for pubkey_b in pubkey_b_set:
                 pk = ECPubKey()
-                pk.set(pubkey_b)
+                pk.set_xonly(pubkey_b)
                 pubkey_set.append(pk)
             tapscript = TapLeaf()
             tapscript.construct_csa(k, pubkey_set)
@@ -1082,7 +1061,7 @@ class TapTree:
     def from_desc(self, desc):
         desc = ''.join(desc.split())
         pk = ECPubKey()
-        pk.set(binascii.unhexlify(desc[3:69]))
+        pk.set_xonly(binascii.unhexlify(desc[3:69]))
         if len(desc)>71 and desc[:3] == 'tp(' and pk.is_valid and desc[69] == ',' and desc[-1] == ')':
             self.key = pk
             self._decode_tree(desc[70:-1], parent=self.root)
@@ -1102,12 +1081,12 @@ class TapTree:
         self.root = p.get()[1]
 
     def set_key(self, data):
-        self.key.set(data)
+        self.key.set_xonly(data)
 
     @property
     def desc(self):
         assert self.key.valid == True, "Valid internal key must be set."
-        res = 'tp(' +  self.key.get_bytes().hex() + ','
+        res = 'tp(' +  self.key.get_xonly_bytes().hex() + ','
         res += TapTree._encode_tree(self.root)
         res += ')'
         return res
@@ -1115,10 +1094,11 @@ class TapTree:
     def construct(self):
         assert self.key.valid == True, "Valid internal key must be set."
         ctrl, h = self._constructor(self.root)
-        tweak = tagged_hash("TapTweak", self.key.get_bytes() + h)
-        control_map = dict((script, GetVersionTaggedPubKey(self.key, version) + control) for version, script, control in ctrl)
+        self.key.set_xonly(self.key.get_xonly_bytes())
+        tweak = tagged_hash("TapTweak", self.key.get_xonly_bytes() + h)
         tweaked = self.key.tweak_add(tweak)
-        return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER)]), tweak, control_map)
+        control_map = dict((script, bytes([(version & 0xfe) + (0 if tweaked.is_positive else 1)]) + self.key.get_xonly_bytes() + control) for version, script, control in ctrl)
+        return (CScript([OP_1, tweaked.get_xonly_bytes()]), tweak, control_map)
 
     @staticmethod
     def _constructor(node):
@@ -1308,8 +1288,7 @@ class miniscript:
 
     @staticmethod
     def pk(key):
-        assert((key[0] in [0x02, 0x03]) or (key[0] not in [0x04, 0x06, 0x07]))
-        assert(len(key) == 33)
+        assert(len(key) == 32)
         script = lambda x: [key]
         nsat = lambda x: [0]
         sat_xy = lambda x: [('sig', key)]
@@ -1398,8 +1377,7 @@ class miniscript:
     def thresh_csa(k, *args): #arg[0] = k, arg[i>0] = expr_i
         assert(k > 0 and k <= len(args) and len(args) > 1) # Requires more than 1 pk.
         for key in args:
-            assert(len(key) == 33)
-            assert(key[0] in [0x02, 0x03]) or (key[0] not in [0x04, 0x06, 0x07])
+            assert(len(key) == 32)
         script = lambda x: [args[0], OP_CHECKSIG] + list(itertools.chain.from_iterable([[args[i], OP_CHECKSIGADD] for i in range(1,len(args))])) + [k, OP_NUMEQUAL]
         nsat = lambda x: [0x00]*len(args)
         sat_xy = lambda x: [('sig', args[i]) for i in range(0,len(args))][::-1] # TODO: ('thresh(n)', [('sig', (0x02../0x00)), ('sig', (0x02../0x00))])

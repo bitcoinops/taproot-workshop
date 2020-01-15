@@ -9,6 +9,12 @@ anything but tests."""
 import random
 import hashlib
 
+def tagged_hash(tag, data):
+    ss = hashlib.sha256(tag.encode('utf-8')).digest()
+    ss += ss
+    ss += data
+    return hashlib.sha256(ss).digest()
+
 def modinv(a, n):
     """Compute the modular inverse of a modulo n
 
@@ -270,6 +276,15 @@ class ECPubKey():
             self.valid = False
         return self
 
+    def set_xonly(self, data):
+        assert(len(data) == 32)
+        x = int.from_bytes(data, 'big')
+        if SECP256K1.is_x_coord(x):
+            self.p = SECP256K1.lift_x(x)
+            self.valid = True
+            self.compressed = True
+        else:
+            self.valid = False
     @property
     def is_compressed(self):
         return self.compressed
@@ -277,6 +292,10 @@ class ECPubKey():
     @property
     def is_valid(self):
         return self.valid
+
+    @property
+    def is_positive(self):
+        return jacobi_symbol(self.p[1] * self.p[2], SECP256K1_FIELD_SIZE) == 1
 
     def get_y(self):
         return SECP256K1.affine(self.p)[1]
@@ -293,6 +312,16 @@ class ECPubKey():
             return bytes([0x02 + (p[1] & 1)]) + p[0].to_bytes(32, 'big')
         else:
             return bytes([0x04]) + p[0].to_bytes(32, 'big') + p[1].to_bytes(32, 'big')
+
+    def get_xonly_bytes(self):
+        assert(self.valid)
+        p = SECP256K1.affine(self.p)
+        if p is None:
+            return None
+        if self.compressed:
+            return p[0].to_bytes(32, 'big')
+        else:
+            return None
 
     def verify_ecdsa(self, sig, msg, low_s=True):
         """Verify a strictly DER-encoded ECDSA signature against this pubkey.
@@ -361,9 +390,11 @@ class ECPubKey():
         s = int.from_bytes(sig[32:64], 'big')
         if s >= SECP256K1_ORDER:
             return False
-        e = int.from_bytes(hashlib.sha256(sig[0:32] + self.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
-        R = SECP256K1.mul([(SECP256K1_G, s), (self.p, SECP256K1_ORDER - e)])
-        if R[2] == 0 or jacobi_symbol(R[1] * R[2], SECP256K1_FIELD_SIZE) != 1 or ((r * R[2] * R[2]) % SECP256K1_FIELD_SIZE) != R[0]:
+        e = int.from_bytes(tagged_hash("BIPSchnorr", sig[0:32] + self.get_bytes()[1:33] + msg), 'big') % SECP256K1_ORDER
+        if self.is_positive:
+            e = SECP256K1_ORDER - e
+        R = SECP256K1.mul([(SECP256K1_G, s), (self.p, e)])
+        if jacobi_symbol(R[1] * R[2], SECP256K1_FIELD_SIZE) != 1 or ((r * R[2] * R[2]) % SECP256K1_FIELD_SIZE) != R[0]:
             return False
         return True
 
@@ -473,6 +504,10 @@ class ECKey():
         self.set(random.randrange(1, SECP256K1_ORDER).to_bytes(32, 'big'), compressed)
         return self
 
+    def negate(self):
+        """Negate this private key."""
+        self.secret = SECP256K1_ORDER - self.secret
+
     def get_bytes(self):
         """Retrieve the 32-byte representation of this key."""
         assert(self.valid)
@@ -546,11 +581,6 @@ class ECKey():
         other.set(data, True)
         return self * other
 
-    def negate(self):
-        """Negate a private key."""
-        assert self.valid
-        self.secret = SECP256K1_ORDER - self.secret
-
     @property
     def is_valid(self):
         return self.valid
@@ -592,19 +622,24 @@ class ECKey():
 
     def sign_schnorr(self, msg, nonce=None):
         """Construct a bip-schnorr compatible signature with this key and an optional, pre-determined nonce."""
-        assert self.valid
-        assert self.compressed
-        assert len(msg) == 32
+        assert(self.valid)
+        assert(self.compressed)
+        assert(len(msg) == 32)
+        x = self.secret
+        pk = self.get_pubkey()
+        if not pk.is_positive:
+            x = SECP256K1_ORDER - x
+
         if nonce is not None:
             nonce_bytes = nonce.get_bytes()
         else:
-            nonce_bytes = hashlib.sha256(self.get_bytes() + msg).digest()
+            nonce_bytes = tagged_hash("BIPSchnorrDerive", x.to_bytes(32, 'big') + msg)
         kp = int.from_bytes(nonce_bytes, 'big') % SECP256K1_ORDER
         assert kp != 0
         R = SECP256K1.affine(SECP256K1.mul([(SECP256K1_G, kp)]))
         k = kp if jacobi_symbol(R[1], SECP256K1_FIELD_SIZE) == 1 else SECP256K1_ORDER - kp
-        e = int.from_bytes(hashlib.sha256(R[0].to_bytes(32, 'big') + self.get_pubkey().get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
-        return R[0].to_bytes(32, 'big') + ((k + e * self.secret) % SECP256K1_ORDER).to_bytes(32, 'big')
+        e = int.from_bytes(tagged_hash("BIPSchnorr", R[0].to_bytes(32, 'big') + pk.get_xonly_bytes() + msg), 'big') % SECP256K1_ORDER
+        return R[0].to_bytes(32, 'big') + ((k + e * x) % SECP256K1_ORDER).to_bytes(32, 'big')
 
     def tweak_add(self, tweak):
         """Return a tweaked version of this private key."""
@@ -629,7 +664,6 @@ def generate_key_pair(secret=None, compressed=True):
 
     P = d.get_pubkey()
     return d, P
-
 def generate_schnorr_nonce():
     """Generate a random valid bip-schnorr nonce.
 
