@@ -19,6 +19,7 @@ from .key import (
     SECP256K1_ORDER,
     jacobi_symbol,
     tagged_hash,
+    ECKey,
 )
 
 def generate_musig_key(pubkey_list):
@@ -35,6 +36,10 @@ def generate_musig_key(pubkey_list):
     for key in pubkey_list:
         musig_c[key] = hashlib.sha256(Lh + key.get_bytes()[1:]).digest()
         aggregate_key += key.mul(musig_c[key])
+    if not aggregate_key.is_positive:
+        aggregate_key.negate()
+        for k, v in musig_c.items():
+            musig_c[k] = ECKey().set(v).negate()
     return musig_c, aggregate_key
 
 def aggregate_schnorr_nonces(nonce_point_list):

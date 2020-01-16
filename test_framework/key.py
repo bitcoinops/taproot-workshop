@@ -472,6 +472,7 @@ class ECPubKey():
 
     def negate(self):
         self.p = SECP256K1.affine(SECP256K1.negate(self.p))
+        return self
 
 class ECKey():
     """A secp256k1 private key"""
@@ -507,6 +508,7 @@ class ECKey():
     def negate(self):
         """Negate this private key."""
         self.secret = SECP256K1_ORDER - self.secret
+        return self
 
     def get_bytes(self):
         """Retrieve the 32-byte representation of this key."""
