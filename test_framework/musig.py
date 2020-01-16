@@ -18,7 +18,7 @@ from .key import (
     SECP256K1_FIELD_SIZE,
     SECP256K1_ORDER,
     jacobi_symbol,
-    TaggedHash,
+    tagged_hash,
 )
 
 def generate_musig_key(pubkey_list):

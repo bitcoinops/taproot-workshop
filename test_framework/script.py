@@ -8,7 +8,7 @@ This file is modified from python-bitcoinlib.
 """
 
 from .messages import CTransaction, CTxOut, sha256, hash256, uint256_from_str, ser_uint256, ser_string, CTxInWitness
-from .key import ECKey, ECPubKey, TaggedHash
+from .key import ECKey, ECPubKey, tagged_hash
 
 import binascii
 import hashlib
