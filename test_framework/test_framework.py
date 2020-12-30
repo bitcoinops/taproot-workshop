@@ -97,6 +97,9 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.rpc_timeout = 60  # Wait for up to 60 seconds for the RPC server to respond
         self.supports_cli = False
         self.bind_to_localhost_only = True
+        self.default_wallet_name = "default_wallet"
+        self.wallet_data_filename = "wallet.dat"
+        self.wallet_names = None
         self.set_test_params()
 
         assert hasattr(self, "num_nodes"), "Test must set self.num_nodes in set_test_params()"
@@ -312,12 +315,13 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
 
     def setup_nodes(self):
         """Override this method to customize test node setup"""
-        extra_args = None
+        extra_args = [[]] * self.num_nodes
         if hasattr(self, "extra_args"):
             extra_args = self.extra_args
         self.add_nodes(self.num_nodes, extra_args)
         self.start_nodes()
-        self.import_deterministic_coinbase_privkeys()
+        if self.is_wallet_compiled():
+            self.import_deterministic_coinbase_privkeys()
         if not self.setup_clean_chain:
             for n in self.nodes:
                 assert_equal(n.getblockchaininfo()["blocks"], 199)
@@ -333,13 +337,15 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                 assert_equal(chain_info["initialblockdownload"], False)
 
     def import_deterministic_coinbase_privkeys(self):
-        for n in self.nodes:
-            try:
-                n.getwalletinfo()
-            except JSONRPCException as e:
-                assert str(e).startswith('Method not found')
-                continue
-
+        for i in range(self.num_nodes):
+            self.init_wallet(i)
+    
+    def init_wallet(self, i):
+        wallet_name = self.default_wallet_name if self.wallet_names is None else self.wallet_names[i] if i < len(self.wallet_names) else False
+        if wallet_name is not False:
+            n = self.nodes[i]
+            if wallet_name is not None:
+                n.createwallet(wallet_name=wallet_name, load_on_startup=True)
             n.importprivkey(privkey=n.get_deterministic_priv_key().key, label='coinbase')
 
     def run_test(self):
