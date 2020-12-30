@@ -9,6 +9,12 @@ anything but tests."""
 import random
 import hashlib
 
+def TaggedHash(tag, data):
+    ss = hashlib.sha256(tag.encode('utf-8')).digest()
+    ss += ss
+    ss += data
+    return hashlib.sha256(ss).digest()
+
 def modinv(a, n):
     """Compute the modular inverse of a modulo n
 
@@ -93,6 +99,10 @@ class EllipticCurve:
         inv_3 = (inv_2 * inv) % self.p
         return ((inv_2 * x1) % self.p, (inv_3 * y1) % self.p, 1)
 
+    def has_even_y(self, p1):
+        """Whether the point p1 has an even Y coordinate when expressed in affine coordinates."""
+        return not (p1[2] == 0 or self.affine(p1)[1] & 1)
+    
     def negate(self, p1):
         """Negate a Jacobian point tuple p1."""
         x1, y1, z1 = p1
@@ -284,12 +294,14 @@ class ECPubKey():
     def get_x(self):
         return SECP256K1.affine(self.p)[0]
 
-    def get_bytes(self):
+    def get_bytes(self, bip340=True):
         assert(self.valid)
         p = SECP256K1.affine(self.p)
         if p is None:
             return None
-        if self.compressed:
+        if bip340:
+            return bytes(p[0].to_bytes(32, 'big'))
+        elif self.compressed:
             return bytes([0x02 + (p[1] & 1)]) + p[0].to_bytes(32, 'big')
         else:
             return bytes([0x04]) + p[0].to_bytes(32, 'big') + p[1].to_bytes(32, 'big')
@@ -354,16 +366,17 @@ class ECPubKey():
         assert(len(msg) == 32)
         assert(len(sig) == 64)
         assert(self.valid)
-        assert(self.compressed)
         r = int.from_bytes(sig[0:32], 'big')
         if r >= SECP256K1_FIELD_SIZE:
             return False
         s = int.from_bytes(sig[32:64], 'big')
         if s >= SECP256K1_ORDER:
             return False
-        e = int.from_bytes(hashlib.sha256(sig[0:32] + self.get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
+        e = int.from_bytes(TaggedHash("BIP0340/challenge", sig[0:32] + self.get_bytes() + msg), 'big') % SECP256K1_ORDER
         R = SECP256K1.mul([(SECP256K1_G, s), (self.p, SECP256K1_ORDER - e)])
-        if R[2] == 0 or jacobi_symbol(R[1] * R[2], SECP256K1_FIELD_SIZE) != 1 or ((r * R[2] * R[2]) % SECP256K1_FIELD_SIZE) != R[0]:
+        if not SECP256K1.has_even_y(R):
+            return False
+        if ((r * R[2] * R[2]) % SECP256K1_FIELD_SIZE) != R[0]:
             return False
         return True
 
@@ -590,20 +603,21 @@ class ECKey():
         sb = s.to_bytes((s.bit_length() + 8) // 8, 'big')
         return b'\x30' + bytes([4 + len(rb) + len(sb), 2, len(rb)]) + rb + bytes([2, len(sb)]) + sb
 
-    def sign_schnorr(self, msg, nonce=None):
-        """Construct a bip-schnorr compatible signature with this key and an optional, pre-determined nonce."""
+    def sign_schnorr(self, msg, aux=None):
+        """Create a Schnorr signature (see BIP340)."""
+        if aux is None:
+            aux = bytes(32)
+            
         assert self.valid
-        assert self.compressed
         assert len(msg) == 32
-        if nonce is not None:
-            nonce_bytes = nonce.get_bytes()
-        else:
-            nonce_bytes = hashlib.sha256(self.get_bytes() + msg).digest()
-        kp = int.from_bytes(nonce_bytes, 'big') % SECP256K1_ORDER
+        assert len(aux) == 32
+        
+        t = (self.secret ^ int.from_bytes(TaggedHash("BIP0340/aux", aux), 'big')).to_bytes(32, 'big')
+        kp = int.from_bytes(TaggedHash("BIP0340/nonce", t + self.get_pubkey().get_bytes() + msg), 'big') % SECP256K1_ORDER
         assert kp != 0
         R = SECP256K1.affine(SECP256K1.mul([(SECP256K1_G, kp)]))
-        k = kp if jacobi_symbol(R[1], SECP256K1_FIELD_SIZE) == 1 else SECP256K1_ORDER - kp
-        e = int.from_bytes(hashlib.sha256(R[0].to_bytes(32, 'big') + self.get_pubkey().get_bytes() + msg).digest(), 'big') % SECP256K1_ORDER
+        k = kp if SECP256K1.has_even_y(R) else SECP256K1_ORDER - kp
+        e = int.from_bytes(TaggedHash("BIP0340/challenge", R[0].to_bytes(32, 'big') + self.get_pubkey().get_bytes() + msg), 'big') % SECP256K1_ORDER
         return R[0].to_bytes(32, 'big') + ((k + e * self.secret) % SECP256K1_ORDER).to_bytes(32, 'big')
 
     def tweak_add(self, tweak):
@@ -630,15 +644,25 @@ def generate_key_pair(secret=None, compressed=True):
     P = d.get_pubkey()
     return d, P
 
-def generate_schnorr_nonce():
-    """Generate a random valid bip-schnorr nonce.
+def generate_bip340_key_pair():
+    """Convenience function to generate a BIP0340 private-public key pair."""
+    d = ECKey()
+    d.generate()
+    P = d.get_pubkey()
+    if P.get_y()%2 != 0:
+        d.negate()
+        P.negate()
+    return d, P
 
-    See https://github.com/bitcoinops/bips/blob/v0.1/bip-schnorr.mediawiki#Signing.
-    This implementation ensures the y-coordinate of the nonce point is a quadratic residue modulo the field size."""
+def generate_schnorr_nonce():
+    """Generate a random valid BIP340 nonce.
+
+    See https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki.
+    This implementation ensures the y-coordinate of the nonce point is even."""
     kp = random.randrange(1, SECP256K1_ORDER)
     assert kp != 0
     R = SECP256K1.affine(SECP256K1.mul([(SECP256K1_G, kp)]))
-    k = kp if jacobi_symbol(R[1], SECP256K1_FIELD_SIZE) == 1 else SECP256K1_ORDER - kp
+    k = kp if R[1] % 2 == 0 else SECP256K1_ORDER - kp
     k_key = ECKey()
     k_key.set(k.to_bytes(32, 'big'), True)
     return k_key
