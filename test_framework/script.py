@@ -770,14 +770,14 @@ def TaprootSignatureHash(txTo, spent_utxos, hash_type, input_index = 0, scriptpa
     assert len(ss) ==  175 - (in_type == SIGHASH_ANYONECANPAY) * 49 - (out_type != SIGHASH_ALL and out_type != SIGHASH_SINGLE) * 32 + (annex is not None) * 32 + scriptpath * 37
     return tagged_hash("TapSighash", ss)
 
-def GetVersionTaggedPubKey(pubkey, version):
-    assert pubkey.is_compressed
+def GetVersionTaggedPubKey(pubkey, version, tweaked_pubkey):
     assert pubkey.is_valid
     # When the version 0xfe is used, the control block may become indistinguishable from annex.
     # In such case, use of annex becomes mandatory.
     assert version >= 0 and version < 0xff and not (version & 1)
     data = pubkey.get_bytes()
-    return bytes([data[0] & 1 | version]) + data[1:]
+    parity_bit = tweaked_pubkey.get_y()%2
+    return bytes([parity_bit & 0x01 | version]) + data
 
 def taproot_tree_helper(scripts):
     if len(scripts) == 1:
@@ -811,14 +811,14 @@ def taproot_construct(pubkey, scripts=[]):
 
     Returns: script (sPK or redeemScript), tweak, {script:control, ...}
     """
-    if len(scripts) == 0:
-        return (CScript([OP_1, GetVersionTaggedPubKey(pubkey, TAPROOT_VER)]), bytes([0 for i in range(32)]), {})
-
-    ret, h = taproot_tree_helper(scripts)
-    control_map = dict((script, GetVersionTaggedPubKey(pubkey, version) + control) for version, script, control in ret)
     tweak = tagged_hash("TapTweak", pubkey.get_bytes() + h)
     tweaked = pubkey.tweak_add(tweak)
-    return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER)]), tweak, control_map)
+    if len(scripts) == 0:
+        return (CScript([OP_1, GetVersionTaggedPubKey(pubkey, TAPROOT_VER, tweaked)]), bytes([0 for i in range(32)]), {})
+
+    ret, h = taproot_tree_helper(scripts)
+    control_map = dict((script, GetVersionTaggedPubKey(pubkey, version, tweaked) + control) for version, script, control in ret)
+    return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER, tweaked)]), tweak, control_map)
 
 def is_op_success(o):
     return o == 0x50 or o == 0x62 or o == 0x89 or o == 0x8a or o == 0x8d or o == 0x8e or (o >= 0x7e and o <= 0x81) or (o >= 0x83 and o <= 0x86) or (o >= 0x95 and o <= 0x99) or (o >= 0xbb and o <= 0xfe)
@@ -1115,9 +1115,9 @@ class TapTree:
         assert self.key.valid == True, "Valid internal key must be set."
         ctrl, h = self._constructor(self.root)
         tweak = tagged_hash("TapTweak", self.key.get_bytes() + h)
-        control_map = dict((script, GetVersionTaggedPubKey(self.key, version) + control) for version, script, control in ctrl)
         tweaked = self.key.tweak_add(tweak)
-        return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER)]), tweak, control_map)
+        control_map = dict((script, GetVersionTaggedPubKey(self.key, version, tweaked) + control) for version, script, control in ctrl)
+        return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER, tweaked)]), tweak, control_map)
 
     @staticmethod
     def _constructor(node):
@@ -1307,8 +1307,7 @@ class miniscript:
 
     @staticmethod
     def pk(key):
-        assert((key[0] in [0x02, 0x03]) or (key[0] not in [0x04, 0x06, 0x07]))
-        assert(len(key) == 33)
+        assert(len(key) == 32)
         script = lambda x: [key]
         nsat = lambda x: [0]
         sat_xy = lambda x: [('sig', key)]
@@ -1397,8 +1396,7 @@ class miniscript:
     def thresh_csa(k, *args): #arg[0] = k, arg[i>0] = expr_i
         assert(k > 0 and k <= len(args) and len(args) > 1) # Requires more than 1 pk.
         for key in args:
-            assert(len(key) == 33)
-            assert(key[0] in [0x02, 0x03]) or (key[0] not in [0x04, 0x06, 0x07])
+            assert(len(key) == 32)
         script = lambda x: [args[0], OP_CHECKSIG] + list(itertools.chain.from_iterable([[args[i], OP_CHECKSIGADD] for i in range(1,len(args))])) + [k, OP_NUMEQUAL]
         nsat = lambda x: [0x00]*len(args)
         sat_xy = lambda x: [('sig', args[i]) for i in range(0,len(args))][::-1] # TODO: ('thresh(n)', [('sig', (0x02../0x00)), ('sig', (0x02../0x00))])

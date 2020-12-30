@@ -256,7 +256,7 @@ class ECPubKey():
         return hash(self.get_bytes())
 
     def set(self, data):
-        """Construct a public key from a serialization in compressed or uncompressed format"""
+        """Construct a public key from a serialization in compressed or uncompressed DER format or BIP340 format"""
         if (len(data) == 65 and data[0] == 0x04):
             p = (int.from_bytes(data[1:33], 'big'), int.from_bytes(data[33:65], 'big'), 1)
             self.valid = SECP256K1.on_curve(p)
@@ -270,6 +270,19 @@ class ECPubKey():
                 # if the oddness of the y co-ord isn't correct, find the other
                 # valid y
                 if (p[1] & 1) != (data[0] & 1):
+                    p = SECP256K1.negate(p)
+                self.p = p
+                self.valid = True
+                self.compressed = True
+            else:
+                self.valid = False
+        elif (len(data) == 32):
+            x = int.from_bytes(data[0:32], 'big')
+            if SECP256K1.is_x_coord(x):
+                p = SECP256K1.lift_x(x)
+                # if the oddness of the y co-ord isn't correct, find the other
+                # valid y
+                if p[1]%2 != 0:
                     p = SECP256K1.negate(p)
                 self.p = p
                 self.valid = True
