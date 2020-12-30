@@ -7,13 +7,9 @@ workshops](https://bitcoinops.org/workshops/#taproot-workshop).
 
 For the purposes of demonstrating the features of schnorr and taproot to the
 Bitcoin developer community, we have developed an extended Python library on
-top of Pieter Wuille's Taproot Bitcoin Core branch, which provides Python
+top of Bitcoin Core's function test framework, which provides Python
 classes and methods to build more sophisticated Taproot transactions and
 various schnorr signature schemes for preliminary evaluation.
-
-Our Taproot/Schnorr library is an extension of the Bitcoin python test
-framework, located in the dedicated [Optech Bitcoin Taproot
-Branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.4).
 
 *Note: This Library is intended for demonstrative and educational purposes only.*
 
@@ -30,7 +26,7 @@ through the exercises in this repository.
 
 ### Schnorr
 
-- **[bip-schnorr](https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki)**:
+- **[bip-0340](https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki)**:
   This technical document proposes a standard for 64-byte Schnorr signatures
   over the elliptic curve secp256k1.
 - **[Taproot, and Schnorr, and SIGHASH_NOINPUT, oh
@@ -44,10 +40,10 @@ through the exercises in this repository.
 
 ### Taproot
 
-- **[bip-taproot](https://github.com/sipa/bips/blob/bip-schnorr/bip-taproot.mediawiki)**:
+- **[bip-0341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki)**:
   This technical document proposes a new SegWit version 1 output type, with spending rules based on Taproot, Schnorr signatures, and Merkle branches.
-- **[bip-tapscript](https://github.com/sipa/bips/blob/bip-schnorr/bip-tapscript.mediawiki)**: This technical document specifies the semantics of the initial scripting system under bip-taproot.
-- **[Bitcoin Optech’s Overview of the Taproot & Tapscript proposed BIPs](https://bitcoinops.org/en/newsletters/2019/05/14/#overview-of-the-taproot--tapscript-proposed-bips)**: Summary of bip-taproot and bip-tapscript.
+- **[bip-0342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki)**: This technical document specifies the semantics of the initial scripting system under bip-0341.
+- **[Bitcoin Optech’s Overview of the Taproot & Tapscript proposed BIPs](https://bitcoinops.org/en/newsletters/2019/05/14/#overview-of-the-taproot--tapscript-proposed-bips)**: Summary of bip-341 and bip-342.
 
 ### Output Descriptors
 
@@ -95,39 +91,32 @@ $ git clone https://github.com/bitcoinops/taproot-workshop
 
 #### Build a taproot-supporting bitcoind
 
-These workbooks require a `bitcoind` built from the [Optech Taproot
-V0.1.4 branch](https://github.com/bitcoinops/bitcoin/releases/tag/Taproot_V0.1.4) which
-supports schnorr and taproot.
+These workbooks require a `bitcoind` with version 0.21 or later which supports schnorr and taproot.
 
 ![workshop_repositories](images/repositories.jpg)
 
-Clone the bitcoinops/bitcoin repository in a separate directory from this
-taproot-workshop repository:
+If you do not already have the Bitcoin Core repo on your local machine, then clone it with:
 
 ```
-$ git clone https://github.com/bitcoinops/bitcoin
+$ git clone https://github.com/bitcoin/bitcoin.git
 ```
 
-Note the path where you cloned the bitcoinops/bitcoin repository and add it to
+Note the path where you cloned the bitcoin repository and add it to
 the `config.ini` file in your taproot-workshop repository. For example, set:
 
 ```
-SOURCE_DIRECTORY=/Users/optech/bitcoin
+SOURCE_DIRECTORY=/Users/username/bitcoin
 ```
 
-Checkout the Optech taproot branch in the bitcoinops/bitcoin repository, which is tagged as `Taproot_V0.1.4`:
-
-```
-$ git checkout Taproot_V0.1.4
-```
-
-Build the Optech Taproot branch of bitcoind locally. See the build documentation
+Build bitcoind locally. See the build documentation
 (`build-xxxx.md`) in the [Bitcoin Core repository docs
 directory](https://github.com/bitcoin/bitcoin/tree/master/doc) for additional
 documentation on building bitcoind on
 [Unix](https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md),
 [macOS](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md), or
 [Windows](https://github.com/bitcoin/bitcoin/blob/master/doc/build-windows.md).
+
+Note that these notebooks will make use of the `bitcoind` wallet and so when following the build instructions above, do *not* use the `--disable-wallet` flag.
 
 No need to run `bitcoind` or download the mainchain or testnet blockchain. We will
 run in regtest mode and spawn node instances via scripts.
