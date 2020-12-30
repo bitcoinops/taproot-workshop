@@ -24,6 +24,8 @@ ANNEX_TAG = 0x50
 
 OPCODE_NAMES = {}
 
+LEAF_VERSION_TAPSCRIPT = 0xc0
+
 DEFAULT_TAPSCRIPT_VER = 0xc0
 TAPROOT_VER = 0
 
@@ -615,7 +617,7 @@ def IsPayToScriptHash(script):
     return len(script) == 23 and script[0] == OP_HASH160 and script[1] == 20 and script[22] == OP_EQUAL
 
 def IsPayToTaproot(script):
-    return len(script) == 35 and script[0] == OP_1 and script[1] == 33 and script[2] >= 0 and script[2] <= 1
+    return len(script) == 34 and script[0] == OP_1 and script[1] == 32
 
 def tagged_hash(tag, data):
     ss = sha256(tag.encode('utf-8'))
@@ -725,50 +727,47 @@ def SegwitV0SignatureHash(script, txTo, inIdx, hashtype, amount):
 
     return hash256(ss)
 
-def TaprootSignatureHash(txTo, spent_utxos, hash_type, input_index = 0, scriptpath = False, tapscript = CScript(), codeseparator_pos = -1, annex = None, tapscript_ver = DEFAULT_TAPSCRIPT_VER):
+def TaprootSignatureHash(txTo, spent_utxos, hash_type, input_index = 0, scriptpath = False, script = CScript(), codeseparator_pos = -1, annex = None, leaf_ver = LEAF_VERSION_TAPSCRIPT):
     assert (len(txTo.vin) == len(spent_utxos))
-    assert((hash_type >= 0 and hash_type <= 3) or (hash_type >= 0x81 and hash_type <= 0x83))
     assert (input_index < len(txTo.vin))
+    out_type = SIGHASH_ALL if hash_type == 0 else hash_type & 3
+    in_type = hash_type & SIGHASH_ANYONECANPAY
     spk = spent_utxos[input_index].scriptPubKey
     ss = bytes([0, hash_type]) # epoch, hash_type
     ss += struct.pack("<i", txTo.nVersion)
     ss += struct.pack("<I", txTo.nLockTime)
-    if not (hash_type & SIGHASH_ANYONECANPAY):
+    if in_type != SIGHASH_ANYONECANPAY:
         ss += sha256(b"".join(i.prevout.serialize() for i in txTo.vin))
         ss += sha256(b"".join(struct.pack("<q", u.nValue) for u in spent_utxos))
+        ss += sha256(b"".join(ser_string(u.scriptPubKey) for u in spent_utxos))
         ss += sha256(b"".join(struct.pack("<I", i.nSequence) for i in txTo.vin))
-    if (hash_type & 3) != SIGHASH_SINGLE and (hash_type & 3) != SIGHASH_NONE:
+    if out_type == SIGHASH_ALL:
         ss += sha256(b"".join(o.serialize() for o in txTo.vout))
     spend_type = 0
-    if IsPayToScriptHash(spk):
-        spend_type = 1
-    else:
-        assert(IsPayToTaproot(spk))
     if annex is not None:
-        assert (annex[0] == ANNEX_TAG)
-        spend_type |= 2
+        spend_type |= 1
     if (scriptpath):
-        assert (len(tapscript) > 0)
-        assert (codeseparator_pos >= -1)
-        spend_type |= 4
+        spend_type |= 2
     ss += bytes([spend_type])
-    ss += ser_string(spk)
-    if (hash_type & SIGHASH_ANYONECANPAY):
+    if in_type == SIGHASH_ANYONECANPAY:
         ss += txTo.vin[input_index].prevout.serialize()
         ss += struct.pack("<q", spent_utxos[input_index].nValue)
+        ss += ser_string(spk)
         ss += struct.pack("<I", txTo.vin[input_index].nSequence)
     else:
-        ss += struct.pack("<H", input_index)
-    if (spend_type & 2):
+        ss += struct.pack("<I", input_index)
+    if (spend_type & 1):
         ss += sha256(ser_string(annex))
-    if (hash_type & 3 == SIGHASH_SINGLE):
-        assert (input_index < len(txTo.vout))
-        ss += sha256(txTo.vout[input_index].serialize())
+    if out_type == SIGHASH_SINGLE:
+        if input_index < len(txTo.vout):
+            ss += sha256(txTo.vout[input_index].serialize())
+        else:
+            ss += bytes(0 for _ in range(32))
     if (scriptpath):
-        ss += tagged_hash("TapLeaf", bytes([tapscript_ver]) + ser_string(tapscript))
-        ss += bytes([0x02])
-        ss += struct.pack("<h", codeseparator_pos)
-    assert (len(ss) == 177 - bool(hash_type & SIGHASH_ANYONECANPAY) * 50 - ((hash_type & 3) == SIGHASH_NONE) * 32 - (IsPayToScriptHash(spk)) * 12 + (annex is not None) * 32 + scriptpath * 35)
+        ss += tagged_hash("TapLeaf", bytes([leaf_ver]) + ser_string(script))
+        ss += bytes([0])
+        ss += struct.pack("<i", codeseparator_pos)
+    assert len(ss) ==  175 - (in_type == SIGHASH_ANYONECANPAY) * 49 - (out_type != SIGHASH_ALL and out_type != SIGHASH_SINGLE) * 32 + (annex is not None) * 32 + scriptpath * 37
     return tagged_hash("TapSighash", ss)
 
 def GetVersionTaggedPubKey(pubkey, version):

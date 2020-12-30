@@ -63,13 +63,13 @@ def key_to_p2sh_p2wpkh(key, main = False):
     p2shscript = CScript([OP_0, hash160(key)])
     return script_to_p2sh(p2shscript, main)
 
-def program_to_witness(version, program, main = False):
+def program_to_witness(version, program, main=False):
     if (type(program) is str):
         program = hex_str_to_bytes(program)
     assert 0 <= version <= 16
     assert 2 <= len(program) <= 40
     assert version > 0 or len(program) in [20, 32]
-    return segwit_addr.encode("bc" if main else "bcrt", version, program)
+    return segwit_addr.encode_segwit_address("bc" if main else "bcrt", version, program)
 
 def script_to_p2wsh(script, main = False):
     script = check_script(script)
