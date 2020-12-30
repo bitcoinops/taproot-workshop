@@ -1081,10 +1081,10 @@ class TapTree:
     def from_desc(self, desc):
         desc = ''.join(desc.split())
         pk = ECPubKey()
-        pk.set(binascii.unhexlify(desc[3:69]))
-        if len(desc)>71 and desc[:3] == 'tp(' and pk.is_valid and desc[69] == ',' and desc[-1] == ')':
+        pk.set(binascii.unhexlify(desc[3:67]))
+        if len(desc)>69 and desc[:3] == 'tp(' and pk.is_valid and desc[67] == ',' and desc[-1] == ')':
             self.key = pk
-            self._decode_tree(desc[70:-1], parent=self.root)
+            self._decode_tree(desc[68:-1], parent=self.root)
         else:
             raise Exception
         return self
