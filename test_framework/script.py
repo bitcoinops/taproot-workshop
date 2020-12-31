@@ -1117,7 +1117,7 @@ class TapTree:
         tweak = tagged_hash("TapTweak", self.key.get_bytes() + h)
         tweaked = self.key.tweak_add(tweak)
         control_map = dict((script, GetVersionTaggedPubKey(self.key, version, tweaked) + control) for version, script, control in ctrl)
-        return (CScript([OP_1, GetVersionTaggedPubKey(tweaked, TAPROOT_VER, tweaked)]), tweak, control_map)
+        return (CScript([OP_1, tweaked.get_bytes()]), tweak, control_map)
 
     @staticmethod
     def _constructor(node):
