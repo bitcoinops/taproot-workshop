@@ -6,11 +6,11 @@ set -ue
 [ -z "$COLAB_GPU" ] && echo "Exiting: Seems like you are not running this script inside Google Colab." && exit 1;
 
 # Load the custom `bitcoind` binary.
-wget -q -O colab-binary.tar.xz https://github.com/bitcoinops/bitcoin/releases/download/Taproot_V0.1.4/colab-binary.tar.xz
-tar xf colab-binary.tar.xz
-chmod +x bitcoind
+wget -q -O bitcoind-binary.tar.gz https://bitcoincore.org/bin/bitcoin-core-22.0/bitcoin-22.0-x86_64-linux-gnu.tar.gz
+tar xf bitcoind-binary.tar.gz
+chmod +x bitcoin-*/bin/bitcoind
 mkdir -p /content/bitcoin/src
-mv bitcoind /content/bitcoin/src
+mv bitcoin-*/bin/bitcoind /content/bitcoin/src
 
 # Setup the functional test config.ini.
 mkdir -p /content/bitcoin/test
@@ -31,7 +31,7 @@ RPCAUTH=/content/bitcoin/share/rpcauth/rpcauth.py
 
 [components]
 # Which components are enabled. These are commented out by configure if they were disabled when running config.
-#ENABLE_WALLET=true
+ENABLE_WALLET=true
 #ENABLE_CLI=true
 ENABLE_BITCOIND=true
 #ENABLE_FUZZ=true
