@@ -86,7 +86,7 @@ This section lists the necessary steps and requirements.
 #### Clone this (bitcoinops/taproot-workshop) repository
 
 ```
-$ git clone https://github.com/bitcoinops/taproot-workshop
+$ git clone https://github.com/bitcoinops/taproot-workshop.git
 ```
 
 #### Build a taproot-supporting bitcoind
