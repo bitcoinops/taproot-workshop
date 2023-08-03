@@ -15,7 +15,7 @@ import hashlib
 import itertools
 import queue
 import struct
-
+from Crypto.Hash import RIPEMD160
 from .bignum import bn2vch
 
 MAX_SCRIPT_ELEMENT_SIZE = 520
@@ -30,9 +30,9 @@ DEFAULT_TAPSCRIPT_VER = 0xc0
 TAPROOT_VER = 0
 
 def hash160(s):
-    return hashlib.new('ripemd160', sha256(s)).digest()
-
-
+    h = RIPEMD160.new()
+    h.update(sha256(s))
+    return h.digest()
 _opcode_instances = []
 class CScriptOp(int):
     """A single script opcode"""
