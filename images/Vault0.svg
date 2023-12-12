@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TapTree-2.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="595.28px" height="330.643px" viewBox="0 0 595.28 330.643" enable-background="new 0 0 595.28 330.643"
+	 xml:space="preserve">
+<g>
+	<path fill="#454545" d="M590.28,2c1.654,0,3,1.346,3,3v320.643c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V5c0-1.654,1.346-3,3-3
+		H590.28 M590.28,0H5C2.25,0,0,2.25,0,5v320.643c0,2.75,2.25,5,5,5h585.28c2.75,0,5-2.25,5-5V5C595.28,2.25,593.03,0,590.28,0
+		L590.28,0z"/>
+</g>
+<g>
+	<rect x="32.422" y="25.07" fill="none" width="416.578" height="35.333"/>
+	<text transform="matrix(0.9799 0 0 1 32.4224 34.8198)" font-family="'RobotoMono-Bold'" font-size="13">Clawback Vault Spending Paths</text>
+</g>
+<g>
+	<rect x="40.422" y="85.61" fill="none" width="85.024" height="17.167"/>
+	<text transform="matrix(0.9799 0 0 1 44.124 93.8604)" font-family="'RobotoMono-Bold'" font-size="11">Vault output</text>
+</g>
+<g>
+	<rect x="126.85" y="111.271" fill="none" width="113.524" height="33.345"/>
+	<text transform="matrix(0.9799 0 0 1 146.8042 117.2705)"><tspan x="0" y="0" font-family="'RobotoMono-MediumItalic'" font-size="8">Delayed spend TX</tspan><tspan x="9.391" y="9.6" font-family="'RobotoMono-MediumItalic'" font-size="8">(pre-signed)</tspan></text>
+</g>
+<g>
+	<rect x="350.061" y="112.271" fill="none" width="113.524" height="24.254"/>
+	<text transform="matrix(0.9799 0 0 1 351.6113 118.2705)"><tspan x="0" y="0" font-family="'RobotoMono-MediumItalic'" font-size="8">Re-Vaulting TX after 10d</tspan><tspan x="28.172" y="9.6" font-family="'RobotoMono-MediumItalic'" font-size="8">(pre-signed)</tspan></text>
+</g>
+<g>
+	<rect x="323.722" y="167.451" fill="none" width="166.202" height="12.127"/>
+	<text transform="matrix(0.9799 0 0 1 335.5078 173.4507)" font-family="'RobotoMono-MediumItalic'" font-size="8">Spendable by 3/5 keys after 30d</text>
+</g>
+<g>
+	<rect x="323.722" y="212.783" fill="none" width="166.202" height="12.127"/>
+	<text transform="matrix(0.9799 0 0 1 337.8086 218.7827)" font-family="'RobotoMono-MediumItalic'" font-size="8">Spendable by 4/7 keys after 1d</text>
+</g>
+<g>
+	<rect x="323.722" y="260.873" fill="none" width="166.202" height="12.127"/>
+	<text transform="matrix(0.9799 0 0 1 349.3105 266.8726)" font-family="'RobotoMono-MediumItalic'" font-size="8">Spendable by ragequit key</text>
+</g>
+<g>
+	<rect x="454.166" y="85.61" fill="none" width="85.023" height="17.167"/>
+	<text transform="matrix(0.9799 0 0 1 457.8672 93.8604)" font-family="'RobotoMono-Bold'" font-size="11">Vault output</text>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="81.507" y1="135.525" x2="286.228" y2="135.525"/>
+		<g>
+			<circle cx="81.695" cy="135.525" r="3.76"/>
+		</g>
+		<g>
+			<polygon points="293.289,135.525 283.339,139.591 285.7,135.525 283.339,131.461 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="296.861" y1="135.525" x2="485.627" y2="135.525"/>
+		<g>
+			<circle cx="297.049" cy="135.525" r="3.76"/>
+		</g>
+		<g>
+			<polygon points="492.688,135.525 482.738,139.591 485.1,135.525 482.738,131.461 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M493.626,179.705H330.5c-1.65,0-3.759-1.117-4.686-2.482
+			L297.5,135.525"/>
+		<g>
+			<polygon points="500.687,179.705 490.737,175.64 493.098,179.705 490.737,183.77 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M493.626,224.91H330.5c-1.65,0-3.43-1.28-3.954-2.844L297.5,135.525
+			"/>
+		<g>
+			<polygon points="500.687,224.91 490.737,220.845 493.098,224.91 490.737,228.975 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M493.626,273H330.5c-1.65,0-3.288-1.319-3.64-2.931L297.5,135.525"
+			/>
+		<g>
+			<polygon points="500.687,273 490.737,268.935 493.098,273 490.737,277.064 			"/>
+		</g>
+	</g>
+</g>
+<circle cx="496.688" cy="135.955" r="4"/>
+<line opacity="0.55" fill="none" stroke="#000000" stroke-width="0.7" stroke-miterlimit="10" x1="81.935" y1="124.397" x2="81.935" y2="99.705"/>
+<line opacity="0.55" fill="none" stroke="#000000" stroke-width="0.7" stroke-miterlimit="10" x1="496.678" y1="124.397" x2="496.678" y2="99.705"/>
+<g>
+	<rect x="221.082" y="85.61" fill="none" width="152.835" height="17.167"/>
+	<text transform="matrix(0.9799 0 0 1 232.8154 93.8604)" font-family="'RobotoMono-Bold'" font-size="11">Delayed Spend Output</text>
+</g>
+<line opacity="0.55" fill="none" stroke="#000000" stroke-width="0.7" stroke-miterlimit="10" x1="297.5" y1="124.397" x2="297.5" y2="99.705"/>
+</svg>
