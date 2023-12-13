@@ -101,6 +101,22 @@ If you do not already have the Bitcoin Core repo on your local machine, then clo
 $ git clone https://github.com/bitcoin/bitcoin.git
 ```
 
+Then install the dependencies and follow the
+**[build instructions](https://github.com/bitcoin/bitcoin/tree/master/doc)** for your system.
+
+Be sure to build with Berkeley DB 4.8 support which is required for legacy wallets. On most unix systems this would be:
+
+```
+$ ./autogen.sh
+$ make -C depends NO_BOOST=1 NO_LIBEVENT=1 NO_QT=1 NO_SQLITE=1 NO_NATPMP=1 NO_UPNP=1 NO_ZMQ=1 NO_USDT=1
+$ export BDB_PREFIX="/path/to/bitcoin/depends/x86_64-pc-linux-gnu"
+$ ./configure \
+    BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
+    BDB_CFLAGS="-I${BDB_PREFIX}/include"
+$ make
+$ make install
+```
+
 Note the path where you cloned the bitcoin repository and add it to
 the `config.ini` file in your taproot-workshop repository. For example, set:
 
