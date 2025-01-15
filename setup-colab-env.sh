@@ -3,7 +3,7 @@
 set -ue
 
 # Check if script is run inside Google Colab.
-[ -z "$COLAB_GPU" ] && echo "Exiting: Seems like you are not running this script inside Google Colab." && exit 1;
+[ -z "${COLAB_GPU+x}" ] && echo "Exiting: Seems like you are not running this script inside Google Colab." && exit 1;
 
 # Load the custom `bitcoind` binary.
 wget -q -O bitcoind-binary.tar.gz https://bitcoincore.org/bin/bitcoin-core-22.0/bitcoin-22.0-x86_64-linux-gnu.tar.gz
