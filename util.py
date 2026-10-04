@@ -161,7 +161,7 @@ class TestWrapper:
     def __setattr__(self, name):
         return setattr(self.instance, name)
 
-def generate_and_send_coins(node, address):
+def generate_and_send_coins(node, address, data=None):
     """Generate blocks on node and then send 1 BTC to address.
 
     No change output is added to the transaction.
@@ -183,7 +183,10 @@ def generate_and_send_coins(node, address):
     # Create a raw transaction sending 1 BTC to the address, then sign and send it.
     # We won't create a change output, so maxfeerate must be set to 0
     # to allow any fee rate.
-    tx_hex = node.createrawtransaction(inputs=inputs, outputs=[{address: 1}])
+
+    # An OP_RETURN output is added at index 1 if data is provided.
+    outputs = [{address: 1}, {"data": data}] if data else [{address: 1}]
+    tx_hex = node.createrawtransaction(inputs=inputs, outputs=outputs)
 
     res = node.signrawtransactionwithwallet(hexstring=tx_hex)
 
