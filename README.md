@@ -213,3 +213,17 @@ virtual environment with:
 ```
 $ deactivate
 ```
+
+### Docker Setup Local
+
+if you wish to automate the build using docker instead of the previous steps locally
+
+#### Build
+```
+$ docker build . -t optech
+```
+
+### Run
+```
+$ docker run -it -p 127.0.0.1:8888:8888 optech 
+```
