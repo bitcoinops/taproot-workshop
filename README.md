@@ -91,7 +91,7 @@ $ git clone https://github.com/bitcoinops/taproot-workshop.git
 
 #### Build a taproot-supporting bitcoind
 
-These workbooks require a `bitcoind` with version 0.21 or later which supports schnorr and taproot.
+These workbooks require a `bitcoind` with version 23.0.0 or later which supports schnorr and taproot.
 
 ![workshop_repositories](images/repositories.jpg)
 
