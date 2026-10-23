@@ -36,7 +36,7 @@ class TestWrapper:
         functionality to external python projects."""
 
         def set_test_params(self):
-            # This can be overriden in setup() parameter.
+            # This can be overridden in setup() parameter.
             self.num_nodes = 1
 
         def run_test(self):
@@ -99,7 +99,7 @@ class TestWrapper:
             # With v26.0 BDB wallet creation is deprecated
             # this re-enables it temporarily
             # TODO: create descriptor wallets as legacy wallet
-            # support will be removed in a future realease
+            # support will be removed in a future release
             self.extra_args = [['-deprecatedrpc=create_bdb']]
 
             self.options.bitcoind = bitcoind
@@ -114,7 +114,7 @@ class TestWrapper:
             self.running = True
 
         def create_spending_transaction(self, txid, version=1, nSequence=0):
-            """Construct a CTransaction object that spends the first ouput from txid."""
+            """Construct a CTransaction object that spends the first output from txid."""
             # Construct transaction
             spending_tx = CTransaction()
 
